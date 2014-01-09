@@ -1,0 +1,13 @@
+Sample App for Google IMA.
+Copyright 2013 Google Inc.
+
+Google IMA SDK for iOS is an SDK for monetizing video content in iOS apps.
+More info for the product can be found at: https://developers.google.com/interactive-media-ads/docs/sdks/ios/v3/
+
+Requirements for build:
+Google IMA SDK for iOS library and header files.
+iOS SDK 5.0+
+
+Requirements for runtime:
+iOS 5.0+
+
