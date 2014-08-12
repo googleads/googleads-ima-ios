@@ -173,6 +173,7 @@ NSString *const kTestAppAdTagUrl_AdSense =
   // Attach the content player to the Video view.
   self.contentPlayerLayer =
       [AVPlayerLayer playerLayerWithPlayer:self.contentPlayer];
+  self.contentPlayerLayer.backgroundColor = [[UIColor blackColor] CGColor];
   self.contentPlayerLayer.frame = self.videoView.layer.bounds;
   [self.videoView.layer addSublayer:self.contentPlayerLayer];
 }
@@ -253,10 +254,10 @@ NSString *const kTestAppAdTagUrl_AdSense =
   // Setup the companion slots.
   NSMutableDictionary *companions = [NSMutableDictionary dictionary];
   companions[@"300x50"] =
-     [[IMACompanionAdSlot alloc] initWithWidth:300 height:50];
+    [[IMACompanionAdSlot alloc] initWithView:self.smallCompanionSlot width:300 height:50];
   if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
     companions[@"728x90"] =
-        [[IMACompanionAdSlot alloc] initWithWidth:728 height:90];
+      [[IMACompanionAdSlot alloc] initWithView:self.largeCompanionSlot width:728 height:90];
   }
   self.companionSlots = companions;
 }
@@ -267,6 +268,7 @@ NSString *const kTestAppAdTagUrl_AdSense =
     [self.adsManager destroy];
     self.adsManager.delegate = nil;
     self.adsManager = nil;
+    self.adDisplayContainer = nil;
   }
 }
 
@@ -287,12 +289,6 @@ NSString *const kTestAppAdTagUrl_AdSense =
                         cuePoints]];
   }
   self.adsManager.delegate = self;
-  self.adsManager.adView.frame = self.videoView.bounds;
-  [self.videoView addSubview:self.adsManager.adView];
-  [self.smallCompanionSlot addSubview:
-       ((IMACompanionAdSlot *)self.companionSlots[@"300x50"]).view];
-  [self.largeCompanionSlot addSubview:
-       ((IMACompanionAdSlot *)self.companionSlots[@"728x90"]).view];
 
   // Default values, change these if you want to provide custom bitrate and
   // MIME types. If left to default, the SDK will select media files based
@@ -308,6 +304,10 @@ NSString *const kTestAppAdTagUrl_AdSense =
   [self logMessage:@"Ad loading error: code:%d, message: %@",
                    adErrorData.adError.code,
                    adErrorData.adError.message];
+  [_contentPlayer play];
+  _isAdPlayback = NO;
+  [self setPlayButtonType:PauseButton];
+
 }
 
 #pragma mark IMABrowser Delegate implementation
@@ -336,10 +336,13 @@ NSString *const kTestAppAdTagUrl_AdSense =
     case kIMAAdEvent_STARTED: {
       NSString *adPodInfoString =
           [NSString stringWithFormat:
-              @"Showing ad %d/%d, bumper: %@",
+           @"Showing ad %d/%d, bumper: %@, title: %@, description: %@, contentType: %@",
               event.ad.adPodInfo.adPosition,
               event.ad.adPodInfo.totalAds,
-              event.ad.adPodInfo.isBumper ? @"YES" : @"NO"];
+              event.ad.adPodInfo.isBumper ? @"YES" : @"NO",
+              event.ad.adTitle,
+              event.ad.description,
+              event.ad.contentType];
 
       _adPodInfoLabel.text = adPodInfoString;
       // Log extended data.
@@ -353,6 +356,12 @@ NSString *const kTestAppAdTagUrl_AdSense =
       [self logMessage:extendedAdPodInfo];
       break;
     }
+    case kIMAAdEvent_PAUSE:
+      [self setPlayButtonType:PlayButton];
+      break;
+    case kIMAAdEvent_RESUME:
+      [self setPlayButtonType:PauseButton];
+      break;
     case kIMAAdEvent_COMPLETE:
       _adPodInfoLabel.text = @"";
       break;
@@ -381,7 +390,7 @@ NSString *const kTestAppAdTagUrl_AdSense =
   [self logMessage:@"AdsManager requested content resume."];
   [_contentPlayer play];
   _isAdPlayback = NO;
-  [self setPlayButtonType:PlayButton];
+  [self setPlayButtonType:PauseButton];
 }
 
 - (void)adDidProgressToTime:(NSTimeInterval)mediaTime
@@ -390,7 +399,6 @@ NSString *const kTestAppAdTagUrl_AdSense =
   CMTime duration = CMTimeMakeWithSeconds(totalTime, 1000);
   [self updatePlayHeadWithTime:time duration:duration];
   self.progressBar.maximumValue = totalTime;
-  [self setPlayButtonType:PauseButton];
 }
 
 #pragma mark UIOutlet function implementations
@@ -454,10 +462,15 @@ NSString *const kTestAppAdTagUrl_AdSense =
   [self logMessage:@"Requesting ads."];
   [self unloadAdsManager];
 
+    
+   // Create an adDisplayContainer with the ad container and companion ad slots.
+   self.adDisplayContainer = [[IMAAdDisplayContainer alloc]
+                              initWithAdContainer:self.videoView
+                                   companionSlots:[self.companionSlots allValues]];
   // Create an adsRequest object and request ads from the ad server.
   IMAAdsRequest *request =
       [[IMAAdsRequest alloc] initWithAdTagUrl:self.adTagUrlTextField.text
-                               companionSlots:[self.companionSlots allValues]
+                           adDisplayContainer:self.adDisplayContainer
                                   userContext:nil];
 
   [self.adsLoader requestAdsWithRequest:request];
@@ -494,7 +507,7 @@ NSString *const kTestAppAdTagUrl_AdSense =
                        otherButtonTitles:nil];
   alert.alertViewStyle = UIAlertViewStylePlainTextInput;
   UITextField *alertTextField = [alert textFieldAtIndex:0];
-  alertTextField.placeholder = @"Examples: en, jp, zh-cn";
+  alertTextField.placeholder = @"Examples: en, ja, zh-cn";
   [alert show];
 }
 
@@ -523,13 +536,11 @@ NSString *const kTestAppAdTagUrl_AdSense =
   [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
   [self.videoView.layer setFrame:self.fullscreenFrame];
   [self.contentPlayerLayer setFrame:self.fullscreenFrame];
-  [self.adsManager.adView setFrame:self.fullscreenFrame];
 }
 
 -(void) viewDidEnterPortrait {
   [self.videoView.layer setFrame:self.portraitViewFrame];
   [self.contentPlayerLayer setFrame:self.portraitVideoFrame];
-  [self.adsManager.adView setFrame:self.portraitVideoFrame];
   [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
 }
 
@@ -569,9 +580,7 @@ NSString *const kTestAppAdTagUrl_AdSense =
 #pragma mark Utility Functions
 
 - (void)resetAppState {
-  self.adsManager.delegate = nil;
   [self unloadAdsManager];
-  [self.adsManager destroy];
   [self.contentPlayer pause];
   [self.contentPlayer seekToTime:CMTimeMake(0, 1)];
   [self updatePlayHeadWithTime:CMTimeMake(0, 1)
@@ -579,10 +588,6 @@ NSString *const kTestAppAdTagUrl_AdSense =
   [self setupAdsLoader];
   self.console.text = @"";
   _isAdPlayback = NO;
-  [self.largeCompanionSlot.subviews
-       makeObjectsPerformSelector:@selector(removeFromSuperview)];
-  [self.smallCompanionSlot.subviews
-       makeObjectsPerformSelector:@selector(removeFromSuperview)];
   [self setupCompanions];
 }
 

@@ -10,6 +10,7 @@
 // IMA SDK
 #import "IMAAVPlayerContentPlayhead.h"
 #import "IMAAd.h"
+#import "IMAAdDisplayContainer.h"
 #import "IMAAdsLoader.h"
 #import "IMAAdsManager.h"
 
@@ -43,14 +44,14 @@
 @property(nonatomic, strong) UIImage  *pauseBtnBG;
 // The player that plays the content.
 @property(nonatomic, strong) AVPlayer *contentPlayer;
+// The player item used for content video playback.
+@property(nonatomic, strong) AVPlayerItem *contentPlayerItem;
 // The layer for the player
 @property(nonatomic, strong) AVPlayerLayer *contentPlayerLayer;
 // Player observer for playback UI.
 @property(nonatomic, strong) id playHeadObserver;
 // The content playhead used for content tracking.
 @property(nonatomic, strong) IMAAVPlayerContentPlayhead *contentPlayhead;
-// This is used but the IMA SDK to place ads.
-@property(nonatomic, strong) UIView *adView;
 // Map of companion ad slots.
 @property(nonatomic, strong) NSDictionary *companionSlots;
 // The language sent to the ad server.
@@ -61,6 +62,8 @@
 @property(nonatomic, strong) IMAAdsLoader *adsLoader;
 // The ads manager that plays a video ad.
 @property(nonatomic, strong) IMAAdsManager *adsManager;
+// The ad display container.
+@property(nonatomic, strong) IMAAdDisplayContainer *adDisplayContainer;
 // The ads rendering settings.
 @property(nonatomic, strong) IMAAdsRenderingSettings *adsRenderingSettings;
 
