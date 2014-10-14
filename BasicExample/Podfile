@@ -1,0 +1,3 @@
+platform :ios, '7.0'
+
+pod 'GoogleAds-IMA-iOS-SDK', '~> 3.0.beta.7'

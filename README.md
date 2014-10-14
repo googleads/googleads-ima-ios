@@ -4,12 +4,13 @@ Google Ads iOS IMA SDK
 This project hosts samples for the [iOS IMA SDK](https://developers.google.com/interactive-media-ads/docs/sdks/ios/v3/).
 
 ### Requirements
-  * Google iOS IMA SDK library and header files
-  * XCode 4.6 or newer
-  * iOS 5.0+
+  * XCode 6 or newer
+  * iOS 6.0+
+  * CocoaPods (optional but recommended)
 
 ### Installation Instructions
-To run the sample app, simply open SampleApp.xcodeproj in XCode and [add the SDK](https://developers.google.com/interactive-media-ads/docs/sdks/ios/v3/quickstart#addSdk).
+The Sample Video Player is intended to be used with the [iOS Quickstart guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/v3/quickstart).<br />
+To run the Basic Example, add the SDK using the instructions provided [here](https://developers.google.com/interactive-media-ads/docs/sdks/ios/v3/quickstart#addSdk).
 
 ### Downloads
 Check out the [releases section](https://github.com/googleads/googleads-ima-ios/releases) for downloadable zips of the source.
