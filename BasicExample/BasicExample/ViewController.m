@@ -76,6 +76,14 @@ NSString *const kTestAppAdTagUrl =
 
 - (void)createContentPlayhead {
   self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(contentDidFinishPlaying)
+                                               name:AVPlayerItemDidPlayToEndTimeNotification
+                                             object:[self.contentPlayer currentItem]];
+}
+
+- (void)contentDidFinishPlaying {
+  [self.adsLoader contentComplete];
 }
 
 #pragma mark AdsLoader Delegates
