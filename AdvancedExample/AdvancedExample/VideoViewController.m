@@ -3,8 +3,8 @@
 
 // Maps SDK enum to strings for logging.
 const char *AdEventNames[] = {
-    "All Ads Completed", "Clicked", "Complete", "First Quartile", "Loaded", "Midpoint", "Pause",
-    "Resume", "Started", "Tapped", "Third Quartile",
+    "Ad Break Ready", "All Ads Completed", "Clicked", "Complete", "First Quartile", "Loaded",
+    "Midpoint", "Pause", "Resume", "Skipped", "Started", "Tapped", "Third Quartile",
 };
 
 typedef enum { PlayButton, PauseButton } PlayButtonType;
