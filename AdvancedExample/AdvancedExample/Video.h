@@ -15,14 +15,10 @@
 // The URL for the VAST response
 @property(nonatomic, strong) NSString *tag;
 
-// Language
-@property(nonatomic, strong) NSString *language;
-
 // Returns an initialized video.
 - (instancetype)initWithTitle:(NSString *)title
                     thumbnail:(UIImage *)thumbnail
                         video:(NSString *)video
-                          tag:(NSString *)tag
-                     language:(NSString *)language;
+                          tag:(NSString *)tag;
 
 @end

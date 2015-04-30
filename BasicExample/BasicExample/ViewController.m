@@ -1,6 +1,21 @@
+#import <AVFoundation/AVFoundation.h>
+
 #import "ViewController.h"
 
-@interface ViewController ()
+@import GoogleInteractiveMediaAds;
+
+@interface ViewController () <IMAAdsLoaderDelegate, IMAAdsManagerDelegate>
+
+/// Content video player.
+@property(nonatomic, strong) AVPlayer *contentPlayer;
+
+// SDK
+/// Entry point for the SDK. Used to make ad requests.
+@property(nonatomic, strong) IMAAdsLoader *adsLoader;
+// Playhead used by the SDK to track content video progress and insert mid-rolls.
+@property(nonatomic, strong) IMAAVPlayerContentPlayhead *contentPlayhead;
+/// Main point of interaction with the SDK. Created by the SDK as the result of an ad request.
+@property(nonatomic, strong) IMAAdsManager *adsManager;
 
 @end
 
@@ -21,6 +36,7 @@ NSString *const kTestAppAdTagUrl =
 
   self.playButton.layer.zPosition = MAXFLOAT;
 
+  [self setupAdsLoader];
   [self setUpContentPlayer];
 }
 
@@ -51,38 +67,26 @@ NSString *const kTestAppAdTagUrl =
   self.adsLoader.delegate = self;
 }
 
-- (void)setUpAdDisplayContainer {
-  // Create our AdDisplayContainer. Initialize it with our videoView as the container. This
-  // will result in ads being displayed over our content video.
-  self.adDisplayContainer =
-      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
-}
-
 - (void)requestAds {
-  [self setupAdsLoader];
-  [self setUpAdDisplayContainer];
+  // Create an ad display container for ad rendering.
+  IMAAdDisplayContainer *adDisplayContainer =
+      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
   // Create an ad request with our ad tag, display container, and optional user context.
-  IMAAdsRequest *request =
-      [[IMAAdsRequest alloc] initWithAdTagUrl:kTestAppAdTagUrl
-                           adDisplayContainer:self.adDisplayContainer
-                                  userContext:nil];
+  IMAAdsRequest *request = [[IMAAdsRequest alloc] initWithAdTagUrl:kTestAppAdTagUrl
+                                                adDisplayContainer:adDisplayContainer
+                                                       userContext:nil];
   [self.adsLoader requestAdsWithRequest:request];
-}
-
-- (void)createAdsRenderingSettings {
-  self.adsRenderingSettings = [[IMAAdsRenderingSettings alloc] init];
-  self.adsRenderingSettings.webOpenerPresentingController = self;
 }
 
 - (void)createContentPlayhead {
   self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(contentDidFinishPlaying)
+                                           selector:@selector(contentDidFinishPlaying:)
                                                name:AVPlayerItemDidPlayToEndTimeNotification
                                              object:[self.contentPlayer currentItem]];
 }
 
-- (void)contentDidFinishPlaying {
+- (void)contentDidFinishPlaying:(NSNotification *)notification {
   [self.adsLoader contentComplete];
 }
 
@@ -93,12 +97,13 @@ NSString *const kTestAppAdTagUrl =
   self.adsManager = adsLoadedData.adsManager;
   self.adsManager.delegate = self;
   // Create ads rendering settings to tell the SDK to use the in-app browser.
-  [self createAdsRenderingSettings];
+  IMAAdsRenderingSettings *adsRenderingSettings = [[IMAAdsRenderingSettings alloc] init];
+  adsRenderingSettings.webOpenerPresentingController = self;
   // Create a content playhead so the SDK can track our content for VMAP and ad rules.
   [self createContentPlayhead];
   // Initialize the ads manager.
   [self.adsManager initializeWithContentPlayhead:self.contentPlayhead
-                            adsRenderingSettings:self.adsRenderingSettings];
+                            adsRenderingSettings:adsRenderingSettings];
 }
 
 - (void)adsLoader:(IMAAdsLoader *)loader failedWithErrorData:(IMAAdLoadingErrorData *)adErrorData {
@@ -109,16 +114,14 @@ NSString *const kTestAppAdTagUrl =
 
 #pragma mark AdsManager Delegates
 
-- (void)adsManager:(IMAAdsManager *)adsManager
-    didReceiveAdEvent:(IMAAdEvent *)event {
+- (void)adsManager:(IMAAdsManager *)adsManager didReceiveAdEvent:(IMAAdEvent *)event {
   // When the SDK notified us that ads have been loaded, play them.
   if (event.type == kIMAAdEvent_LOADED) {
     [adsManager start];
   }
 }
 
-- (void)adsManager:(IMAAdsManager *)adsManager
-    didReceiveAdError:(IMAAdError *)error {
+- (void)adsManager:(IMAAdsManager *)adsManager didReceiveAdError:(IMAAdError *)error {
   // Something went wrong with the ads manager after ads were loaded. Log the error and play the
   // content.
   NSLog(@"AdsManager error: %@", error.message);
@@ -134,6 +137,5 @@ NSString *const kTestAppAdTagUrl =
   // The SDK is done playing ads (at least for now), so resume the content.
   [_contentPlayer play];
 }
-
 
 @end

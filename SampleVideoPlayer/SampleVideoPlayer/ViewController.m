@@ -1,6 +1,11 @@
+#import <AVFoundation/AVFoundation.h>
+
 #import "ViewController.h"
 
 @interface ViewController ()
+
+/// Content video player.
+@property(nonatomic, strong) AVPlayer *contentPlayer;
 
 @end
 

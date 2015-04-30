@@ -1,4 +1,7 @@
+#import <AVFoundation/AVFoundation.h>
+
 #import "Constants.h"
+#import "Video.h"
 #import "VideoViewController.h"
 
 // Maps SDK enum to strings for logging.
@@ -9,7 +12,7 @@ const char *AdEventNames[] = {
 
 typedef enum { PlayButton, PauseButton } PlayButtonType;
 
-@interface VideoViewController ()
+@interface VideoViewController () <IMAAdsLoaderDelegate, IMAAdsManagerDelegate, UIAlertViewDelegate>
 
 // Tracking for play/pause
 @property(nonatomic) BOOL isAdPlayback;
@@ -31,9 +34,6 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 @property(nonatomic, strong) UITapGestureRecognizer *videoTapRecognizer;
 
 // IMA SDK handles
-@property(nonatomic, strong) IMAAdsLoader *adsLoader;
-@property(nonatomic, strong) IMAAdDisplayContainer *adDisplayContainer;
-@property(nonatomic, strong) IMAAdsRenderingSettings *adsRenderingSettings;
 @property(nonatomic, strong) IMAAVPlayerContentPlayhead *contentPlayhead;
 @property(nonatomic, strong) IMAAdsManager *adsManager;
 @property(nonatomic, strong) IMACompanionAdSlot *companionSlot;
@@ -59,7 +59,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   self.pauseBtnBG = [UIImage imageNamed:@"pause.png"];
   self.isAdPlayback = NO;
   self.isFullscreen = NO;
-  
+
   // Fix iPhone issue of log text starting in the middle of the UITextView
   self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -92,7 +92,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   // Set up content player and IMA classes, then request ads. If the user selected "Custom",
   // get the ad tag from the pop-up dialog.
   [self setUpContentPlayer];
-  [self setUpAdsLoader];
+  [self setUpIMA];
   if ([self.video.tag isEqual:@"custom"]) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tag"
                                                     message:@"Enter your test tag below"
@@ -111,9 +111,6 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   if (self.adsManager) {
     [self.adsManager destroy];
     self.adsManager = nil;
-  }
-  if (self.adsLoader) {
-    self.adsLoader = nil;
   }
   self.contentPlayer = nil;
   [super viewWillDisappear:animated];
@@ -146,7 +143,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
                           options:0
                           context:@"playerDuration"];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(contentDidFinishPlaying)
+                                           selector:@selector(contentDidFinishPlaying:)
                                                name:AVPlayerItemDidPlayToEndTimeNotification
                                              object:[self.contentPlayer currentItem]];
 
@@ -349,16 +346,14 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 #pragma mark IMA SDK methods
 
 // Initialize ad display container.
-- (void)setUpAdDisplayContainer {
+- (IMAAdDisplayContainer *)createAdDisplayContainer {
   // Create our AdDisplayContainer. Initialize it with our videoView as the container. This
   // will result in ads being displayed over our content video.
   if (self.companionView != nil) {
-    self.adDisplayContainer =
-        [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
-                                            companionSlots:@[ self.companionSlot ]];
+    return [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                               companionSlots:@[ self.companionSlot ]];
   } else {
-    self.adDisplayContainer =
-        [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
+    return [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
   }
 }
 
@@ -370,28 +365,17 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
                                         height:self.companionView.frame.size.height];
 }
 
-// Create AdsRenderingSettings.
-- (void)createAdsRenderingSettings {
-  self.adsRenderingSettings = [[IMAAdsRenderingSettings alloc] init];
-  self.adsRenderingSettings.webOpenerPresentingController = self;
-}
-
 // Create playhead for content tracking.
 - (void)createContentPlayhead {
   self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
 }
 
 // Initialize AdsLoader.
-- (void)setUpAdsLoader {
+- (void)setUpIMA {
   if (self.adsManager) {
     [self.adsManager destroy];
   }
-  if (self.adsLoader) {
-    self.adsLoader = nil;
-  }
-  IMASettings *settings = [[IMASettings alloc] init];
-  settings.language = self.video.language;
-  self.adsLoader = [[IMAAdsLoader alloc] initWithSettings:settings];
+  [self.adsLoader contentComplete];
   self.adsLoader.delegate = self;
   if (self.companionView != nil) {
     [self setUpCompanions];
@@ -401,16 +385,15 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 // Request ads for provided tag.
 - (void)requestAdsWithTag:(NSString *)adTagUrl {
   [self logMessage:@"Requesting ads"];
-  [self setUpAdDisplayContainer];
   // Create an ad request with our ad tag, display container, and optional user context.
   IMAAdsRequest *request = [[IMAAdsRequest alloc] initWithAdTagUrl:adTagUrl
-                                                adDisplayContainer:self.adDisplayContainer
+                                                adDisplayContainer:[self createAdDisplayContainer]
                                                        userContext:nil];
   [self.adsLoader requestAdsWithRequest:request];
 }
 
 // Notify IMA SDK when content is done for post-rolls.
-- (void)contentDidFinishPlaying {
+- (void)contentDidFinishPlaying:(NSNotification *)notification {
   [self.adsLoader contentComplete];
 }
 
@@ -421,12 +404,13 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   self.adsManager = adsLoadedData.adsManager;
   self.adsManager.delegate = self;
   // Create ads rendering settings to tell the SDK to use the in-app browser.
-  [self createAdsRenderingSettings];
+  IMAAdsRenderingSettings *adsRenderingSettings = [[IMAAdsRenderingSettings alloc] init];
+  adsRenderingSettings.webOpenerPresentingController = self;
   // Create a content playhead so the SDK can track our content for VMAP and ad rules.
   [self createContentPlayhead];
   // Initialize the ads manager.
   [self.adsManager initializeWithContentPlayhead:self.contentPlayhead
-                            adsRenderingSettings:self.adsRenderingSettings];
+                            adsRenderingSettings:adsRenderingSettings];
 }
 
 - (void)adsLoader:(IMAAdsLoader *)loader failedWithErrorData:(IMAAdLoadingErrorData *)adErrorData {

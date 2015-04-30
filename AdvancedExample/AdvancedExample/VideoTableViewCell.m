@@ -10,8 +10,9 @@
 
 @implementation VideoTableViewCell
 
-- (void)setImageForThumbnail:(UIImage *)thumbnail {
-  [self.thumbnail setImage:thumbnail];
+- (void)populateWithVideo:(Video *)video {
+  self.videoLabel.text = video.title;
+  [self.thumbnail setImage:video.thumbnail];
 }
 
 @end

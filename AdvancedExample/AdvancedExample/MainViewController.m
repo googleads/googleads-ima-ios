@@ -6,10 +6,12 @@
 #import "VideoViewController.h"
 #import "VideoTableViewCell.h"
 
-@interface MainViewController ()
+@interface MainViewController () <UIAlertViewDelegate>
 
 // Storage point for videos.
 @property(nonatomic, copy) NSArray *videos;
+@property(nonatomic, strong) IMAAdsLoader *adsLoader;
+@property(nonatomic, strong) NSString *language;
 
 @end
 
@@ -18,7 +20,9 @@
 // Set up the app.
 - (void)viewDidLoad {
   [super viewDidLoad];
+  self.language = @"en";
   [self initVideos];
+  [self setUpAdsLoader];
 }
 
 // Populate the video array.
@@ -31,54 +35,71 @@
     [[Video alloc] initWithTitle:@"Pre-roll"
                        thumbnail:dfpThumbnail
                            video:kDFPContentPath
-                             tag:kPrerollTag
-                        language:@"en"],
+                             tag:kPrerollTag],
     [[Video alloc] initWithTitle:@"Skippable Pre-roll"
                        thumbnail:androidThumbnail
                            video:kAndroidContentPath
-                             tag:kSkippableTag
-                        language:@"en"],
+                             tag:kSkippableTag],
     [[Video alloc] initWithTitle:@"Post-roll"
                        thumbnail:bunnyThumbnail
                            video:kBigBuckBunnyContentPath
-                             tag:kPostrollTag
-                        language:@"en"],
+                             tag:kPostrollTag],
     [[Video alloc] initWithTitle:@"AdRules"
                        thumbnail:bipThumbnail
                            video:kBipBopContentPath
-                             tag:kAdRulesTag
-                        language:@"en"],
+                             tag:kAdRulesTag],
     [[Video alloc] initWithTitle:@"AdRules Pods"
                        thumbnail:dfpThumbnail
                            video:kDFPContentPath
-                             tag:kAdRulesPodsTag
-                        language:@"en"],
+                             tag:kAdRulesPodsTag],
     [[Video alloc] initWithTitle:@"VMAP Pods"
                        thumbnail:androidThumbnail
                            video:kAndroidContentPath
-                             tag:kVMAPPodsTag
-                        language:@"en"],
+                             tag:kVMAPPodsTag],
     [[Video alloc] initWithTitle:@"Wrapper"
                        thumbnail:bunnyThumbnail
                            video:kBigBuckBunnyContentPath
-                             tag:kWrapperTag
-                        language:@"en"],
+                             tag:kWrapperTag],
     [[Video alloc] initWithTitle:@"AdSense"
                        thumbnail:bipThumbnail
                            video:kBipBopContentPath
-                             tag:kAdSenseTag
-                        language:@"en"],
-    [[Video alloc] initWithTitle:@"Spanish"
-                       thumbnail:dfpThumbnail
-                           video:kDFPContentPath
-                             tag:kSkippableTag
-                        language:@"es"],
+                             tag:kAdSenseTag],
     [[Video alloc] initWithTitle:@"Custom"
                        thumbnail:androidThumbnail
                            video:kAndroidContentPath
-                             tag:@"custom"
-                        language:@"en"]
+                             tag:@"custom"]
   ];
+}
+
+// Initialize AdsLoader.
+- (void)setUpAdsLoader {
+  if (self.adsLoader) {
+    self.adsLoader = nil;
+  }
+  IMASettings *settings = [[IMASettings alloc] init];
+  settings.language = self.language;
+  self.adsLoader = [[IMAAdsLoader alloc] initWithSettings:settings];
+}
+
+// Show pop-up dialog for language input.
+- (IBAction)onLanguageClicked {
+  NSString *alertMessage = @"NOTE: This will only change the ad UI language. The language elsewhere"
+      @" in the app will remain in English. Language must be formated as a canonicalized IETF BCP"
+      @" 47 language identifier such as would be returned by [NSLocale preferredLanguages], e.g."
+      @" \"en\", \"es\", etc.";
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Language"
+                                                  message:alertMessage
+                                                 delegate:self
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+  [alert show];
+}
+
+// If the language dialog was shown, re-create the AdsLoader with the new language.
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  self.language = [[alertView textFieldAtIndex:0] text];
+  [self setUpAdsLoader];
 }
 
 // When an item is selected, set the video item on the VideoViewController.
@@ -88,6 +109,7 @@
     Video *video = self.videos[indexPath.row];
     VideoViewController *headedTo = (VideoViewController *)[segue destinationViewController];
     headedTo.video = video;
+    headedTo.adsLoader = self.adsLoader;
   }
 }
 
@@ -107,8 +129,7 @@
   VideoTableViewCell *cell =
       [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
   Video *selectedVideo = self.videos[indexPath.row];
-  cell.videoLabel.text = selectedVideo.title;
-  [cell setImageForThumbnail:selectedVideo.thumbnail];
+  [cell populateWithVideo:selectedVideo];
   return cell;
 }
 

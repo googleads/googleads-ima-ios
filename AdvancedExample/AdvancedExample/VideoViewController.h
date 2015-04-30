@@ -1,15 +1,8 @@
-#import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
 
-#import "IMAAdsLoader.h"
-#import "IMAAVPlayerContentPlayhead.h"
-#import "IMACompanionAdSlot.h"
-#import "Video.h"
+@import GoogleInteractiveMediaAds;
 
-@interface VideoViewController
-    : UIViewController<IMAAdsLoaderDelegate, IMAAdsManagerDelegate, UIAlertViewDelegate>
-
-@property(nonatomic, strong) Video *video;
+@interface VideoViewController : UIViewController
 
 // UI Outlets
 @property(nonatomic, weak) IBOutlet UILabel *topLabel;
@@ -19,7 +12,13 @@
 @property(nonatomic, weak) IBOutlet UITextField *playHeadTimeText;
 @property(nonatomic, weak) IBOutlet UITextField *durationTimeText;
 @property(nonatomic, weak) IBOutlet UISlider *progressBar;
+
 @property(nonatomic, weak) IBOutlet UIView *companionView;
+
 @property(nonatomic, weak) IBOutlet UITextView *consoleView;
+
+@property(nonatomic, strong) Video *video;
+
+@property(nonatomic, strong) IMAAdsLoader *adsLoader;
 
 @end
