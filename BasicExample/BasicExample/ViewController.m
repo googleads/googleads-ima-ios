@@ -87,7 +87,10 @@ NSString *const kTestAppAdTagUrl =
 }
 
 - (void)contentDidFinishPlaying:(NSNotification *)notification {
-  [self.adsLoader contentComplete];
+  // Make sure we don't call contentComplete as a result of an ad completing.
+  if (notification.object == self.contentPlayer.currentItem) {
+    [self.adsLoader contentComplete];
+  }
 }
 
 #pragma mark AdsLoader Delegates
