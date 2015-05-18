@@ -108,11 +108,14 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 
 - (void)viewWillDisappear:(BOOL)animated {
   [self.contentPlayer pause];
-  if (self.adsManager) {
-    [self.adsManager destroy];
-    self.adsManager = nil;
+  // Don't reset if we're presenting a modal view (e.g. in-app clickthrough).
+  if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+    if (self.adsManager) {
+      [self.adsManager destroy];
+      self.adsManager = nil;
+    }
+    self.contentPlayer = nil;
   }
-  self.contentPlayer = nil;
   [super viewWillDisappear:animated];
 }
 
