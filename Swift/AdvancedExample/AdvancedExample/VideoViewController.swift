@@ -126,8 +126,9 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
       tagPrompt.addAction(
         UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: tagEntered))
       presentViewController(tagPrompt, animated: true, completion: nil)
+    } else {
+      requestAdsWithTag(video.tag)
     }
-    requestAdsWithTag(video.tag)
   }
 
   // Handler when user clicks "OK" on the ad tag pop-up
