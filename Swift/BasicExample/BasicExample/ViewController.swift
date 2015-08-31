@@ -24,7 +24,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
 
   let kTestAppAdTagUrl = "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360" +
       "&iu=/6062/iab_vast_samples/skippable&ciu_szs=300x250,728x90&impl=s&gdfp_req=1&env=vp&" +
-      "output=xml_vast3&unviewed_position_start=1&url=[referrer_url]&correlator=[timestamp]";
+      "output=vast&unviewed_position_start=1&url=[referrer_url]&correlator=[timestamp]";
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -111,7 +111,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   }
 
   func adsManager(adsManager: IMAAdsManager!, didReceiveAdEvent event: IMAAdEvent!) {
-    if (event.type.value == kIMAAdEvent_LOADED.value) {
+    if (event.type == IMAAdEventType.LOADED) {
       // When the SDK notifies us that ads have been loaded, play them.
       adsManager.start()
     }

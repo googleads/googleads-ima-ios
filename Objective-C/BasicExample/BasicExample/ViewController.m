@@ -28,7 +28,7 @@ NSString *const kTestAppContentUrl_MP4 = @"http://rmcdn.2mdn.net/Demo/html5/outp
 NSString *const kTestAppAdTagUrl =
     @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&"
     @"iu=/6062/iab_vast_samples/skippable&ciu_szs=300x250,728x90&impl=s&"
-    @"gdfp_req=1&env=vp&output=xml_vast3&unviewed_position_start=1&"
+    @"gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&"
     @"url=[referrer_url]&correlator=[timestamp]";
 
 - (void)viewDidLoad {

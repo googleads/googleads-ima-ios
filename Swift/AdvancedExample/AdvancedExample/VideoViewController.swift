@@ -63,9 +63,21 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   var contentRateContext: UInt8 = 1
   var contentDurationContext: UInt8 = 2
 
-  let AdEventNames = [
-    "Ad Break Ready", "All Ads Completed", "Clicked", "Complete", "First Quartile", "Loaded",
-    "Midpoint", "Pause", "Resume", "Skipped", "Started", "Tapped", "Third Quartile"]
+  let AdEventNames: [IMAAdEventType: String] = [
+    IMAAdEventType.AD_BREAK_READY: "Ad Break Ready",
+    IMAAdEventType.ALL_ADS_COMPLETED: "All Ads Completed",
+    IMAAdEventType.CLICKED: "Clicked",
+    IMAAdEventType.COMPLETE: "Complete",
+    IMAAdEventType.FIRST_QUARTILE: "First Quartile",
+    IMAAdEventType.LOADED: "Loaded",
+    IMAAdEventType.MIDPOINT: "Midpoint",
+    IMAAdEventType.PAUSE: "Pause",
+    IMAAdEventType.RESUME: "Resume",
+    IMAAdEventType.SKIPPED: "Skipped",
+    IMAAdEventType.STARTED: "Started",
+    IMAAdEventType.TAPPED: "Tapped",
+    IMAAdEventType.THIRD_QUARTILE: "Third Quartile"
+  ]
 
   enum PlayButtonType: Int {
     case PlayButton = 0
@@ -479,19 +491,19 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   // MARK: AdsManager Delegates
 
   func adsManager(adsManager: IMAAdsManager!, didReceiveAdEvent event: IMAAdEvent!) {
-    var eventType = AdEventNames[Int(event.type.value)]
-    logMessage("AdsManager event \(eventType)")
-    switch (event.type.value) {
-      case kIMAAdEvent_LOADED.value:
+    var eventType = AdEventNames[event.type]
+    logMessage("AdsManager event \(eventType!)")
+    switch (event.type) {
+      case IMAAdEventType.LOADED:
         adsManager.start()
         break
-      case kIMAAdEvent_PAUSE.value:
+      case IMAAdEventType.PAUSE:
         setPlayButtonType(PlayButtonType.PlayButton)
         break
-      case kIMAAdEvent_RESUME.value:
+      case IMAAdEventType.RESUME:
         setPlayButtonType(PlayButtonType.PauseButton)
         break
-      case kIMAAdEvent_TAPPED.value:
+      case IMAAdEventType.TAPPED:
         showFullscreenControls(nil)
         break
       default:
