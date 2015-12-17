@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  AdvancedExample
-//
-//  Created by Shawn Busolits on 5/6/15.
-//
-
 import UIKit
 
 import GoogleInteractiveMediaAds
@@ -28,14 +21,22 @@ class MainViewController: UIViewController {
     language = "en"
     initVideos()
     setUpAdsLoader()
+
+    // For PiP.
+    do {
+      try AVAudioSession.sharedInstance().setActive(true);
+      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback);
+    } catch {
+      NSLog("Error setting background playback - PiP will not work.")
+    }
   }
 
   // Populate the video array.
   func initVideos() {
-    var dfpThumbnail = UIImage(named: "dfp.png")
-    var androidThumbnail = UIImage(named: "android.png")
-    var bunnyThumbnail = UIImage(named: "bunny.png")
-    var bipThumbnail = UIImage(named: "bip.png")
+    let dfpThumbnail = UIImage(named: "dfp.png")
+    let androidThumbnail = UIImage(named: "android.png")
+    let bunnyThumbnail = UIImage(named: "bunny.png")
+    let bipThumbnail = UIImage(named: "bip.png")
 
     videos = [
       Video(
@@ -91,8 +92,9 @@ class MainViewController: UIViewController {
     if (adsLoader != nil) {
       adsLoader = nil
     }
-    var settings = IMASettings()
-    settings.language = language as? String
+    let settings = IMASettings()
+    settings.language = language as String
+    settings.enableBackgroundPlayback = true;
     adsLoader = IMAAdsLoader(settings: settings)
   }
 
@@ -124,16 +126,16 @@ class MainViewController: UIViewController {
 
   // Used to create the text field in the language pop-up.
   func addTextField(textField: UITextField!) {
-    textField.placeholder = language as? String
+    textField.placeholder = language as String
     languageInput = textField
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if (segue.identifier == "showVideo") {
-      var indexPath: NSIndexPath! = tableView.indexPathForSelectedRow()
+      let indexPath: NSIndexPath! = tableView.indexPathForSelectedRow
       if (indexPath != nil) {
-        var video = videos[indexPath.row] as! Video
-        var headedTo = segue.destinationViewController as! VideoViewController
+        let video = videos[indexPath.row] as! Video
+        let headedTo = segue.destinationViewController as! VideoViewController
         headedTo.video = video
         headedTo.adsLoader = adsLoader
       }
@@ -141,7 +143,7 @@ class MainViewController: UIViewController {
   }
 
   override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-    if (tableView.indexPathForSelectedRow() != nil) {
+    if (tableView.indexPathForSelectedRow != nil) {
       return true
     }
     return false
@@ -160,10 +162,10 @@ class MainViewController: UIViewController {
   func tableView(
       tableView: UITableView,
       cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    var cell = tableView.dequeueReusableCellWithIdentifier(
+    let cell = tableView.dequeueReusableCellWithIdentifier(
         "cell",
         forIndexPath: indexPath) as! VideoTableViewCell
-    var selectedVideo = videos[indexPath.row] as! Video
+    let selectedVideo = videos[indexPath.row] as! Video
     cell.populateWithVideo(selectedVideo)
     return cell
   }

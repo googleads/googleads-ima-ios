@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9he-EM-WL4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="9he-EM-WL4">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Tags-->
@@ -12,28 +11,33 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="MZh-B1-Efw">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="OoT-Fe-n8Z" userLabel="cell" customClass="VideoTableViewCell" customModule="AdvancedExample" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="86" width="768" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell" tableViewCell="OoT-Fe-n8Z" id="u6p-d1-0FA" userLabel="cell">
-                                    <rect key="frame" x="0.0" y="0.0" width="735" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="682" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rAT-t2-jIl">
                                             <rect key="frame" x="8" y="8" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AKZ-DV-VAO">
-                                            <rect key="frame" x="91" y="35" width="644" height="20.5"/>
+                                            <rect key="frame" x="91" y="35" width="644" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <animations/>
                                 </tableViewCellContentView>
+                                <animations/>
                                 <connections>
                                     <outlet property="thumbnail" destination="rAT-t2-jIl" id="GhY-Mp-YLw"/>
                                     <outlet property="videoLabel" destination="AKZ-DV-VAO" id="6ai-Pn-FMc"/>
@@ -49,8 +53,9 @@
                     <navigationItem key="navigationItem" title="Tags" id="xU8-UL-bVy">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="bUl-Jq-OCv">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y6X-ar-CWu">
-                                <rect key="frame" x="-23" y="-15" width="170" height="30"/>
+                                <rect key="frame" x="578" y="7" width="170" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
                                 <state key="normal" title="Language">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -79,16 +84,19 @@
                             <view contentMode="scaleToFill" id="UEZ-fx-Xe4">
                                 <rect key="frame" x="0.0" y="64" width="768" height="432"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="YRz-NC-Z11">
                                 <rect key="frame" x="20" y="553" width="728" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="hFQ-Yz-mpH">
                                 <rect key="frame" x="84" y="710" width="600" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <animations/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -96,6 +104,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TAR-na-MB9">
                                 <rect key="frame" x="74" y="649" width="620" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -103,11 +112,13 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="U6E-MX-MvF">
                                 <rect key="frame" x="0.0" y="496" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
                                 <items>
                                     <barButtonItem style="plain" id="ee2-Pj-y7D">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="b2a-y8-W5A" userLabel="playHeadButton">
-                                            <rect key="frame" x="16" y="11" width="24" height="22"/>
+                                            <rect key="frame" x="20" y="11" width="24" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                             <state key="normal" image="play.png">
                                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -123,11 +134,12 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="34E-KC-ove">
                                         <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="4Z7-07-EKX" userLabel="playHeadTimeText">
-                                            <rect key="frame" x="50" y="7" width="36" height="31"/>
+                                            <rect key="frame" x="54" y="7" width="36" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="0.0" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" none="YES" staticText="YES"/>
+                                                <accessibilityTraits key="traits" staticText="YES"/>
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -137,8 +149,9 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="tmE-xX-RgH">
                                         <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="lik-7n-iuX" userLabel="progressBar">
-                                            <rect key="frame" x="100" y="7.5" width="611" height="29"/>
+                                            <rect key="frame" x="100" y="8" width="561" height="29"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <connections>
                                                 <action selector="playheadValueChanged:" destination="FmG-dI-bVR" eventType="valueChanged" id="O3p-zI-n0V"/>
                                                 <action selector="videoControlsTouchEnded:" destination="FmG-dI-bVR" eventType="touchUpOutside" id="DUS-LO-mEO"/>
@@ -149,11 +162,12 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="iCL-FY-nlt">
                                         <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="Rr7-tX-q1s" userLabel="durationTimeText">
-                                            <rect key="frame" x="721" y="7" width="36" height="31"/>
+                                            <rect key="frame" x="671" y="7" width="36" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" none="YES" staticText="YES"/>
+                                                <accessibilityTraits key="traits" staticText="YES"/>
                                                 <bool key="isElement" value="NO"/>
                                             </accessibility>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -161,9 +175,21 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" id="aEu-c8-L8H">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iFu-Un-00a">
+                                            <rect key="frame" x="717" y="7" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <state key="normal" title="PiP"/>
+                                            <connections>
+                                                <action selector="onPipButtonClicked:" destination="FmG-dI-bVR" eventType="touchUpInside" id="1qW-mB-Lek"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Mu3-0A-JhW"/>
@@ -171,6 +197,7 @@
                         <outlet property="companionView" destination="YRz-NC-Z11" id="251-l9-vCx"/>
                         <outlet property="consoleView" destination="hFQ-Yz-mpH" id="gFk-lF-Rbr"/>
                         <outlet property="durationTimeText" destination="Rr7-tX-q1s" id="95V-sW-fMF"/>
+                        <outlet property="pictureInPictureButton" destination="iFu-Un-00a" id="U0d-cx-eY2"/>
                         <outlet property="playheadButton" destination="b2a-y8-W5A" id="771-mr-PW6"/>
                         <outlet property="playheadTimeText" destination="4Z7-07-EKX" id="OOQ-D1-TKM"/>
                         <outlet property="progressBar" destination="lik-7n-iuX" id="VDu-Ci-nS2"/>
@@ -191,6 +218,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OWN-e3-7gj">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -205,9 +233,4 @@
     <resources>
         <image name="play.png" width="23" height="21"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
-    </simulatedMetricsContainer>
 </document>

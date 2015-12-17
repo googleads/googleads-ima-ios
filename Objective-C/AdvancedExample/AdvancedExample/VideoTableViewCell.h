@@ -1,11 +1,3 @@
-//
-//  VideoTableViewCell.h
-//  AdvancedExample
-//
-//  Created by Shawn Busolits on 11/19/14.
-//  Copyright (c) 2014 Google, Inc. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 #import "Video.h"

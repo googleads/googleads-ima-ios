@@ -1,20 +1,10 @@
-//
-//  VideoViewController.swift
-//  AdvancedExample
-//
-//  Created by Shawn Busolits on 5/6/15.
-//
-
 import Foundation
 import UIKit
 
 import GoogleInteractiveMediaAds
 
-extension CMTime {
-  var isValid:Bool { return (flags & .Valid) != nil }
-}
-
-class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDelegate {
+class VideoViewController: UIViewController, AVPictureInPictureControllerDelegate,
+                           IMAAdsLoaderDelegate, IMAAdsManagerDelegate {
 
   // UI outlets.
   @IBOutlet weak var topLabel: UILabel!
@@ -24,6 +14,7 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   @IBOutlet weak var playheadTimeText: UITextField!
   @IBOutlet weak var durationTimeText: UITextField!
   @IBOutlet weak var progressBar: UISlider!
+  @IBOutlet weak var pictureInPictureButton: UIButton!
   @IBOutlet weak var companionView: UIView!
   @IBOutlet weak var consoleView: UITextView!
 
@@ -48,6 +39,10 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
 
   // Gesture recognizer for tap on video.
   var videoTapRecognizer: UITapGestureRecognizer?
+
+  // PiP objects.
+  var pictureInPictureController: AVPictureInPictureController?
+  var pictureInPictureProxy: IMAPictureInPictureProxy?
 
   // IMA SDK handles.
   var contentPlayhead: IMAAVPlayerContentPlayhead?
@@ -95,22 +90,12 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
     automaticallyAdjustsScrollViewInsets = false
 
     // Set up CGRects for resizing the video and controls on rotate.
-    var videoViewOrigin = videoView.frame.origin
-    var videoViewBounds = videoView.bounds
-    portraitVideoViewFrame = CGRectMake(
-        videoViewOrigin.x,
-        videoViewOrigin.y,
-        videoViewBounds.size.width,
-        videoViewBounds.size.height)
+    let videoViewBounds = videoView.bounds
+    portraitVideoViewFrame = videoView.frame
     portraitVideoFrame = CGRectMake(0, 0, videoViewBounds.size.width, videoViewBounds.size.height)
 
-    var videoControlsOrigin = videoControls.frame.origin
-    var videoControlsBounds = videoControls.bounds
-    portraitControlsViewFrame = CGRectMake(
-        videoControlsOrigin.x,
-        videoControlsOrigin.y,
-        videoControlsBounds.size.width,
-        videoControlsBounds.size.height)
+    let videoControlsBounds = videoControls.bounds
+    portraitControlsViewFrame = videoControls.frame
     portraitControlsFrame =
         CGRectMake(0, 0, videoControlsBounds.size.width, videoControlsBounds.size.height)
 
@@ -170,17 +155,17 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   // Initialize the content player and load content.
   func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
-    var contentUrl = NSURL(string: video.video)
-    contentPlayer = AVPlayer(URL: contentUrl)
+    let contentUrl = NSURL(string: video.video)
+    contentPlayer = AVPlayer(URL: contentUrl!)
 
     // Playhead observers for progress bar.
-    var controller: VideoViewController = self
+    let controller: VideoViewController = self
     controller.contentPlayer?.addPeriodicTimeObserverForInterval(
         CMTimeMake(1, 30),
         queue: nil,
       usingBlock: {(time: CMTime) -> Void in
           if (self.contentPlayer != nil) {
-            var duration = controller.getPlayerItemDuration(self.contentPlayer!.currentItem)
+            let duration = controller.getPlayerItemDuration(self.contentPlayer!.currentItem!)
             controller.updatePlayheadWithTime(time, duration: duration)
           }
     })
@@ -209,19 +194,33 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
 
     // Size, position, and display the AVPlayer.
     contentPlayerLayer!.frame = videoView.layer.bounds
-    videoView.layer.addSublayer(contentPlayerLayer)
+    videoView.layer.addSublayer(contentPlayerLayer!)
+
+    // Create content playhead
+    contentPlayhead = IMAAVPlayerContentPlayhead(AVPlayer: contentPlayer)
+
+    // Set ourselves up for PiP.
+    pictureInPictureProxy = IMAPictureInPictureProxy(AVPictureInPictureControllerDelegate: self);
+    pictureInPictureController = AVPictureInPictureController(playerLayer: contentPlayerLayer!);
+    if (pictureInPictureController != nil) {
+      pictureInPictureController!.delegate = pictureInPictureProxy;
+    }
+    if (!AVPictureInPictureController.isPictureInPictureSupported() &&
+        pictureInPictureButton != nil) {
+      pictureInPictureButton.hidden = true;
+    }
   }
 
   // Handler for keypath listener that is added for content playhead observer.
   override func observeValueForKeyPath(
-      keyPath: String,
-      ofObject object: AnyObject,
-      change: [NSObject : AnyObject],
+      keyPath: String?,
+      ofObject object: AnyObject?,
+      change: [String : AnyObject]?,
       context: UnsafeMutablePointer<Void>) {
     if (context == &contentRateContext && contentPlayer == object as? AVPlayer) {
       updatePlayheadState(contentPlayer!.rate != 0)
     } else if (context == &contentDurationContext && contentPlayer == object as? AVPlayer) {
-      updatePlayheadDurationWithTime(getPlayerItemDuration(contentPlayer!.currentItem))
+      updatePlayheadDurationWithTime(getPlayerItemDuration(contentPlayer!.currentItem!))
     }
   }
 
@@ -265,15 +264,15 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
       return
     }
     if (!isAdPlayback) {
-      var slider = sender as! UISlider
+      let slider = sender as! UISlider
       contentPlayer!.seekToTime(CMTimeMake(Int64(slider.value), 1))
     }
   }
 
   // Used to track progress of ads for progress bar.
   func adDidProgressToTime(mediaTime: NSTimeInterval, totalTime: NSTimeInterval) {
-    var time = CMTimeMakeWithSeconds(mediaTime, 1000)
-    var duration = CMTimeMakeWithSeconds(totalTime, 1000)
+    let time = CMTimeMakeWithSeconds(mediaTime, 1000)
+    let duration = CMTimeMakeWithSeconds(totalTime, 1000)
     updatePlayheadWithTime(time, duration: duration)
     progressBar.maximumValue = Float(CMTimeGetSeconds(duration))
   }
@@ -284,7 +283,7 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
     if (item.respondsToSelector("duration")) {
       itemDuration = item.duration
     } else {
-      if (item.asset != nil && item.asset.respondsToSelector("duration")) {
+      if (item.asset.respondsToSelector("duration")) {
         itemDuration = item.asset.duration
       }
     }
@@ -293,10 +292,10 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
 
   // Updates progress bar for provided time and duration.
   func updatePlayheadWithTime(time: CMTime, duration: CMTime) {
-    if (!time.isValid) {
+    if (!CMTIME_IS_VALID(time)) {
       return
     }
-    var currentTime = CMTimeGetSeconds(time)
+    let currentTime = CMTimeGetSeconds(time)
     if (isnan(currentTime)) {
       return
     }
@@ -310,7 +309,7 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
     if (!time.isValid) {
       return
     }
-    var durationValue = CMTimeGetSeconds(time)
+    let durationValue = CMTimeGetSeconds(time)
     if (isnan(durationValue)) {
       return
     }
@@ -337,7 +336,7 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
 
   func viewDidEnterLandscape() {
     isFullscreen = true
-    var screenRect = UIScreen.mainScreen().bounds
+    let screenRect = UIScreen.mainScreen().bounds
     if ((UIDevice.currentDevice().systemVersion as NSString).floatValue < 8.0) {
       fullscreenVideoFrame = CGRectMake(0, 0, screenRect.size.height, screenRect.size.width)
       fullscreenControlsFrame = CGRectMake(
@@ -386,7 +385,7 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   }
 
   func showFullscreenControls(recognizer: UITapGestureRecognizer?) {
-    if (isFullscreen == true) {
+    if (isFullscreen) {
       videoControls.hidden = false
       videoControls.alpha = 0.9
       startHideControlsTimer()
@@ -404,6 +403,14 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
 
   func hideFullscreenControls() {
     UIView.animateWithDuration(0.5, animations: {() -> Void in self.videoControls.alpha = 0.0})
+  }
+
+  @IBAction func onPipButtonClicked(sender: AnyObject) {
+    if (pictureInPictureController!.pictureInPictureActive) {
+      pictureInPictureController!.stopPictureInPicture();
+    } else {
+      pictureInPictureController!.startPictureInPicture();
+    }
   }
 
   // MARK: IMA SDK methods
@@ -427,11 +434,6 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
         height: Int32(companionView.frame.size.height))
   }
 
-  // Create playhead for content tracking.
-  func createContentPlayhead() {
-    contentPlayhead = IMAAVPlayerContentPlayhead(AVPlayer: contentPlayer)
-  }
-
   // Initialize AdsLoader.
   func setUpIMA() {
     if (adsManager != nil) {
@@ -448,9 +450,11 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   func requestAdsWithTag(adTagUrl: String!) {
     logMessage("Requesting ads")
     // Create an ad request with our ad tag, display container, and optional user context.
-    var request = IMAAdsRequest(
+    let request = IMAAdsRequest(
         adTagUrl: adTagUrl,
         adDisplayContainer: createAdDisplayContainer(),
+        avPlayerVideoDisplay: IMAAVPlayerVideoDisplay(AVPlayer: contentPlayer),
+        pictureInPictureProxy: pictureInPictureProxy,
         userContext: nil)
     adsLoader.requestAdsWithRequest(request)
   }
@@ -470,14 +474,10 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
     adsManager = adsLoadedData.adsManager
     adsManager!.delegate = self
     // Create ads rendering settings to tell the SDK to use the in-app browser.
-    var adsRenderingSettings = IMAAdsRenderingSettings()
+    let adsRenderingSettings = IMAAdsRenderingSettings()
     adsRenderingSettings.webOpenerPresentingController = self
-    // Create a content playhead so the SDK can track our content for VMAP and ad rules.
-    createContentPlayhead()
     // Initialize the ads manager.
-    adsManager!.initializeWithContentPlayhead(
-        contentPlayhead,
-        adsRenderingSettings: adsRenderingSettings)
+    adsManager!.initializeWithAdsRenderingSettings(adsRenderingSettings)
   }
 
   func adsLoader(loader: IMAAdsLoader!, failedWithErrorData adErrorData: IMAAdLoadingErrorData!) {
@@ -491,11 +491,13 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   // MARK: AdsManager Delegates
 
   func adsManager(adsManager: IMAAdsManager!, didReceiveAdEvent event: IMAAdEvent!) {
-    var eventType = AdEventNames[event.type]
+    let eventType = AdEventNames[event.type]
     logMessage("AdsManager event \(eventType!)")
     switch (event.type) {
       case IMAAdEventType.LOADED:
-        adsManager.start()
+        if (!pictureInPictureController!.pictureInPictureActive) {
+          adsManager.start()
+        }
         break
       case IMAAdEventType.PAUSE:
         setPlayButtonType(PlayButtonType.PlayButton)
@@ -538,8 +540,8 @@ class VideoViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManager
   func logMessage(log: String!) {
     consoleView.text = consoleView.text.stringByAppendingString("\n" + log)
     NSLog(log)
-    if (count(consoleView.text) > 0) {
-      var bottom = NSMakeRange(count(consoleView.text) - 1, 1)
+    if (consoleView.text.characters.count > 0) {
+      let bottom = NSMakeRange(consoleView.text.characters.count - 1, 1)
       consoleView.scrollRangeToVisible(bottom)
     }
   }

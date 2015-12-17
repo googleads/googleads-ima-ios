@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  BasicExample
-//
-//  Created by Shawn Busolits on 5/4/15.
-//
-
 import AVFoundation
 import UIKit
 
@@ -22,9 +15,11 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   var adsLoader: IMAAdsLoader?
   var adsManager: IMAAdsManager?
 
-  let kTestAppAdTagUrl = "http://pubads.g.doubleclick.net/gampad/ads?sz=640x360" +
-      "&iu=/6062/iab_vast_samples/skippable&ciu_szs=300x250,728x90&impl=s&gdfp_req=1&env=vp&" +
-      "output=vast&unviewed_position_start=1&url=[referrer_url]&correlator=[timestamp]";
+  let kTestAppAdTagUrl =
+      "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&" +
+      "iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&" +
+      "output=vast&unviewed_position_start=1&" +
+      "cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=";
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,18 +38,17 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
 
   func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
-    var contentURL = NSURL(string: kTestAppContentUrl_MP4)
-    contentPlayer = AVPlayer(URL: contentURL)
+    let contentURL = NSURL(string: kTestAppContentUrl_MP4)
+    contentPlayer = AVPlayer(URL: contentURL!)
 
     // Create a player layer for the player.
-    var playerLayer = AVPlayerLayer(player: contentPlayer)
+    let playerLayer = AVPlayerLayer(player: contentPlayer)
 
     // Size, position, and display the AVPlayer.
     playerLayer.frame = self.videoView.layer.bounds
     videoView.layer.addSublayer(playerLayer)
-  }
 
-  func createContentPlayhead() {
+    // Set up our content playhead and contentComplete callback.
     contentPlayhead = IMAAVPlayerContentPlayhead(AVPlayer: contentPlayer)
     NSNotificationCenter.defaultCenter().addObserver(
       self,
@@ -77,11 +71,12 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
 
   func requestAds() {
     // Create ad display container for ad rendering.
-    var adDisplayContainer = IMAAdDisplayContainer(adContainer: videoView, companionSlots: nil)
+    let adDisplayContainer = IMAAdDisplayContainer(adContainer: videoView, companionSlots: nil)
     // Create an ad request with our ad tag, display container, and optional user context.
-    var request = IMAAdsRequest(
+    let request = IMAAdsRequest(
         adTagUrl: kTestAppAdTagUrl,
         adDisplayContainer: adDisplayContainer,
+        contentPlayhead: contentPlayhead,
         userContext: nil)
 
     adsLoader!.requestAdsWithRequest(request)
@@ -93,16 +88,11 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
     adsManager!.delegate = self
 
     // Create ads rendering settings and tell the SDK to use the in-app browser.
-    var adsRenderingSettings = IMAAdsRenderingSettings()
+    let adsRenderingSettings = IMAAdsRenderingSettings()
     adsRenderingSettings.webOpenerPresentingController = self
 
-    // Create a content playhead so the SDK can track our content for VMAP and ad rules.
-    createContentPlayhead()
-
     // Initialize the ads manager.
-    adsManager!.initializeWithContentPlayhead(
-        contentPlayhead,
-        adsRenderingSettings: adsRenderingSettings)
+    adsManager!.initializeWithAdsRenderingSettings(adsRenderingSettings)
   }
 
   func adsLoader(loader: IMAAdsLoader!, failedWithErrorData adErrorData: IMAAdLoadingErrorData!) {

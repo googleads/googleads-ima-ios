@@ -1,10 +1,3 @@
-//
-//  VideoTableViewCell.swift
-//  AdvancedExample
-//
-//  Created by Shawn Busolits on 5/6/15.
-//
-
 import Foundation
 import UIKit
 

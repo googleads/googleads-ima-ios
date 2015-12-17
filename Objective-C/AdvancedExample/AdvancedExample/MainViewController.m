@@ -23,6 +23,10 @@
   self.language = @"en";
   [self initVideos];
   [self setUpAdsLoader];
+
+  // For Picture-in-Picture.
+  [[AVAudioSession sharedInstance] setActive:YES error:nil];
+  [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 // Populate the video array.
@@ -78,6 +82,7 @@
   }
   IMASettings *settings = [[IMASettings alloc] init];
   settings.language = self.language;
+  settings.enableBackgroundPlayback = YES;
   self.adsLoader = [[IMAAdsLoader alloc] initWithSettings:settings];
 }
 

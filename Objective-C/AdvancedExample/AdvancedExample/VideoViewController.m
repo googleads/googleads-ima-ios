@@ -12,7 +12,8 @@ const char *AdEventNames[] = {
 
 typedef enum { PlayButton, PauseButton } PlayButtonType;
 
-@interface VideoViewController () <IMAAdsLoaderDelegate, IMAAdsManagerDelegate, UIAlertViewDelegate>
+@interface VideoViewController () <AVPictureInPictureControllerDelegate, IMAAdsLoaderDelegate,
+                                   IMAAdsManagerDelegate, UIAlertViewDelegate>
 
 // Tracking for play/pause
 @property(nonatomic) BOOL isAdPlayback;
@@ -20,6 +21,10 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 // Play/Pause buttons.
 @property(nonatomic, strong) UIImage *playBtnBG;
 @property(nonatomic, strong) UIImage *pauseBtnBG;
+
+// PiP objects.
+@property(nonatomic, strong) AVPictureInPictureController *pictureInPictureController;
+@property(nonatomic, strong) IMAPictureInPictureProxy *pictureInPictureProxy;
 
 // Storage points for resizing between fullscreen and non-fullscreen
 @property(nonatomic, assign) CGRect fullscreenVideoFrame;
@@ -64,18 +69,13 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   self.automaticallyAdjustsScrollViewInsets = NO;
 
   // Set up CGRects for resizing the video and controls on rotate.
-  CGPoint videoViewOrigin = self.videoView.frame.origin;
   CGRect videoViewBounds = self.videoView.bounds;
-  self.portraitVideoViewFrame = CGRectMake(videoViewOrigin.x, videoViewOrigin.y,
-                                           videoViewBounds.size.width, videoViewBounds.size.height);
+  self.portraitVideoViewFrame = self.videoView.frame;
   self.portraitVideoFrame =
       CGRectMake(0, 0, videoViewBounds.size.width, videoViewBounds.size.height);
 
-  CGPoint videoControlsOrigin = self.videoControls.frame.origin;
   CGRect videoControlsBounds = self.videoControls.bounds;
-  self.portraitControlsViewFrame =
-      CGRectMake(videoControlsOrigin.x, videoControlsOrigin.y, videoControlsBounds.size.width,
-                 videoControlsBounds.size.height);
+  self.portraitControlsViewFrame = self.videoControls.frame;
   self.portraitControlsFrame =
       CGRectMake(0, 0, videoControlsBounds.size.width, videoControlsBounds.size.height);
 
@@ -148,7 +148,9 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(contentDidFinishPlaying:)
                                                name:AVPlayerItemDidPlayToEndTimeNotification
-                                             object:[self.contentPlayer currentItem]];
+                                             object:self.contentPlayer.currentItem];
+  // Create content playhead
+  self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
 
   // Set up fullscreen tap listener to show controls
   self.videoTapRecognizer =
@@ -162,6 +164,16 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   // Size, position, and display the AVPlayer.
   self.contentPlayerLayer.frame = self.videoView.layer.bounds;
   [self.videoView.layer addSublayer:self.contentPlayerLayer];
+
+  // Set ourselves up for PiP.
+  self.pictureInPictureProxy =
+      [[IMAPictureInPictureProxy alloc] initWithAVPictureInPictureControllerDelegate:self];
+  self.pictureInPictureController =
+      [[AVPictureInPictureController alloc] initWithPlayerLayer:self.contentPlayerLayer];
+  self.pictureInPictureController.delegate = self.pictureInPictureProxy;
+  if (![AVPictureInPictureController isPictureInPictureSupported] && self.pictureInPictureButton) {
+    self.pictureInPictureButton.hidden = YES;
+  }
 }
 
 // Handler for keypath listener that is added for content playhead observer.
@@ -346,6 +358,14 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   [UIView animateWithDuration:0.5 animations:^{ self.videoControls.alpha = 0.0; }];
 }
 
+- (IBAction)onPipButtonClicked:(id)sender {
+  if ([self.pictureInPictureController isPictureInPictureActive]) {
+    [self.pictureInPictureController stopPictureInPicture];
+  } else {
+    [self.pictureInPictureController startPictureInPicture];
+  }
+}
+
 #pragma mark IMA SDK methods
 
 // Initialize ad display container.
@@ -368,11 +388,6 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
                                         height:self.companionView.frame.size.height];
 }
 
-// Create playhead for content tracking.
-- (void)createContentPlayhead {
-  self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
-}
-
 // Initialize AdsLoader.
 - (void)setUpIMA {
   if (self.adsManager) {
@@ -389,9 +404,12 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 - (void)requestAdsWithTag:(NSString *)adTagUrl {
   [self logMessage:@"Requesting ads"];
   // Create an ad request with our ad tag, display container, and optional user context.
-  IMAAdsRequest *request = [[IMAAdsRequest alloc] initWithAdTagUrl:adTagUrl
-                                                adDisplayContainer:[self createAdDisplayContainer]
-                                                       userContext:nil];
+  IMAAdsRequest *request = [[IMAAdsRequest alloc]
+           initWithAdTagUrl:adTagUrl
+         adDisplayContainer:[self createAdDisplayContainer]
+       avPlayerVideoDisplay:[[IMAAVPlayerVideoDisplay alloc] initWithAVPlayer:self.contentPlayer]
+      pictureInPictureProxy:self.pictureInPictureProxy
+                userContext:nil];
   [self.adsLoader requestAdsWithRequest:request];
 }
 
@@ -412,11 +430,8 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   // Create ads rendering settings to tell the SDK to use the in-app browser.
   IMAAdsRenderingSettings *adsRenderingSettings = [[IMAAdsRenderingSettings alloc] init];
   adsRenderingSettings.webOpenerPresentingController = self;
-  // Create a content playhead so the SDK can track our content for VMAP and ad rules.
-  [self createContentPlayhead];
   // Initialize the ads manager.
-  [self.adsManager initializeWithContentPlayhead:self.contentPlayhead
-                            adsRenderingSettings:adsRenderingSettings];
+  [self.adsManager initializeWithAdsRenderingSettings:adsRenderingSettings];
 }
 
 - (void)adsLoader:(IMAAdsLoader *)loader failedWithErrorData:(IMAAdLoadingErrorData *)adErrorData {
@@ -434,7 +449,9 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   // When the SDK notified us that ads have been loaded, play them.
   switch (event.type) {
     case kIMAAdEvent_LOADED:
-      [adsManager start];
+      if (![self.pictureInPictureController isPictureInPictureActive]) {
+        [adsManager start];
+      }
       break;
     case kIMAAdEvent_PAUSE:
       [self setPlayButtonType:PlayButton];

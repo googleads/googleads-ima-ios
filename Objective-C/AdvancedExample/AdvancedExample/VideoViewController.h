@@ -12,6 +12,7 @@
 @property(nonatomic, weak) IBOutlet UITextField *playHeadTimeText;
 @property(nonatomic, weak) IBOutlet UITextField *durationTimeText;
 @property(nonatomic, weak) IBOutlet UISlider *progressBar;
+@property(nonatomic, weak) IBOutlet UIButton *pictureInPictureButton;
 
 @property(nonatomic, weak) IBOutlet UIView *companionView;
 

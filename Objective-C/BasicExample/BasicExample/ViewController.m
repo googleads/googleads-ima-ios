@@ -26,10 +26,10 @@ NSString *const kTestAppContentUrl_MP4 = @"http://rmcdn.2mdn.net/Demo/html5/outp
 
 // Ad tag
 NSString *const kTestAppAdTagUrl =
-    @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&"
-    @"iu=/6062/iab_vast_samples/skippable&ciu_szs=300x250,728x90&impl=s&"
-    @"gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&"
-    @"url=[referrer_url]&correlator=[timestamp]";
+    @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&"
+    @"output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&"
+    @"correlator=";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -58,6 +58,13 @@ NSString *const kTestAppAdTagUrl =
   // Size, position, and display the AVPlayer.
   playerLayer.frame = self.videoView.layer.bounds;
   [self.videoView.layer addSublayer:playerLayer];
+
+  // Set up our content playhead and contentComplete callback.
+  self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(contentDidFinishPlaying:)
+                                               name:AVPlayerItemDidPlayToEndTimeNotification
+                                             object:self.contentPlayer.currentItem];
 }
 
 #pragma mark SDK Setup
@@ -74,16 +81,9 @@ NSString *const kTestAppAdTagUrl =
   // Create an ad request with our ad tag, display container, and optional user context.
   IMAAdsRequest *request = [[IMAAdsRequest alloc] initWithAdTagUrl:kTestAppAdTagUrl
                                                 adDisplayContainer:adDisplayContainer
+                                                   contentPlayhead:self.contentPlayhead
                                                        userContext:nil];
   [self.adsLoader requestAdsWithRequest:request];
-}
-
-- (void)createContentPlayhead {
-  self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(contentDidFinishPlaying:)
-                                               name:AVPlayerItemDidPlayToEndTimeNotification
-                                             object:[self.contentPlayer currentItem]];
 }
 
 - (void)contentDidFinishPlaying:(NSNotification *)notification {
@@ -102,11 +102,8 @@ NSString *const kTestAppAdTagUrl =
   // Create ads rendering settings to tell the SDK to use the in-app browser.
   IMAAdsRenderingSettings *adsRenderingSettings = [[IMAAdsRenderingSettings alloc] init];
   adsRenderingSettings.webOpenerPresentingController = self;
-  // Create a content playhead so the SDK can track our content for VMAP and ad rules.
-  [self createContentPlayhead];
   // Initialize the ads manager.
-  [self.adsManager initializeWithContentPlayhead:self.contentPlayhead
-                            adsRenderingSettings:adsRenderingSettings];
+  [self.adsManager initializeWithAdsRenderingSettings:adsRenderingSettings];
 }
 
 - (void)adsLoader:(IMAAdsLoader *)loader failedWithErrorData:(IMAAdLoadingErrorData *)adErrorData {
@@ -133,12 +130,12 @@ NSString *const kTestAppAdTagUrl =
 
 - (void)adsManagerDidRequestContentPause:(IMAAdsManager *)adsManager {
   // The SDK is going to play ads, so pause the content.
-  [_contentPlayer pause];
+  [self.contentPlayer pause];
 }
 
 - (void)adsManagerDidRequestContentResume:(IMAAdsManager *)adsManager {
   // The SDK is done playing ads (at least for now), so resume the content.
-  [_contentPlayer play];
+  [self.contentPlayer play];
 }
 
 @end

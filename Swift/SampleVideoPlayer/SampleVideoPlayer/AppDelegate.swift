@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  SampleVideoPlayer
-//
-//  Created by Shawn Busolits on 5/4/15.
-//
-
 import UIKit
 
 @UIApplicationMain

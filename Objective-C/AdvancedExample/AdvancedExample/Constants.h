@@ -17,49 +17,57 @@ static NSString *const kBipBopContentPath =
     @"http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
 
 // Standard pre-roll
-static NSString *const kPrerollTag = @"http://pubads.g.doubleclick.net/gampad/ads?sz=400x300&"
-    @"iu=%2F6062%2Fhanna_MA_group%2Fvideo_comp_app&ciu_szs=&impl=s&gdfp_req=1&env=vp&"
-    @"output=xml_vast2&unviewed_position_start=1&m_ast=vast&url=[referrer_url]&"
-    @"correlator=[timestamp]";
+static NSString *const kPrerollTag =
+    @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&"
+    @"output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&"
+    @"correlator=";
 
 // Skippable
 static NSString *const kSkippableTag =
-    @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x360&iu=/6062/iab_vast_samples/skippable&"
-    @"ciu_szs=300x250,728x90&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&"
-    @"url=[referrer_url]&correlator=[timestamp]";
+    @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&"
+    @"output=vast&unviewed_position_start=1&"
+    @"cust_params=deployment%3Ddevsite%26sample_ct%3Dskippablelinear&correlator=";
 
 // Post-roll
-static NSString *const kPostrollTag = @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
-    @"iu=%2F3510761%2FadRulesSampleTags&ciu_szs=160x600%2C300x250%2C728x90&"
-    @"cust_params=adrule%3Dpostrollonly&impl=s&gdfp_req=1&env=vp&ad_rule=1&vid=47570401&cmsid=481&"
-    @"output=xml_vast2&unviewed_position_start=1&url=[referrer_url]&correlator=[timestamp]";
+static NSString *const kPostrollTag =
+    @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&"
+    @"output=vmap&unviewed_position_start=1&"
+    @"cust_params=deployment%3Ddevsite%26sample_ar%3Dpostonly&cmsid=496&vid=short_onecue&"
+    @"correlator=";
 
 // Ad rues
 static NSString *const kAdRulesTag =
-    @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F3510761%2FadRulesSampleTags&"
-    @"ciu_szs=160x600%2C300x250%2C728x90&cust_params=adrule%3Dpremidpostnopod&impl=s&gdfp_req=1&"
-    @"env=vp&ad_rule=1&vid=47570401&cmsid=481&output=xml_vast2&unviewed_position_start=1&"
-    @"url=[referrer_url]&correlator=[timestamp]";
+    @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&"
+    @"output=vast&unviewed_position_start=1&"
+    @"cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpost&cmsid=496&vid=short_onecue&"
+    @"correlator=";
 
 // Ad rules pods
 static NSString *const kAdRulesPodsTag =
-    @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F3510761%2FadRulesSampleTags&"
-    @"ciu_szs=160x600%2C300x250%2C728x90&cust_params=adrule%3Dpremidpostwithpod&impl=s&gdfp_req=1&"
-    @"env=vp&ad_rule=1&vid=47570401&cmsid=481&output=xml_vast2&unviewed_position_start=1&"
-    @"url=[referrer_url]&correlator=[timestamp]";
+    @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&"
+    @"output=vast&unviewed_position_start=1&"
+    @"cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpostpod&cmsid=496&vid=short_onecue&"
+    @"correlator=";
 
 // VMAP pods
 static NSString *const kVMAPPodsTag =
-    @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F15018773%2Feverything2&"
-    @"ciu_szs=300x250%2C468x60%2C728x90&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&"
-    @"unviewed_position_start=1url=[referrer_url]&correlator=[timestamp]&cmsid=133&"
-    @"vid=10XWSh7W4so&ad_rule=1";
+    @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&"
+    @"output=vmap&unviewed_position_start=1&"
+    @"cust_params=deployment%3Ddevsite%26sample_ar%3Dpremidpostpod&cmsid=496&vid=short_onecue&"
+    @"correlator=";
 
 // Wrapper
-static NSString *const kWrapperTag = @"http://pubads.g.doubleclick.net/gampad/ads?sz=400x300&"
-    @"iu=%2F6062%2Fhanna_MA_group%2Fwrapper_with_comp&ciu_szs=728x90&impl=s&gdfp_req=1&"
-    @"env=vp&output=xml_vast2&unviewed_position_start=1&m_ast=vast&url=[referrer_url]&"
-    @"correlator=[timestamp]";
+static NSString *const kWrapperTag =
+    @"http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    @"iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&"
+    @"output=vast&unviewed_position_start=1&"
+    @"cust_params=deployment%3Ddevsite%26sample_ct%3Dredirectlinear&correlator=";
 
 // AdSense
 static NSString *const kAdSenseTag =
