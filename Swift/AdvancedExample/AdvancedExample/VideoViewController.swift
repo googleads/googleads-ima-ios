@@ -60,6 +60,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
 
   let AdEventNames: [IMAAdEventType: String] = [
     IMAAdEventType.AD_BREAK_READY: "Ad Break Ready",
+    IMAAdEventType.AD_BREAK_ENDED: "Ad Break Ended",
+    IMAAdEventType.AD_BREAK_STARTED: "Ad Break Started",
     IMAAdEventType.ALL_ADS_COMPLETED: "All Ads Completed",
     IMAAdEventType.CLICKED: "Clicked",
     IMAAdEventType.COMPLETE: "Complete",
@@ -495,7 +497,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     logMessage("AdsManager event \(eventType!)")
     switch (event.type) {
       case IMAAdEventType.LOADED:
-        if (!pictureInPictureController!.pictureInPictureActive) {
+        if (pictureInPictureController == nil ||
+            !pictureInPictureController!.pictureInPictureActive) {
           adsManager.start()
         }
         break
