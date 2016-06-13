@@ -5,7 +5,7 @@ This project hosts samples for the [iOS IMA SDK](https://developers.google.com/i
 
 ### Requirements
   * XCode 6 or newer
-  * iOS 6.0+
+  * iOS 8.0+
   * CocoaPods (optional but recommended)
 
 ### Installation Instructions
