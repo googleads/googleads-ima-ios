@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Is5-HX-cc6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Is5-HX-cc6">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,17 +19,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IMA SDK Sample App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-AB-Rcf">
-                                <rect key="frame" x="20" y="115" width="728" height="62"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMA SDK Sample App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-AB-Rcf">
+                                <rect key="frame" x="208" y="120" width="352" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-Z0-TkP">
-                                <rect key="frame" x="64" y="285" width="640" height="360"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-Z0-TkP">
+                                <rect key="frame" x="45" y="255" width="678" height="381"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-Vg-Dqv">
-                                        <rect key="frame" x="245" y="84" width="150" height="191"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-Vg-Dqv">
+                                        <rect key="frame" x="264" y="94" width="150" height="192"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="150"/>
                                         <state key="normal" title="▶">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,9 +40,21 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerX" secondItem="QRR-Z0-TkP" secondAttribute="centerX" id="Ebx-S1-ZjT"/>
+                                    <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerY" secondItem="QRR-Z0-TkP" secondAttribute="centerY" id="FtB-OR-Mi1"/>
+                                    <constraint firstAttribute="width" secondItem="QRR-Z0-TkP" secondAttribute="height" multiplier="16:9" id="cTt-36-LGw"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7z2-AB-Rcf" firstAttribute="centerX" secondItem="Bhd-Z9-jHM" secondAttribute="centerX" id="0aw-wO-y8V"/>
+                            <constraint firstItem="QRR-Z0-TkP" firstAttribute="top" secondItem="7z2-AB-Rcf" secondAttribute="bottom" constant="90" id="8dp-oU-OZh"/>
+                            <constraint firstItem="7z2-AB-Rcf" firstAttribute="top" secondItem="juz-22-CCA" secondAttribute="bottom" constant="100" id="SS1-tN-4Dq"/>
+                            <constraint firstItem="QRR-Z0-TkP" firstAttribute="leading" secondItem="Bhd-Z9-jHM" secondAttribute="leadingMargin" constant="25" id="nFV-Bi-hX3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QRR-Z0-TkP" secondAttribute="trailing" constant="25" id="v3c-ai-j0p"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="playButton" destination="eRN-Vg-Dqv" id="aVm-Iq-3yY"/>
@@ -52,12 +66,4 @@
             <point key="canvasLocation" x="69" y="-244"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination">
-            <size key="portraitSize" width="768" height="1024"/>
-            <size key="landscapeSize" width="1024" height="768"/>
-        </simulatedScreenMetrics>
-    </simulatedMetricsContainer>
 </document>
