@@ -58,24 +58,6 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   var contentRateContext: UInt8 = 1
   var contentDurationContext: UInt8 = 2
 
-  let AdEventNames: [IMAAdEventType: String] = [
-    IMAAdEventType.AD_BREAK_READY: "Ad Break Ready",
-    IMAAdEventType.AD_BREAK_ENDED: "Ad Break Ended",
-    IMAAdEventType.AD_BREAK_STARTED: "Ad Break Started",
-    IMAAdEventType.ALL_ADS_COMPLETED: "All Ads Completed",
-    IMAAdEventType.CLICKED: "Clicked",
-    IMAAdEventType.COMPLETE: "Complete",
-    IMAAdEventType.FIRST_QUARTILE: "First Quartile",
-    IMAAdEventType.LOADED: "Loaded",
-    IMAAdEventType.MIDPOINT: "Midpoint",
-    IMAAdEventType.PAUSE: "Pause",
-    IMAAdEventType.RESUME: "Resume",
-    IMAAdEventType.SKIPPED: "Skipped",
-    IMAAdEventType.STARTED: "Started",
-    IMAAdEventType.TAPPED: "Tapped",
-    IMAAdEventType.THIRD_QUARTILE: "Third Quartile"
-  ]
-
   enum PlayButtonType: Int {
     case PlayButton = 0
     case PauseButton = 1
@@ -493,8 +475,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   // MARK: AdsManager Delegates
 
   func adsManager(adsManager: IMAAdsManager!, didReceiveAdEvent event: IMAAdEvent!) {
-    let eventType = AdEventNames[event.type]
-    logMessage("AdsManager event \(eventType!)")
+    logMessage("AdsManager event \(event.typeString!)")
     switch (event.type) {
       case IMAAdEventType.LOADED:
         if (pictureInPictureController == nil ||

@@ -4,13 +4,6 @@
 #import "Video.h"
 #import "VideoViewController.h"
 
-// Maps SDK enum to strings for logging.
-const char *AdEventNames[] = {
-    "Ad Break Ready", "Ad Break Ended", "Ad Break Started", "All Ads Completed", "Clicked",
-    "Complete", "First Quartile", "Loaded", "Midpoint", "Pause", "Resume",
-    "Skipped", "Started", "Tapped", "Third Quartile"
-};
-
 typedef enum { PlayButton, PauseButton } PlayButtonType;
 
 @interface VideoViewController () <AVPictureInPictureControllerDelegate, IMAAdsLoaderDelegate,
@@ -446,7 +439,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 #pragma mark AdsManager Delegates
 
 - (void)adsManager:(IMAAdsManager *)adsManager didReceiveAdEvent:(IMAAdEvent *)event {
-  [self logMessage:@"AdsManager event (%s).", AdEventNames[event.type]];
+  [self logMessage:@"AdsManager event (%@).", event.typeString];
   // When the SDK notified us that ads have been loaded, play them.
   switch (event.type) {
     case kIMAAdEvent_LOADED:
