@@ -9,11 +9,19 @@
 /// Content video player.
 @property(nonatomic, strong) AVPlayer *contentPlayer;
 
+/// Play button.
+@property(nonatomic, weak) IBOutlet UIButton *playButton;
+
+/// UIView in which we will render our AVPlayer for content.
+@property(nonatomic, weak) IBOutlet UIView *videoView;
+
 // SDK
 /// Entry point for the SDK. Used to make ad requests.
 @property(nonatomic, strong) IMAAdsLoader *adsLoader;
-// Playhead used by the SDK to track content video progress and insert mid-rolls.
+
+/// Playhead used by the SDK to track content video progress and insert mid-rolls.
 @property(nonatomic, strong) IMAAVPlayerContentPlayhead *contentPlayhead;
+
 /// Main point of interaction with the SDK. Created by the SDK as the result of an ad request.
 @property(nonatomic, strong) IMAAdsManager *adsManager;
 
