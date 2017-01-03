@@ -6,7 +6,7 @@ class VideoTableViewCell: UITableViewCell {
   @IBOutlet weak var thumbnail: UIImageView!
   @IBOutlet weak var videoLabel: UILabel!
 
-  func populateWithVideo(video: Video) {
+  func populateWithVideo(_ video: Video) {
     videoLabel.text = video.title
     thumbnail.image = video.thumbnail
   }
