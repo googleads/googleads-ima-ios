@@ -1,6 +1,8 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @import GoogleInteractiveMediaAds;
+
+#import "Video.h"
 
 @interface VideoViewController : UIViewController
 

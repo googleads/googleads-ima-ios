@@ -8,10 +8,10 @@
                           tag:(NSString *)tag {
   self = [super init];
   if (self) {
-    self.title = [title copy];
-    self.thumbnail = [thumbnail copy];
-    self.video = [video copy];
-    self.tag = [tag copy];
+    _title = [title copy];
+    _thumbnail = [thumbnail copy];
+    _video = [video copy];
+    _tag = [tag copy];
   }
   return self;
 }

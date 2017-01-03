@@ -1,16 +1,19 @@
-#import <UIKit/UIKit.h>
+#import "MainViewController.h"
 
 #import "Constants.h"
-#import "MainViewController.h"
 #import "Video.h"
 #import "VideoViewController.h"
 #import "VideoTableViewCell.h"
 
 @interface MainViewController () <UIAlertViewDelegate>
 
-// Storage point for videos.
-@property(nonatomic, copy) NSArray *videos;
+/// Storage point for videos.
+@property(nonatomic, copy) NSArray<Video *> *videos;
+
+/// AdsLoader for IMA SDK.
 @property(nonatomic, strong) IMAAdsLoader *adsLoader;
+
+/// Language for ad UI.
 @property(nonatomic, strong) NSString *language;
 
 @end
@@ -112,9 +115,9 @@
   if ([[segue identifier] isEqualToString:@"showVideo"]) {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     Video *video = self.videos[indexPath.row];
-    VideoViewController *headedTo = (VideoViewController *)[segue destinationViewController];
-    headedTo.video = video;
-    headedTo.adsLoader = self.adsLoader;
+    VideoViewController *destVC = (VideoViewController *)[segue destinationViewController];
+    destVC.video = video;
+    destVC.adsLoader = self.adsLoader;
   }
 }
 

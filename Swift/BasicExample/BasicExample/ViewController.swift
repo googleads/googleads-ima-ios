@@ -24,29 +24,29 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    playButton.layer.zPosition = CGFloat.max
+    playButton.layer.zPosition = CGFloat.greatestFiniteMagnitude
 
     setUpContentPlayer()
     setUpAdsLoader()
   }
 
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     playerLayer?.frame = self.videoView.layer.bounds
   }
 
-  @IBAction func onPlayButtonTouch(sender: AnyObject) {
+  @IBAction func onPlayButtonTouch(_ sender: AnyObject) {
     //contentPlayer.play()
     requestAds()
-    playButton.hidden = true
+    playButton.isHidden = true
   }
 
   func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
-    guard let contentURL = NSURL(string: ViewController.kTestAppContentUrl_MP4) else {
+    guard let contentURL = URL(string: ViewController.kTestAppContentUrl_MP4) else {
       print("ERROR: please use a valid URL for the content URL")
       return
     }
-    contentPlayer = AVPlayer(URL: contentURL)
+    contentPlayer = AVPlayer(url: contentURL)
 
     // Create a player layer for the player.
     playerLayer = AVPlayerLayer(player: contentPlayer)
@@ -56,15 +56,15 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
     videoView.layer.addSublayer(playerLayer!)
 
     // Set up our content playhead and contentComplete callback.
-    contentPlayhead = IMAAVPlayerContentPlayhead(AVPlayer: contentPlayer)
-    NSNotificationCenter.defaultCenter().addObserver(
+    contentPlayhead = IMAAVPlayerContentPlayhead(avPlayer: contentPlayer)
+    NotificationCenter.default.addObserver(
       self,
       selector: #selector(ViewController.contentDidFinishPlaying(_:)),
-      name: AVPlayerItemDidPlayToEndTimeNotification,
+      name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
       object: contentPlayer?.currentItem);
   }
 
-  func contentDidFinishPlaying(notification: NSNotification) {
+  func contentDidFinishPlaying(_ notification: Notification) {
     // Make sure we don't call contentComplete as a result of an ad completing.
     if (notification.object as! AVPlayerItem) == contentPlayer?.currentItem {
       adsLoader.contentComplete()
@@ -86,12 +86,12 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
         contentPlayhead: contentPlayhead,
         userContext: nil)
 
-    adsLoader.requestAdsWithRequest(request)
+    adsLoader.requestAds(with: request)
   }
 
   // MARK: - IMAAdsLoaderDelegate
 
-  func adsLoader(loader: IMAAdsLoader!, adsLoadedWithData adsLoadedData: IMAAdsLoadedData!) {
+  func adsLoader(_ loader: IMAAdsLoader!, adsLoadedWith adsLoadedData: IMAAdsLoadedData!) {
     // Grab the instance of the IMAAdsManager and set ourselves as the delegate.
     adsManager = adsLoadedData.adsManager
     adsManager.delegate = self
@@ -101,36 +101,36 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
     adsRenderingSettings.webOpenerPresentingController = self
 
     // Initialize the ads manager.
-    adsManager.initializeWithAdsRenderingSettings(adsRenderingSettings)
+    adsManager.initialize(with: adsRenderingSettings)
   }
 
-  func adsLoader(loader: IMAAdsLoader!, failedWithErrorData adErrorData: IMAAdLoadingErrorData!) {
+  func adsLoader(_ loader: IMAAdsLoader!, failedWith adErrorData: IMAAdLoadingErrorData!) {
     print("Error loading ads: \(adErrorData.adError.message)")
     contentPlayer?.play()
   }
 
   // MARK: - IMAAdsManagerDelegate
 
-  func adsManager(adsManager: IMAAdsManager!, didReceiveAdEvent event: IMAAdEvent!) {
+  func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
     if event.type == IMAAdEventType.LOADED {
       // When the SDK notifies us that ads have been loaded, play them.
       adsManager.start()
     }
   }
 
-  func adsManager(adsManager: IMAAdsManager!, didReceiveAdError error: IMAAdError!) {
+  func adsManager(_ adsManager: IMAAdsManager!, didReceive error: IMAAdError!) {
     // Something went wrong with the ads manager after ads were loaded. Log the error and play the
     // content.
     print("AdsManager error: \(error.message)")
     contentPlayer?.play()
   }
 
-  func adsManagerDidRequestContentPause(adsManager: IMAAdsManager!) {
+  func adsManagerDidRequestContentPause(_ adsManager: IMAAdsManager!) {
     // The SDK is going to play ads, so pause the content.
     contentPlayer?.pause()
   }
 
-  func adsManagerDidRequestContentResume(adsManager: IMAAdsManager!) {
+  func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager!) {
     // The SDK is done playing ads (at least for now), so resume the content.
     contentPlayer?.play()
   }

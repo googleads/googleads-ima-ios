@@ -1,6 +1,5 @@
-#import <UIKit/UIKit.h>
-
 @import GoogleInteractiveMediaAds;
+@import UIKit;
 
 @interface MainViewController : UIViewController
 

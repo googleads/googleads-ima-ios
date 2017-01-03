@@ -108,41 +108,41 @@ class MainViewController: UIViewController {
     let languagePrompt = UIAlertController(
         title: "Language",
         message: alertMessage,
-        preferredStyle: UIAlertControllerStyle.Alert)
-    languagePrompt.addTextFieldWithConfigurationHandler(addTextField)
+        preferredStyle: UIAlertControllerStyle.alert)
+    languagePrompt.addTextField(configurationHandler: addTextField)
     languagePrompt.addAction(
-        UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
     languagePrompt.addAction(
-        UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: languageEntered))
-    presentViewController(languagePrompt, animated: true, completion: nil)
+        UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: languageEntered))
+    present(languagePrompt, animated: true, completion: nil)
 
   }
 
   // Handler when user clicks "OK" on the language pop-up
-  func languageEntered(alert: UIAlertAction!) {
-    language = languageInput!.text
+  func languageEntered(_ alert: UIAlertAction!) {
+    language = languageInput!.text as NSString!
     setUpAdsLoader()
   }
 
   // Used to create the text field in the language pop-up.
-  func addTextField(textField: UITextField!) {
+  func addTextField(_ textField: UITextField!) {
     textField.placeholder = language as String
     languageInput = textField
   }
 
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if (segue.identifier == "showVideo") {
-      let indexPath: NSIndexPath! = tableView.indexPathForSelectedRow
+      let indexPath: IndexPath! = tableView.indexPathForSelectedRow
       if (indexPath != nil) {
         let video = videos[indexPath.row] as! Video
-        let headedTo = segue.destinationViewController as! VideoViewController
+        let headedTo = segue.destination as! VideoViewController
         headedTo.video = video
         headedTo.adsLoader = adsLoader
       }
     }
   }
 
-  override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+  override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
     if (tableView.indexPathForSelectedRow != nil) {
       return true
     }
@@ -150,22 +150,22 @@ class MainViewController: UIViewController {
   }
 
   // Only allow one selection.
-  func numberOfSectionsInTableView(tableView: UITableView) -> NSInteger {
+  func numberOfSectionsInTableView(_ tableView: UITableView) -> NSInteger {
     return 1;
   }
 
   // Returns the number of items to be presented in the table.
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return videos.count
   }
 
   func tableView(
-      tableView: UITableView,
-      cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(
-        "cell",
-        forIndexPath: indexPath) as! VideoTableViewCell
-    let selectedVideo = videos[indexPath.row] as! Video
+      _ tableView: UITableView,
+      cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(
+        withIdentifier: "cell",
+        for: indexPath) as! VideoTableViewCell
+    let selectedVideo = videos[(indexPath as NSIndexPath).row] as! Video
     cell.populateWithVideo(selectedVideo)
     return cell
   }

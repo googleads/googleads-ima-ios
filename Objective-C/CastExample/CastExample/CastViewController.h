@@ -1,6 +1,6 @@
-#import <AVFoundation/AVFoundation.h>
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+@import AVFoundation;
+@import Foundation;
+@import UIKit;
 
 #import "CastMessageChannel.h"
 #import "ViewController.h"
@@ -11,7 +11,6 @@
 
 - (instancetype)initWithViewController:(ViewController *)viewController;
 
-- (void)castChannel:(CastMessageChannel *)channel
-  didReceiveMessage:(NSString *)message;
+- (void)castChannel:(CastMessageChannel *)channel didReceiveMessage:(NSString *)message;
 
 @end

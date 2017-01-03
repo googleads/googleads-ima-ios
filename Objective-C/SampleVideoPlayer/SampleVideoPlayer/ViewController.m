@@ -1,6 +1,6 @@
-#import <AVFoundation/AVFoundation.h>
-
 #import "ViewController.h"
+
+@import AVFoundation;
 
 @interface ViewController ()
 

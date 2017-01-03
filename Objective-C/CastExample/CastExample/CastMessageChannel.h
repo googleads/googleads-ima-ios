@@ -1,12 +1,11 @@
-#import <Foundation/Foundation.h>
-#import <GoogleCast/GoogleCast.h>
+@import Foundation;
+@import GoogleCast;
 
 @class CastMessageChannel;
 
 @protocol CastMessageChannelDelegate<NSObject>
 
-- (void)castChannel:(CastMessageChannel *)channel
-  didReceiveMessage:(NSString *)message;
+- (void)castChannel:(CastMessageChannel *)channel didReceiveMessage:(NSString *)message;
 
 @end
 

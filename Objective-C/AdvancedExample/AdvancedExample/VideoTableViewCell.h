@@ -1,11 +1,11 @@
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #import "Video.h"
 
 @interface VideoTableViewCell : UITableViewCell
 
-@property(nonatomic, weak, readwrite) IBOutlet UIImageView *thumbnail;
-@property(nonatomic, weak, readwrite) IBOutlet UILabel *videoLabel;
+@property(nonatomic, weak) IBOutlet UIImageView *thumbnail;
+@property(nonatomic, weak) IBOutlet UILabel *videoLabel;
 
 - (void)populateWithVideo:(Video *)Video;
 

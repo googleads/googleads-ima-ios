@@ -1,15 +1,15 @@
-#import <AVFoundation/AVFoundation.h>
+#import "VideoViewController.h"
+
+@import AVFoundation;
 
 #import "Constants.h"
-#import "Video.h"
-#import "VideoViewController.h"
 
 typedef enum { PlayButton, PauseButton } PlayButtonType;
 
 @interface VideoViewController () <AVPictureInPictureControllerDelegate, IMAAdsLoaderDelegate,
                                    IMAAdsManagerDelegate, UIAlertViewDelegate>
 
-// Tracking for play/pause
+// Tracking for play/pause.
 @property(nonatomic) BOOL isAdPlayback;
 
 // Play/Pause buttons.
@@ -21,23 +21,36 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 @property(nonatomic, strong) IMAPictureInPictureProxy *pictureInPictureProxy;
 
 // Storage points for resizing between fullscreen and non-fullscreen
+/// Frame for video player in fullscreen mode.
 @property(nonatomic, assign) CGRect fullscreenVideoFrame;
-@property(nonatomic, assign) CGRect portraitVideoViewFrame;
-@property(nonatomic, assign) CGRect portraitVideoFrame;
-@property(nonatomic, assign) CGRect fullscreenControlsFrame;
-@property(nonatomic, assign) CGRect portraitControlsViewFrame;
-@property(nonatomic, assign) CGRect portraitControlsFrame;
-@property(nonatomic, assign) BOOL isFullscreen;
 
-// Gesture recognizer for tap on video
+/// Frame for video view in portrait mode.
+@property(nonatomic, assign) CGRect portraitVideoViewFrame;
+
+/// Frame for video player in portrait mode.
+@property(nonatomic, assign) CGRect portraitVideoFrame;
+
+/// Frame for controls in fullscreen mode.
+@property(nonatomic, assign) CGRect fullscreenControlsFrame;
+
+/// Frame for controls view in portrait mode.
+@property(nonatomic, assign) CGRect portraitControlsViewFrame;
+
+/// Frame for controls in portrait mode.
+@property(nonatomic, assign) CGRect portraitControlsFrame;
+
+/// Flag for tracking fullscreen.
+@property(nonatomic, assign) BOOL fullscreen;
+
+/// Gesture recognizer for tap on video.
 @property(nonatomic, strong) UITapGestureRecognizer *videoTapRecognizer;
 
-// IMA SDK handles
+// IMA objects.
 @property(nonatomic, strong) IMAAVPlayerContentPlayhead *contentPlayhead;
 @property(nonatomic, strong) IMAAdsManager *adsManager;
 @property(nonatomic, strong) IMACompanionAdSlot *companionSlot;
 
-// Content player handles
+// Content player objects.
 @property(nonatomic, strong) AVPlayer *contentPlayer;
 @property(nonatomic, strong) AVPlayerLayer *contentPlayerLayer;
 @property(nonatomic, strong) id playHeadObserver;
@@ -57,7 +70,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   // Set the pause button image.
   self.pauseBtnBG = [UIImage imageNamed:@"pause.png"];
   self.isAdPlayback = NO;
-  self.isFullscreen = NO;
+  self.fullscreen = NO;
 
   // Fix iPhone issue of log text starting in the middle of the UITextView
   self.automaticallyAdjustsScrollViewInsets = NO;
@@ -130,9 +143,9 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
       addPeriodicTimeObserverForInterval:CMTimeMake(1, 30)
                                    queue:NULL
                               usingBlock:^(CMTime time) {
-                                  CMTime duration = [controller
-                                      getPlayerItemDuration:self.contentPlayer.currentItem];
-                                  [controller updatePlayHeadWithTime:time duration:duration];
+                                CMTime duration = [controller
+                                    getPlayerItemDuration:controller.contentPlayer.currentItem];
+                                [controller updatePlayHeadWithTime:time duration:duration];
                               }];
   [self.contentPlayer addObserver:self forKeyPath:@"rate" options:0 context:@"contentPlayerRate"];
   [self.contentPlayer addObserver:self
@@ -143,10 +156,10 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
                                            selector:@selector(contentDidFinishPlaying:)
                                                name:AVPlayerItemDidPlayToEndTimeNotification
                                              object:self.contentPlayer.currentItem];
-  // Create content playhead
+  // Create content playhead.
   self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
 
-  // Set up fullscreen tap listener to show controls
+  // Set up fullscreen tap listener to show controls.
   self.videoTapRecognizer =
       [[UITapGestureRecognizer alloc] initWithTarget:self
                                               action:@selector(showFullscreenControls:)];
@@ -187,7 +200,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 
 // Handle clicks on play/pause button.
 - (IBAction)onPlayPauseClicked:(id)sender {
-  if (self.isAdPlayback == NO) {
+  if (!self.isAdPlayback) {
     if (self.contentPlayer.rate == 0) {
       [self.contentPlayer play];
     } else {
@@ -262,7 +275,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   }
   self.progressBar.value = currentTime;
   self.playHeadTimeText.text =
-      [NSString stringWithFormat:@"%d:%02d", (int)currentTime / 60, (int)currentTime % 60];
+      [[NSString alloc] initWithFormat:@"%d:%02d", (int)currentTime / 60, (int)currentTime % 60];
   [self updatePlayHeadDurationWithTime:duration];
 }
 
@@ -276,8 +289,8 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
     return;
   }
   self.progressBar.maximumValue = durationValue;
-  self.durationTimeText.text =
-      [NSString stringWithFormat:@"%d:%02d", (int)durationValue / 60, (int)durationValue % 60];
+  self.durationTimeText.text = [[NSString alloc]
+      initWithFormat:@"%d:%02d", (int)durationValue / 60, (int)durationValue % 60];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -296,7 +309,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 }
 
 - (void)viewDidEnterLandscape {
-  self.isFullscreen = YES;
+  self.fullscreen = YES;
   CGRect screenRect = [[UIScreen mainScreen] bounds];
   if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
     self.fullscreenVideoFrame = CGRectMake(0, 0, screenRect.size.height, screenRect.size.width);
@@ -318,7 +331,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 }
 
 - (void)viewDidEnterPortrait {
-  self.isFullscreen = NO;
+  self.fullscreen = NO;
   [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
   [[self navigationController] setNavigationBarHidden:NO];
   self.videoView.frame = self.portraitVideoViewFrame;
@@ -337,7 +350,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 }
 
 - (void)showFullscreenControls:(UITapGestureRecognizer *)recognizer {
-  if (self.isFullscreen) {
+  if (self.fullscreen) {
     self.videoControls.hidden = NO;
     self.videoControls.alpha = 0.9;
     [self startHideControlsTimer];
@@ -349,7 +362,10 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 }
 
 - (void)hideFullscreenControls {
-  [UIView animateWithDuration:0.5 animations:^{ self.videoControls.alpha = 0.0; }];
+  [UIView animateWithDuration:0.5
+                   animations:^{
+                     self.videoControls.alpha = 0.0;
+                   }];
 }
 
 - (IBAction)onPipButtonClicked:(id)sender {
@@ -489,8 +505,8 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 - (void)logMessage:(NSString *)log, ... {
   va_list args;
   va_start(args, log);
-  NSString *s =
-      [[NSString alloc] initWithFormat:[NSString stringWithFormat:@"%@\n", log] arguments:args];
+  NSString *s = [[NSString alloc] initWithFormat:[[NSString alloc] initWithFormat:@"%@\n", log]
+                                       arguments:args];
   self.consoleView.text = [self.consoleView.text stringByAppendingString:s];
   NSLog(@"%@", s);
   va_end(args);
