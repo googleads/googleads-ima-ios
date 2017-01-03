@@ -1,4 +1,4 @@
-import Foundation
+ import Foundation
 import UIKit
 
 import GoogleInteractiveMediaAds
@@ -59,8 +59,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   var contentDurationContext: UInt8 = 2
 
   enum PlayButtonType: Int {
-    case PlayButton = 0
-    case PauseButton = 1
+    case playButton = 0
+    case pauseButton = 1
   }
 
   // MARK: Set-up methods
@@ -76,19 +76,19 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     // Set up CGRects for resizing the video and controls on rotate.
     let videoViewBounds = videoView.bounds
     portraitVideoViewFrame = videoView.frame
-    portraitVideoFrame = CGRectMake(0, 0, videoViewBounds.size.width, videoViewBounds.size.height)
+    portraitVideoFrame = CGRect(x: 0, y: 0, width: videoViewBounds.size.width, height: videoViewBounds.size.height)
 
     let videoControlsBounds = videoControls.bounds
     portraitControlsViewFrame = videoControls.frame
     portraitControlsFrame =
-        CGRectMake(0, 0, videoControlsBounds.size.width, videoControlsBounds.size.height)
+        CGRect(x: 0, y: 0, width: videoControlsBounds.size.width, height: videoControlsBounds.size.height)
 
     // Set videoView on top of everything else (for fullscreen support).
-    view.bringSubviewToFront(videoView)
-    view.bringSubviewToFront(videoControls)
+    view.bringSubview(toFront: videoView)
+    view.bringSubview(toFront: videoControls)
 
     // Check orientation, set to fullscreen if we're in landscape
-    if (UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation)) {
+    if (UIDeviceOrientationIsLandscape(UIDevice.current.orientation)) {
       viewDidEnterLandscape()
     }
 
@@ -100,33 +100,33 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
       let tagPrompt = UIAlertController(
         title: "Ad Tag",
         message: nil,
-        preferredStyle: UIAlertControllerStyle.Alert)
-      tagPrompt.addTextFieldWithConfigurationHandler(addTextField)
+        preferredStyle: UIAlertControllerStyle.alert)
+      tagPrompt.addTextField(configurationHandler: addTextField)
       tagPrompt.addAction(
-        UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
       tagPrompt.addAction(
-        UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: tagEntered))
-      presentViewController(tagPrompt, animated: true, completion: nil)
+        UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: tagEntered))
+      present(tagPrompt, animated: true, completion: nil)
     } else {
       requestAdsWithTag(video.tag)
     }
   }
 
   // Handler when user clicks "OK" on the ad tag pop-up
-  func tagEntered(alert: UIAlertAction!) {
+  func tagEntered(_ alert: UIAlertAction!) {
     requestAdsWithTag(tagInput!.text)
   }
 
   // Used to create the text field in the language pop-up.
-  func addTextField(textField: UITextField!) {
+  func addTextField(_ textField: UITextField!) {
     textField.placeholder = ""
     tagInput = textField
   }
 
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     contentPlayer!.pause()
     // Don't reset if we're presenting a modal view (e.g. in-app clickthrough).
-    if ((navigationController!.viewControllers as NSArray).indexOfObject(self) == NSNotFound) {
+    if ((navigationController!.viewControllers as NSArray).index(of: self) == NSNotFound) {
       if (adsManager != nil) {
         adsManager!.destroy()
         adsManager = nil
@@ -139,15 +139,15 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   // Initialize the content player and load content.
   func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
-    let contentUrl = NSURL(string: video.video)
-    contentPlayer = AVPlayer(URL: contentUrl!)
+    let contentUrl = URL(string: video.video)
+    contentPlayer = AVPlayer(url: contentUrl!)
 
     // Playhead observers for progress bar.
     let controller: VideoViewController = self
-    controller.contentPlayer?.addPeriodicTimeObserverForInterval(
-        CMTimeMake(1, 30),
+    controller.contentPlayer?.addPeriodicTimeObserver(
+        forInterval: CMTimeMake(1, 30),
         queue: nil,
-      usingBlock: {(time: CMTime) -> Void in
+        using: {(time: CMTime) -> Void in
           if (self.contentPlayer != nil) {
             let duration = controller.getPlayerItemDuration(self.contentPlayer!.currentItem!)
             controller.updatePlayheadWithTime(time, duration: duration)
@@ -156,21 +156,21 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     contentPlayer!.addObserver(
         self,
         forKeyPath: "rate",
-        options: NSKeyValueObservingOptions.New,
+        options: NSKeyValueObservingOptions.new,
         context: &contentRateContext)
     contentPlayer!.addObserver(
         self,
         forKeyPath: "currentItem.duration",
-        options: NSKeyValueObservingOptions.New,
+        options: NSKeyValueObservingOptions.new,
         context: &contentDurationContext)
-    NSNotificationCenter.defaultCenter().addObserver(
+    NotificationCenter.default.addObserver(
         self,
-        selector: "contentDidFinishPlaying:",
-        name: AVPlayerItemDidPlayToEndTimeNotification,
+        selector: #selector(VideoViewController.contentDidFinishPlaying(_:)),
+        name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
         object: contentPlayer!.currentItem)
 
     // Set up fullscreen tap listener to show controls
-    videoTapRecognizer = UITapGestureRecognizer(target: self, action: "showFullscreenControls:")
+    videoTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(VideoViewController.showFullscreenControls(_:)))
     videoView.addGestureRecognizer(videoTapRecognizer!)
 
     // Create a player layer for the player.
@@ -181,26 +181,26 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     videoView.layer.addSublayer(contentPlayerLayer!)
 
     // Create content playhead
-    contentPlayhead = IMAAVPlayerContentPlayhead(AVPlayer: contentPlayer)
+    contentPlayhead = IMAAVPlayerContentPlayhead(avPlayer: contentPlayer)
 
     // Set ourselves up for PiP.
-    pictureInPictureProxy = IMAPictureInPictureProxy(AVPictureInPictureControllerDelegate: self);
+    pictureInPictureProxy = IMAPictureInPictureProxy(avPictureInPictureControllerDelegate: self);
     pictureInPictureController = AVPictureInPictureController(playerLayer: contentPlayerLayer!);
     if (pictureInPictureController != nil) {
       pictureInPictureController!.delegate = pictureInPictureProxy;
     }
     if (!AVPictureInPictureController.isPictureInPictureSupported() &&
         pictureInPictureButton != nil) {
-      pictureInPictureButton.hidden = true;
+      pictureInPictureButton.isHidden = true;
     }
   }
 
   // Handler for keypath listener that is added for content playhead observer.
-  override func observeValueForKeyPath(
-      keyPath: String?,
-      ofObject object: AnyObject?,
-      change: [String : AnyObject]?,
-      context: UnsafeMutablePointer<Void>) {
+  override func observeValue(
+      forKeyPath keyPath: String?,
+      of object: Any?,
+      change: [NSKeyValueChangeKey : Any]?,
+      context: UnsafeMutableRawPointer?) {
     if (context == &contentRateContext && contentPlayer == object as? AVPlayer) {
       updatePlayheadState(contentPlayer!.rate != 0)
     } else if (context == &contentDurationContext && contentPlayer == object as? AVPlayer) {
@@ -211,7 +211,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   // MARK: UI handlers
 
   // Handle clicks on play/pause button.
-  @IBAction func onPlayPauseClicked(sender: AnyObject) {
+  @IBAction func onPlayPauseClicked(_ sender: AnyObject) {
     if (!isAdPlayback) {
       if (contentPlayer!.rate == 0) {
         contentPlayer!.play()
@@ -219,42 +219,42 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
         contentPlayer!.pause()
       }
     } else {
-      if (playheadButton.tag == PlayButtonType.PlayButton.rawValue) {
+      if (playheadButton.tag == PlayButtonType.playButton.rawValue) {
         adsManager!.resume()
-        setPlayButtonType(PlayButtonType.PauseButton)
+        setPlayButtonType(PlayButtonType.pauseButton)
       } else {
         adsManager!.pause()
-        setPlayButtonType(PlayButtonType.PlayButton)
+        setPlayButtonType(PlayButtonType.playButton)
       }
     }
   }
 
   // Updates play button for provided playback state.
-  func updatePlayheadState(isPlaying: Bool) {
-    setPlayButtonType(isPlaying ? PlayButtonType.PauseButton : PlayButtonType.PlayButton)
+  func updatePlayheadState(_ isPlaying: Bool) {
+    setPlayButtonType(isPlaying ? PlayButtonType.pauseButton : PlayButtonType.playButton)
   }
 
   // Sets play button type.
-  func setPlayButtonType(buttonType: PlayButtonType) {
+  func setPlayButtonType(_ buttonType: PlayButtonType) {
     playheadButton.tag = buttonType.rawValue
     playheadButton.setImage(
-        buttonType == PlayButtonType.PauseButton ? pauseBtnBG : playBtnBG,
-        forState: UIControlState.Normal)
+        buttonType == PlayButtonType.pauseButton ? pauseBtnBG : playBtnBG,
+        for: UIControlState())
   }
 
   // Called when the user seeks.
-  @IBAction func playheadValueChanged(sender: AnyObject) {
-    if (!sender.isKindOfClass(UISlider)) {
+  @IBAction func playheadValueChanged(_ sender: UIControl) {
+    if !(sender is UISlider) {
       return
     }
     if (!isAdPlayback) {
       let slider = sender as! UISlider
-      contentPlayer!.seekToTime(CMTimeMake(Int64(slider.value), 1))
+      contentPlayer!.seek(to: CMTimeMake(Int64(slider.value), 1))
     }
   }
 
   // Used to track progress of ads for progress bar.
-  func adDidProgressToTime(mediaTime: NSTimeInterval, totalTime: NSTimeInterval) {
+  func adDidProgressToTime(_ mediaTime: TimeInterval, totalTime: TimeInterval) {
     let time = CMTimeMakeWithSeconds(mediaTime, 1000)
     let duration = CMTimeMakeWithSeconds(totalTime, 1000)
     updatePlayheadWithTime(time, duration: duration)
@@ -262,12 +262,14 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   }
 
   // Get the duration value from the player item.
-  func getPlayerItemDuration(item: AVPlayerItem) -> CMTime {
+  func getPlayerItemDuration(_ item: AVPlayerItem) -> CMTime {
     var itemDuration = kCMTimeInvalid
-    if (item.respondsToSelector("duration")) {
+//    if (item.respondsToSelector("duration")) {
+    if (item.duration != kCMTimeInvalid) {
       itemDuration = item.duration
     } else {
-      if (item.asset.respondsToSelector("duration")) {
+//      if (item.asset.respondsToSelector("duration")) {
+      if (item.asset.duration != kCMTimeInvalid) {
         itemDuration = item.asset.duration
       }
     }
@@ -275,122 +277,122 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   }
 
   // Updates progress bar for provided time and duration.
-  func updatePlayheadWithTime(time: CMTime, duration: CMTime) {
+  func updatePlayheadWithTime(_ time: CMTime, duration: CMTime) {
     if (!CMTIME_IS_VALID(time)) {
       return
     }
     let currentTime = CMTimeGetSeconds(time)
-    if (isnan(currentTime)) {
+    if (currentTime.isNaN) {
       return
     }
     progressBar.value = Float(currentTime)
     playheadTimeText.text =
-        NSString(format: "%d:%02d", Int(currentTime / 60), Int(currentTime % 60)) as String
+        NSString(format: "%d:%02d", Int(currentTime / 60), Int(currentTime.truncatingRemainder(dividingBy: 60))) as String
     updatePlayheadDurationWithTime(duration)
   }
 
-  func updatePlayheadDurationWithTime(time: CMTime!) {
+  func updatePlayheadDurationWithTime(_ time: CMTime!) {
     if (!time.isValid) {
       return
     }
     let durationValue = CMTimeGetSeconds(time)
-    if (isnan(durationValue)) {
+    if (durationValue.isNaN) {
       return
     }
     progressBar.maximumValue = Float(durationValue)
     durationTimeText.text =
-        NSString(format: "%d:%02d", Int(durationValue / 60), Int(durationValue % 60)) as String
+        NSString(format: "%d:%02d", Int(durationValue / 60), Int(durationValue.truncatingRemainder(dividingBy: 60))) as String
   }
 
-  override func didRotateFromInterfaceOrientation(
-      interfaceOrientation: UIInterfaceOrientation) {
+  override func didRotate(
+      from interfaceOrientation: UIInterfaceOrientation) {
     switch (interfaceOrientation) {
-      case UIInterfaceOrientation.LandscapeLeft: fallthrough
-      case UIInterfaceOrientation.LandscapeRight:
+      case UIInterfaceOrientation.landscapeLeft: fallthrough
+      case UIInterfaceOrientation.landscapeRight:
         viewDidEnterPortrait()
         break
-      case UIInterfaceOrientation.Portrait: fallthrough
-      case UIInterfaceOrientation.PortraitUpsideDown:
+      case UIInterfaceOrientation.portrait: fallthrough
+      case UIInterfaceOrientation.portraitUpsideDown:
         viewDidEnterLandscape()
         break
-      case UIInterfaceOrientation.Unknown:
+      case UIInterfaceOrientation.unknown:
         break
     }
   }
 
   func viewDidEnterLandscape() {
     isFullscreen = true
-    let screenRect = UIScreen.mainScreen().bounds
-    if ((UIDevice.currentDevice().systemVersion as NSString).floatValue < 8.0) {
-      fullscreenVideoFrame = CGRectMake(0, 0, screenRect.size.height, screenRect.size.width)
-      fullscreenControlsFrame = CGRectMake(
-          0,
-          screenRect.size.width - videoControls.frame.size.height,
-          screenRect.size.height,
-          self.videoControls.frame.size.height)
+    let screenRect = UIScreen.main.bounds
+    if ((UIDevice.current.systemVersion as NSString).floatValue < 8.0) {
+      fullscreenVideoFrame = CGRect(x: 0, y: 0, width: screenRect.size.height, height: screenRect.size.width)
+      fullscreenControlsFrame = CGRect(
+          x: 0,
+          y: screenRect.size.width - videoControls.frame.size.height,
+          width: screenRect.size.height,
+          height: self.videoControls.frame.size.height)
     } else {
-      fullscreenVideoFrame = CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)
-      fullscreenControlsFrame = CGRectMake(
-          0,
-          screenRect.size.height - self.videoControls.frame.size.height,
-          screenRect.size.width,
-          self.videoControls.frame.size.height)
+      fullscreenVideoFrame = CGRect(x: 0, y: 0, width: screenRect.size.width, height: screenRect.size.height)
+      fullscreenControlsFrame = CGRect(
+          x: 0,
+          y: screenRect.size.height - self.videoControls.frame.size.height,
+          width: screenRect.size.width,
+          height: self.videoControls.frame.size.height)
     }
-    UIApplication.sharedApplication().setStatusBarHidden(
+    UIApplication.shared.setStatusBarHidden(
         true,
-        withAnimation: UIStatusBarAnimation.None)
+        with: UIStatusBarAnimation.none)
     navigationController!.setNavigationBarHidden(true, animated: false)
     videoView.frame = fullscreenVideoFrame!
     contentPlayerLayer!.frame = fullscreenVideoFrame!
     videoControls.frame = fullscreenControlsFrame!
-    videoControls.hidden = true
+    videoControls.isHidden = true
   }
 
   func viewDidEnterPortrait() {
     isFullscreen = false
-    UIApplication.sharedApplication().setStatusBarHidden(
+    UIApplication.shared.setStatusBarHidden(
       false,
-      withAnimation: UIStatusBarAnimation.None)
+      with: UIStatusBarAnimation.none)
     navigationController!.setNavigationBarHidden(false, animated: false)
     videoView.frame = portraitVideoViewFrame!
     contentPlayerLayer!.frame = portraitVideoFrame!
     videoControls.frame = portraitControlsFrame!
   }
 
-  @IBAction func videoControlsTouchStarted(sender: AnyObject) {
-    NSObject.cancelPreviousPerformRequestsWithTarget(
-        self,
-        selector: "hideFullscreenControls",
+  @IBAction func videoControlsTouchStarted(_ sender: AnyObject) {
+    NSObject.cancelPreviousPerformRequests(
+        withTarget: self,
+        selector: #selector(VideoViewController.hideFullscreenControls),
         object: self)
   }
 
-  @IBAction func videoControlsTouchEnded(sender: AnyObject) {
+  @IBAction func videoControlsTouchEnded(_ sender: AnyObject) {
     startHideControlsTimer()
   }
 
-  func showFullscreenControls(recognizer: UITapGestureRecognizer?) {
+  func showFullscreenControls(_ recognizer: UITapGestureRecognizer?) {
     if (isFullscreen) {
-      videoControls.hidden = false
+      videoControls.isHidden = false
       videoControls.alpha = 0.9
       startHideControlsTimer()
     }
   }
 
   func startHideControlsTimer() {
-    NSTimer.scheduledTimerWithTimeInterval(
-        3,
+    Timer.scheduledTimer(
+        timeInterval: 3,
         target: self,
-        selector: "hideFullscreenControls",
+        selector: #selector(VideoViewController.hideFullscreenControls),
         userInfo: nil,
         repeats: false)
   }
 
   func hideFullscreenControls() {
-    UIView.animateWithDuration(0.5, animations: {() -> Void in self.videoControls.alpha = 0.0})
+    UIView.animate(withDuration: 0.5, animations: {() -> Void in self.videoControls.alpha = 0.0})
   }
 
-  @IBAction func onPipButtonClicked(sender: AnyObject) {
-    if (pictureInPictureController!.pictureInPictureActive) {
+  @IBAction func onPipButtonClicked(_ sender: AnyObject) {
+    if (pictureInPictureController!.isPictureInPictureActive) {
       pictureInPictureController!.stopPictureInPicture();
     } else {
       pictureInPictureController!.startPictureInPicture();
@@ -431,20 +433,20 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   }
 
   // Request ads for provided tag.
-  func requestAdsWithTag(adTagUrl: String!) {
+  func requestAdsWithTag(_ adTagUrl: String!) {
     logMessage("Requesting ads")
     // Create an ad request with our ad tag, display container, and optional user context.
     let request = IMAAdsRequest(
         adTagUrl: adTagUrl,
         adDisplayContainer: createAdDisplayContainer(),
-        avPlayerVideoDisplay: IMAAVPlayerVideoDisplay(AVPlayer: contentPlayer),
+        avPlayerVideoDisplay: IMAAVPlayerVideoDisplay(avPlayer: contentPlayer),
         pictureInPictureProxy: pictureInPictureProxy,
         userContext: nil)
-    adsLoader.requestAdsWithRequest(request)
+    adsLoader.requestAds(with:request)
   }
 
   // Notify IMA SDK when content is done for post-rolls.
-  func contentDidFinishPlaying(notification: NSNotification) {
+  func contentDidFinishPlaying(_ notification: Notification) {
     // Make sure we don't call contentComplete as a result of an ad completing.
     if ((notification.object as? AVPlayerItem) == contentPlayer!.currentItem) {
       adsLoader.contentComplete()
@@ -453,7 +455,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
 
   // MARK: AdsLoader Delegates
 
-  func adsLoader(loader: IMAAdsLoader!, adsLoadedWithData adsLoadedData: IMAAdsLoadedData!) {
+  func adsLoader(_ loader: IMAAdsLoader!, adsLoadedWith adsLoadedData: IMAAdsLoadedData!) {
     // Grab the instance of the IMAAdsManager and set ourselves as the delegate.
     adsManager = adsLoadedData.adsManager
     adsManager!.delegate = self
@@ -461,33 +463,33 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     let adsRenderingSettings = IMAAdsRenderingSettings()
     adsRenderingSettings.webOpenerPresentingController = self
     // Initialize the ads manager.
-    adsManager!.initializeWithAdsRenderingSettings(adsRenderingSettings)
+    adsManager!.initialize(with: adsRenderingSettings)
   }
 
-  func adsLoader(loader: IMAAdsLoader!, failedWithErrorData adErrorData: IMAAdLoadingErrorData!) {
+  func adsLoader(_ loader: IMAAdsLoader!, failedWith adErrorData: IMAAdLoadingErrorData!) {
     // Something went wrong loading ads. Log the error and play the content.
     logMessage("Error loading ads: \(adErrorData.adError.message)")
     isAdPlayback = false
-    setPlayButtonType(PlayButtonType.PauseButton)
+    setPlayButtonType(PlayButtonType.pauseButton)
     contentPlayer!.play()
   }
 
   // MARK: AdsManager Delegates
 
-  func adsManager(adsManager: IMAAdsManager!, didReceiveAdEvent event: IMAAdEvent!) {
+  func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
     logMessage("AdsManager event \(event.typeString!)")
     switch (event.type) {
       case IMAAdEventType.LOADED:
         if (pictureInPictureController == nil ||
-            !pictureInPictureController!.pictureInPictureActive) {
+            !pictureInPictureController!.isPictureInPictureActive) {
           adsManager.start()
         }
         break
       case IMAAdEventType.PAUSE:
-        setPlayButtonType(PlayButtonType.PlayButton)
+        setPlayButtonType(PlayButtonType.playButton)
         break
       case IMAAdEventType.RESUME:
-        setPlayButtonType(PlayButtonType.PauseButton)
+        setPlayButtonType(PlayButtonType.pauseButton)
         break
       case IMAAdEventType.TAPPED:
         showFullscreenControls(nil)
@@ -497,32 +499,32 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     }
   }
 
-  func adsManager(adsManager: IMAAdsManager!, didReceiveAdError error: IMAAdError!) {
+  func adsManager(_ adsManager: IMAAdsManager!, didReceive error: IMAAdError!) {
     // Something went wrong with the ads manager after ads were loaded. Log the error and play the
     // content.
     logMessage("AdsManager error: \(error.message)")
     isAdPlayback = false
-    setPlayButtonType(PlayButtonType.PauseButton)
+    setPlayButtonType(PlayButtonType.pauseButton)
     contentPlayer!.play()
   }
 
-  func adsManagerDidRequestContentPause(adsManager: IMAAdsManager!) {
+  func adsManagerDidRequestContentPause(_ adsManager: IMAAdsManager!) {
     // The SDK is going to play ads, so pause the content.
     isAdPlayback = true
-    setPlayButtonType(PlayButtonType.PauseButton)
+    setPlayButtonType(PlayButtonType.pauseButton)
     contentPlayer!.pause()
   }
 
-  func adsManagerDidRequestContentResume(adsManager: IMAAdsManager!) {
+  func adsManagerDidRequestContentResume(_ adsManager: IMAAdsManager!) {
     // The SDK is done playing ads (at least for now), so resume the content.
     isAdPlayback = false
-    setPlayButtonType(PlayButtonType.PlayButton)
+    setPlayButtonType(PlayButtonType.playButton)
     contentPlayer!.play()
   }
 
   // MARK: Utility methods
-  func logMessage(log: String!) {
-    consoleView.text = consoleView.text.stringByAppendingString("\n" + log)
+  func logMessage(_ log: String!) {
+    consoleView.text = consoleView.text + ("\n" + log)
     NSLog(log)
     if (consoleView.text.characters.count > 0) {
       let bottom = NSMakeRange(consoleView.text.characters.count - 1, 1)
