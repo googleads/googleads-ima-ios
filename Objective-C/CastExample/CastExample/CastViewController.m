@@ -25,7 +25,7 @@
 
 @implementation CastViewController
 
-const NSString *kReceiverAppID = @"6609F938";
+const NSString *kReceiverAppID = @"YOUR_RECEIVER_APP_ID";
 const float kCastButtonXPosition = 0;
 const float kCastButtonYPosition = 0;
 const float kCastButtonWidth = 40;
