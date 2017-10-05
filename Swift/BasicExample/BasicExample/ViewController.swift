@@ -64,7 +64,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
       object: contentPlayer?.currentItem);
   }
 
-  func contentDidFinishPlaying(_ notification: Notification) {
+  @objc func contentDidFinishPlaying(_ notification: Notification) {
     // Make sure we don't call contentComplete as a result of an ad completing.
     if (notification.object as! AVPlayerItem) == contentPlayer?.currentItem {
       adsLoader.contentComplete()

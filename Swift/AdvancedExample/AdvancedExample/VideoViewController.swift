@@ -70,9 +70,6 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     super.viewDidLoad()
     topLabel.text = video.title as String
 
-    // Fix iPhone issue of log text starting in the middle of the UITextView
-    automaticallyAdjustsScrollViewInsets = false
-
     // Set up CGRects for resizing the video and controls on rotate.
     let videoViewBounds = videoView.bounds
     portraitVideoViewFrame = videoView.frame
@@ -362,7 +359,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     startHideControlsTimer()
   }
 
-  func showFullscreenControls(_ recognizer: UITapGestureRecognizer?) {
+  @objc func showFullscreenControls(_ recognizer: UITapGestureRecognizer?) {
     if (isFullscreen) {
       videoControls.isHidden = false
       videoControls.alpha = 0.9
@@ -379,7 +376,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
         repeats: false)
   }
 
-  func hideFullscreenControls() {
+  @objc func hideFullscreenControls() {
     UIView.animate(withDuration: 0.5, animations: {() -> Void in self.videoControls.alpha = 0.0})
   }
 
@@ -438,7 +435,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   }
 
   // Notify IMA SDK when content is done for post-rolls.
-  func contentDidFinishPlaying(_ notification: Notification) {
+  @objc func contentDidFinishPlaying(_ notification: Notification) {
     // Make sure we don't call contentComplete as a result of an ad completing.
     if ((notification.object as? AVPlayerItem) == contentPlayer!.currentItem) {
       adsLoader.contentComplete()

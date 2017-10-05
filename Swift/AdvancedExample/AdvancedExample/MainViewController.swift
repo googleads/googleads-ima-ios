@@ -150,16 +150,16 @@ class MainViewController: UIViewController {
   }
 
   // Only allow one selection.
-  func numberOfSectionsInTableView(_ tableView: UITableView) -> NSInteger {
+  @objc func numberOfSectionsInTableView(_ tableView: UITableView) -> NSInteger {
     return 1;
   }
 
   // Returns the number of items to be presented in the table.
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  @objc func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return videos.count
   }
 
-  func tableView(
+  @objc func tableView(
       _ tableView: UITableView,
       cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(

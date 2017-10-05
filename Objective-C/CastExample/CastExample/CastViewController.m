@@ -261,7 +261,7 @@ const float kCastButtonHeight = 40;
   [self.deviceManager addChannel:self.messageChannel];
   // [START_EXCLUDE silent]
   [self.mediaControlChannel requestStatus];
-  // [END_EXCLUDE silent]
+  // [END_EXCLUDE]
   [self castVideo:self];
 }
 // [END media-control-channel]

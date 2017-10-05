@@ -121,25 +121,24 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
       [self.adsManager destroy];
       self.adsManager = nil;
     }
-    
     [self removeObservers];
     self.contentPlayer = nil;
   }
   [super viewWillDisappear:animated];
 }
-  //Remove ContentPlayer Observer
+
+
+//Remove ContentPlayer Observer
 - (void)removeObservers {
-  
   if (self.playHeadObserver) {
     [self.contentPlayer removeTimeObserver:self.playHeadObserver];
     self.playHeadObserver = nil;
   }
-  
+
   @try {
     [self.contentPlayer removeObserver:self forKeyPath:@"rate"];
     [self.contentPlayer removeObserver:self forKeyPath:@"currentItem.duration"];
   } @catch (NSException *exception) { }
-  
 }
 
 // If pop-up dialog was shown, request ads with provided tag on dialog close.
