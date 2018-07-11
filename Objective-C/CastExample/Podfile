@@ -5,6 +5,5 @@ platform :ios, '9.0'
 target "CastExample" do
   pod 'GoogleAds-IMA-iOS-SDK', '~> 3.7'
   pod 'google-cast-sdk'
-  pod 'google-cast-remote-display-sdk'
 end
 

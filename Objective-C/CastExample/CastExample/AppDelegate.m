@@ -1,15 +1,28 @@
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+@import GoogleCast;
+
+@interface AppDelegate () <GCKLoggerDelegate>
 
 @end
 
 @implementation AppDelegate
 
+static NSString *const kReceiverAppID = @"93F3197F";
+
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  // Override point for customization after application launch.
+  GCKCastOptions *options = [[GCKCastOptions alloc] initWithReceiverApplicationID:kReceiverAppID];
+  [GCKCastContext setSharedInstanceWithOptions:options];
+
+  [GCKLogger sharedInstance].delegate = self;
   return YES;
+}
+
+#pragma mark - GCKLoggerDelegate
+
+- (void)logMessage:(NSString *)message fromFunction:(NSString *)function {
+  NSLog(@"%@  %@", function, message);
 }
 
 @end

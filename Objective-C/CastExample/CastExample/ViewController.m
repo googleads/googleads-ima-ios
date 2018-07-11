@@ -1,10 +1,14 @@
 #import "ViewController.h"
 
-#import "CastViewController.h"
+#import "CastMessageChannel.h"
 
+@import GoogleCast;
 @import GoogleInteractiveMediaAds;
 
-@interface ViewController () <IMAAdsLoaderDelegate, IMAAdsManagerDelegate>
+@interface ViewController () <CastMessageChannelDelegate,
+                              GCKSessionManagerListener,
+                              IMAAdsLoaderDelegate,
+                              IMAAdsManagerDelegate>
 
 // SDK
 /// Entry point for the SDK. Used to make ad requests.
@@ -17,16 +21,20 @@
 @property(nonatomic, strong) IMAAdsManager *adsManager;
 /// If an ad is currently playing.
 @property(nonatomic, assign) BOOL adPlaying;
-/// Cast controller.
-@property(nonatomic, strong) CastViewController *castViewController;
 /// If the previous ad tag is VMAP ad.
 @property(nonatomic, assign) BOOL isVMAPAd;
 /// If an ad has started playing.
 @property(nonatomic, assign) BOOL adStartedPlaying;
+/// If cast player is currently playing an ad.
+@property(nonatomic, assign) BOOL castAdPlaying;
+/// Last known content time on cast player.
+@property(nonatomic, assign) CMTime castContentTime;
 
 @end
 
 @implementation ViewController
+
+static NSString *const kCUSTOM_NAMESPACE = @"urn:x-cast:com.google.ads.ima.cast";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -42,23 +50,21 @@
       @"26sample_ct%3Dlinear&" @"correlator=";
   self.isVMAPAd = false;
 
-  // Position and size of cast button.
-  const float kCastButtonXPosition = self.view.frame.size.width * 0.9;
-  const float kCastButtonYPosition = self.view.frame.size.height * 0.1;
-  const float kCastButtonWidth = 40;
-  const float kCastButtonHeight = 40;
-
   [self setupAdsLoader];
   [self setUpContentPlayer];
-  self.castViewController = [[CastViewController alloc] initWithViewController:self];
-  self.castViewController.view.frame =
-      CGRectMake(kCastButtonXPosition, kCastButtonYPosition, kCastButtonWidth, kCastButtonHeight);
-  [self.view addSubview:self.castViewController.view];
-  [self.view bringSubviewToFront:self.castViewController.view];
-}
 
-- (void)showChooseDevice {
-  [self.navigationController pushViewController:self.castViewController animated:YES];
+
+  const float kCastButtonXPosition = self.view.frame.size.width * 0.85;
+  const float kCastButtonYPosition = self.view.frame.size.height * 0.05;
+  const float kCastButtonWidth = 24;
+  const float kCastButtonHeight = 24;
+  CGRect frame =
+      CGRectMake(kCastButtonXPosition, kCastButtonYPosition, kCastButtonWidth, kCastButtonHeight);
+  GCKUICastButton *castButton = [[GCKUICastButton alloc] initWithFrame:frame];
+  castButton.tintColor = [UIColor blackColor];
+  [self.view addSubview:castButton];
+
+  [[GCKCastContext sharedInstance].sessionManager addListener:self];
 }
 
 - (IBAction)onPlayButtonTouch:(id)sender {
@@ -190,6 +196,81 @@
   // The SDK is done playing ads (at least for now), so resume the content.
   [self.contentPlayer play];
   self.adPlaying = false;
+}
+
+#pragma mark GCKSessionManagerListener
+
+-(void)sessionManager:(GCKSessionManager *)sessionManager
+    didStartCastSession:(GCKCastSession *)session {
+  self.messageChannel =
+      [[CastMessageChannel alloc] initWithNamespace:kCUSTOM_NAMESPACE];
+  self.messageChannel.delegate = self;
+  [session addChannel:self.messageChannel];
+  [self castVideo:self];
+}
+
+-(void)sessionManager:(GCKSessionManager *)sessionManager
+    willEndCastSession:(nonnull GCKCastSession *)session
+            withError:(NSError * _Nullable)error {
+  [self playVideo];
+  if (self.castAdPlaying) {
+    // If ad is playing on cast, seek to last known content location.
+    [self seekContent:self.castContentTime];
+  } else {
+    // If content is playing on cast, seek to content position of
+    // cast device. Stream position is returned in microseconds.
+    CMTime videoPosition =
+        CMTimeMakeWithSeconds(session.remoteMediaClient.approximateStreamPosition, 1000000);
+    [self seekContent:videoPosition];
+  }
+}
+
+- (void)castVideo:(id)sender {
+  [self pauseVideo];
+  NSString *contentUrl = self.kContentUrl;
+  GCKMediaMetadata *metadata = [[GCKMediaMetadata alloc] init];
+  GCKMediaInformation *mediaInformation =
+      [[GCKMediaInformation alloc] initWithContentID:contentUrl
+                                          streamType:GCKMediaStreamTypeBuffered
+                                         contentType:@"video/mp4"
+                                            metadata:metadata
+                                      streamDuration:0
+                                         mediaTracks:nil
+                                      textTrackStyle:nil
+                                          customData:nil];
+  GCKCastSession *session =
+      [GCKCastContext sharedInstance].sessionManager.currentCastSession;
+  if (session) {
+    [session.remoteMediaClient loadMedia:mediaInformation autoplay:NO];
+  }
+  if (self.isVMAPAd || !self.adStartedPlaying) {
+    [self sendMessage:[[NSString alloc]
+                       initWithFormat:@"requestAd,%@,%f", self.kAdTagUrl,
+                       CMTimeGetSeconds(self.contentPlayer.currentTime)]];
+  } else {
+    [self sendMessage:[[NSString alloc]
+                       initWithFormat:@"seek,%f",
+                       CMTimeGetSeconds(self.contentPlayer.currentTime)]];
+  }
+}
+
+- (void)sendMessage:(NSString *)message {
+  NSLog(@"Sending message: %@", message);
+  [self.messageChannel sendTextMessage:message error:nil];
+}
+
+#pragma mark CastMessageChannelDelegate
+
+- (void)castChannel:(CastMessageChannel *)channel didReceiveMessage:(NSString *)message {
+  NSLog(@"Received message: %@", message);
+  NSArray *splitMessage = [message componentsSeparatedByString:@","];
+  NSString *event = splitMessage[0];
+  if ([event isEqualToString:@"onContentPauseRequested"]) {
+    self.castAdPlaying = true;
+    self.castContentTime = CMTimeMakeWithSeconds([splitMessage[1] floatValue], 1);
+  } else if ([event isEqualToString:@"onContentResumeRequested"]) {
+    self.castAdPlaying = false;
+  }
 }
 
 @end

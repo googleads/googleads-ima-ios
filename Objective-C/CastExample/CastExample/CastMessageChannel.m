@@ -1,7 +1,5 @@
 #import "CastMessageChannel.h"
 
-#import "CastViewController.h"
-
 @implementation CastMessageChannel
 
 - (void)didReceiveTextMessage:(NSString *)message {
