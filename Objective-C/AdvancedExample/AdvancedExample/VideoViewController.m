@@ -397,9 +397,11 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 - (IMAAdDisplayContainer *)createAdDisplayContainer {
   // Create our AdDisplayContainer. Initialize it with our videoView as the container. This
   // will result in ads being displayed over our content video.
-  if (self.companionView != nil) {
+  if (self.companionView) {
+    // MOE:strip_line [START ad_display_container_init]
     return [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
                                                companionSlots:@[ self.companionSlot ]];
+    // [END ad_display_container_init] MOE:strip_line
   } else {
     return [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
   }
@@ -407,10 +409,12 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 
 // Register companion slots.
 - (void)setUpCompanions {
+  // MOE:strip_line [START companion_slot_declaration]
   self.companionSlot =
       [[IMACompanionAdSlot alloc] initWithView:self.companionView
                                          width:self.companionView.frame.size.width
                                         height:self.companionView.frame.size.height];
+  // [END companion_slot_declaration] MOE:strip_line
 }
 
 // Initialize AdsLoader.
@@ -420,7 +424,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   }
   [self.adsLoader contentComplete];
   self.adsLoader.delegate = self;
-  if (self.companionView != nil) {
+  if (self.companionView) {
     [self setUpCompanions];
   }
 }

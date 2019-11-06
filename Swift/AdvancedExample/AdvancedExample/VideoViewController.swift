@@ -81,11 +81,11 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
         CGRect(x: 0, y: 0, width: videoControlsBounds.size.width, height: videoControlsBounds.size.height)
 
     // Set videoView on top of everything else (for fullscreen support).
-    view.bringSubview(toFront: videoView)
-    view.bringSubview(toFront: videoControls)
+    view.bringSubviewToFront(videoView)
+    view.bringSubviewToFront(videoControls)
 
     // Check orientation, set to fullscreen if we're in landscape
-    if (UIDeviceOrientationIsLandscape(UIDevice.current.orientation)) {
+    if (UIDevice.current.orientation.isLandscape) {
       viewDidEnterLandscape()
     }
 
@@ -97,12 +97,12 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
       let tagPrompt = UIAlertController(
         title: "Ad Tag",
         message: nil,
-        preferredStyle: UIAlertControllerStyle.alert)
+        preferredStyle: .alert)
       tagPrompt.addTextField(configurationHandler: addTextField)
       tagPrompt.addAction(
-        UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        UIAlertAction(title: "Cancel", style: .default, handler: nil))
       tagPrompt.addAction(
-        UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: tagEntered))
+        UIAlertAction(title: "OK", style: .default, handler: tagEntered))
       present(tagPrompt, animated: true, completion: nil)
     } else {
       requestAdsWithTag(video.tag)
@@ -142,7 +142,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     // Playhead observers for progress bar.
     let controller: VideoViewController = self
     controller.contentPlayer?.addPeriodicTimeObserver(
-        forInterval: CMTimeMake(1, 30),
+        forInterval: CMTimeMake(value: 1, timescale: 30),
         queue: nil,
       using: {(time: CMTime) -> Void in
           if (self.contentPlayer != nil) {
@@ -236,7 +236,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     playheadButton.tag = buttonType.rawValue
     playheadButton.setImage(
         buttonType == PlayButtonType.pauseButton ? pauseBtnBG : playBtnBG,
-        for: UIControlState())
+        for: .normal)
   }
 
   // Called when the user seeks.
@@ -246,21 +246,21 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     }
     if (!isAdPlayback) {
       let slider = sender as! UISlider
-      contentPlayer!.seek(to: CMTimeMake(Int64(slider.value), 1))
+      contentPlayer!.seek(to: CMTimeMake(value: Int64(slider.value), timescale: 1))
     }
   }
 
   // Used to track progress of ads for progress bar.
   func adDidProgressToTime(_ mediaTime: TimeInterval, totalTime: TimeInterval) {
-    let time = CMTimeMakeWithSeconds(mediaTime, 1000)
-    let duration = CMTimeMakeWithSeconds(totalTime, 1000)
+    let time = CMTimeMakeWithSeconds(mediaTime, preferredTimescale: 1000)
+    let duration = CMTimeMakeWithSeconds(totalTime, preferredTimescale: 1000)
     updatePlayheadWithTime(time, duration: duration)
     progressBar.maximumValue = Float(CMTimeGetSeconds(duration))
   }
 
   // Get the duration value from the player item.
   func getPlayerItemDuration(_ item: AVPlayerItem) -> CMTime {
-    var itemDuration = kCMTimeInvalid
+    var itemDuration = CMTime.invalid
     if (item.responds(to: #selector(getter: CAMediaTiming.duration))) {
       itemDuration = item.duration
     } else {
@@ -405,8 +405,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   func setUpCompanions() {
     companionSlot = IMACompanionAdSlot(
         view: companionView,
-        width: Int32(companionView.frame.size.width),
-        height: Int32(companionView.frame.size.height))
+        width: Int(companionView.frame.size.width),
+        height: Int(companionView.frame.size.height))
   }
 
   // Initialize AdsLoader.
@@ -457,7 +457,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
 
   func adsLoader(_ loader: IMAAdsLoader!, failedWith adErrorData: IMAAdLoadingErrorData!) {
     // Something went wrong loading ads. Log the error and play the content.
-    logMessage("Error loading ads: \(adErrorData.adError.message)")
+    logMessage("Error loading ads: \(String(describing: adErrorData.adError.message))")
     isAdPlayback = false
     setPlayButtonType(PlayButtonType.pauseButton)
     contentPlayer!.play()
@@ -491,7 +491,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   func adsManager(_ adsManager: IMAAdsManager!, didReceive error: IMAAdError!) {
     // Something went wrong with the ads manager after ads were loaded. Log the error and play the
     // content.
-    logMessage("AdsManager error: \(error.message)")
+    logMessage("AdsManager error: \(String(describing: error.message))")
     isAdPlayback = false
     setPlayButtonType(PlayButtonType.pauseButton)
     contentPlayer!.play()
@@ -515,8 +515,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   func logMessage(_ log: String!) {
     consoleView.text = consoleView.text + ("\n" + log)
     NSLog(log)
-    if (consoleView.text.characters.count > 0) {
-      let bottom = NSMakeRange(consoleView.text.characters.count - 1, 1)
+    if (consoleView.text.count > 0) {
+      let bottom = NSMakeRange(consoleView.text.count - 1, 1)
       consoleView.scrollRangeToVisible(bottom)
     }
   }

@@ -41,7 +41,7 @@ static NSString *const kCUSTOM_NAMESPACE = @"urn:x-cast:com.google.ads.ima.cast"
 
   self.playButton.layer.zPosition = MAXFLOAT;
   // The content URL to play.
-  self.kContentUrl = @"http://rmcdn.2mdn.net/Demo/html5/output.mp4";
+  self.kContentUrl = @"https://storage.googleapis.com/gvabox/media/samples/stock.mp4";
 
   // Ad tag
   self.kAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"

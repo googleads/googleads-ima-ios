@@ -3,7 +3,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  static let kTestAppContentUrl_MP4 = "http://rmcdn.2mdn.net/Demo/html5/output.mp4"
+  static let kTestAppContentUrl_MP4 = "https://storage.googleapis.com/gvabox/media/samples/stock.mp4"
 
   @IBOutlet weak var playButton: UIButton!
   @IBOutlet weak var videoView: UIView!

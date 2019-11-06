@@ -13,19 +13,18 @@ class MainViewController: UIViewController {
   // Storage point for videos.
   var videos: NSArray!
   var adsLoader: IMAAdsLoader?
-  var language: NSString!
+  var language = "en"
 
   // Set up the app.
   override func viewDidLoad() {
     super.viewDidLoad()
-    language = "en"
     initVideos()
     setUpAdsLoader()
 
     // For PiP.
     do {
-      try AVAudioSession.sharedInstance().setActive(true);
-      try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback);
+      try AVAudioSession.sharedInstance().setActive(true)
+      try AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback, options: [])
     } catch {
       NSLog("Error setting background playback - PiP will not work.")
     }
@@ -93,34 +92,36 @@ class MainViewController: UIViewController {
       adsLoader = nil
     }
     let settings = IMASettings()
-    settings.language = language as String
-    settings.enableBackgroundPlayback = true;
+    settings.language = language
+    settings.enableBackgroundPlayback = true
     adsLoader = IMAAdsLoader(settings: settings)
   }
 
   // Show the language pop-up.
   @IBAction func onLanguageClicked() {
     let alertMessage = "NOTE: This will only change the ad UI language. The language elsewhere" +
-        " in the app will remain in English. Language must be formated as a canonicalized IETF" +
+        " in the app will remain in English. Language must be formatted as a canonicalized IETF" +
         " BCP 47 language identifier such as would be returned by [NSLocale preferredLanguages]," +
-        " e.g. \"en\", \"es\", etc.";
+        " e.g. \"en\", \"es\", etc."
 
     let languagePrompt = UIAlertController(
         title: "Language",
         message: alertMessage,
-        preferredStyle: UIAlertControllerStyle.alert)
+        preferredStyle: .alert)
     languagePrompt.addTextField(configurationHandler: addTextField)
     languagePrompt.addAction(
-        UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        UIAlertAction(title: "Cancel", style: .default, handler: nil))
     languagePrompt.addAction(
-        UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: languageEntered))
+        UIAlertAction(title: "OK", style: .default, handler: languageEntered))
     present(languagePrompt, animated: true, completion: nil)
 
   }
 
   // Handler when user clicks "OK" on the language pop-up
   func languageEntered(_ alert: UIAlertAction!) {
-    language = languageInput!.text as NSString!
+    if languageInput!.text != nil {
+      language = languageInput!.text!
+    }
     setUpAdsLoader()
   }
 
@@ -151,7 +152,7 @@ class MainViewController: UIViewController {
 
   // Only allow one selection.
   @objc func numberOfSectionsInTableView(_ tableView: UITableView) -> NSInteger {
-    return 1;
+    return 1
   }
 
   // Returns the number of items to be presented in the table.

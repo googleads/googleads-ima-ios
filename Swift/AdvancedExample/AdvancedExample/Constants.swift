@@ -1,10 +1,10 @@
 import Foundation
 
 // DFP content path
-let kDFPContentPath = "http://rmcdn.2mdn.net/Demo/html5/output.mp4";
+let kDFPContentPath = "https://storage.googleapis.com/gvabox/media/samples/stock.mp4";
 
 // Android content path
-let kAndroidContentPath = "https://s0.2mdn.net/instream/videoplayer/media/android.mp4";
+let kAndroidContentPath = "https://storage.googleapis.com/gvabox/media/samples/android.mp4";
 
 // Big buck bunny content path
 let kBigBuckBunnyContentPath = "http://googleimadev-vh.akamaihd.net/i/big_buck_bunny/" +

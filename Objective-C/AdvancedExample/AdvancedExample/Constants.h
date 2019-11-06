@@ -1,11 +1,12 @@
 #import <Foundation/Foundation.h>
 
 // DFP content path
-static NSString *const kDFPContentPath = @"http://rmcdn.2mdn.net/Demo/html5/output.mp4";
+static NSString *const kDFPContentPath =
+    @"https://storage.googleapis.com/gvabox/media/samples/stock.mp4";
 
 // Android content path
 static NSString *const kAndroidContentPath =
-    @"https://s0.2mdn.net/instream/videoplayer/media/android.mp4";
+    @"https://storage.googleapis.com/gvabox/media/samples/android.mp4";
 
 // Big buck bunny content path
 static NSString *const kBigBuckBunnyContentPath =

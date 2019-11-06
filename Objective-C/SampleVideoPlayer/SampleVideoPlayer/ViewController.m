@@ -18,7 +18,8 @@
 @implementation ViewController
 
 // The content URL to play.
-NSString *const kTestAppContentUrl_MP4 = @"http://rmcdn.2mdn.net/Demo/html5/output.mp4";
+NSString *const kTestAppContentUrl_MP4 =
+    @"https://storage.googleapis.com/gvabox/media/samples/stock.mp4";
 
 - (void)viewDidLoad {
   [super viewDidLoad];
