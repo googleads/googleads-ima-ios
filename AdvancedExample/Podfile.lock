@@ -1,0 +1,17 @@
+PODS:
+  - google-cast-sdk (3.2.0):
+    - google-cast-sdk/Core (= 3.2.0)
+  - google-cast-sdk/Core (3.2.0)
+  - GoogleAds-IMA-iOS-SDK (3.4.1)
+
+DEPENDENCIES:
+  - google-cast-sdk (~> 3.2.0)
+  - GoogleAds-IMA-iOS-SDK (~> 3.4)
+
+SPEC CHECKSUMS:
+  google-cast-sdk: f4c2a14214ad486cc26a8f8837e8481c906a0ea8
+  GoogleAds-IMA-iOS-SDK: 7355db22ce69be4607ed0cc5112847b2b0c5e89d
+
+PODFILE CHECKSUM: 305ba94d63d20e5b526717ac5a5ad52a18c138d0
+
+COCOAPODS: 1.2.0
