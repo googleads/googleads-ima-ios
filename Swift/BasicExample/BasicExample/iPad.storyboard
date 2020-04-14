@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Is5-HX-cc6">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="6ge-26-UHD">
+            <objects>
+                <viewController id="Is5-HX-cc6" customClass="ViewController" customModule="BasicExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="juz-22-CCA"/>
+                        <viewControllerLayoutGuide type="bottom" id="6or-C8-X2H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bhd-Z9-jHM">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMA SDK Sample App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-AB-Rcf">
+                                <rect key="frame" x="208" y="120" width="352" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-Z0-TkP">
+                                <rect key="frame" x="45" y="255" width="678" height="381"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-Vg-Dqv">
+                                        <rect key="frame" x="264" y="94" width="150" height="192"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                        <state key="normal" title="▶">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPlayButtonTouch:" destination="Is5-HX-cc6" eventType="touchUpInside" id="cJj-Th-i3E"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerX" secondItem="QRR-Z0-TkP" secondAttribute="centerX" id="2eJ-sQ-2hd"/>
+                                    <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerY" secondItem="QRR-Z0-TkP" secondAttribute="centerY" id="QXp-wE-7SS"/>
+                                    <constraint firstAttribute="width" secondItem="QRR-Z0-TkP" secondAttribute="height" multiplier="16:9" id="d0d-Uq-v8Y"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7z2-AB-Rcf" firstAttribute="centerX" secondItem="Bhd-Z9-jHM" secondAttribute="centerX" id="6BC-3V-7Tb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QRR-Z0-TkP" secondAttribute="trailing" constant="25" id="D0p-a6-06a"/>
+                            <constraint firstItem="QRR-Z0-TkP" firstAttribute="top" secondItem="7z2-AB-Rcf" secondAttribute="bottom" constant="90" id="I1O-D2-zjp"/>
+                            <constraint firstItem="7z2-AB-Rcf" firstAttribute="top" secondItem="juz-22-CCA" secondAttribute="bottom" constant="100" id="eHb-r1-W4B"/>
+                            <constraint firstItem="QRR-Z0-TkP" firstAttribute="leading" secondItem="Bhd-Z9-jHM" secondAttribute="leadingMargin" constant="25" id="xZb-PZ-X4E"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playButton" destination="eRN-Vg-Dqv" id="KKy-Wc-PWa"/>
+                        <outlet property="videoView" destination="QRR-Z0-TkP" id="gat-85-sz3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2FX-P4-3e8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="69" y="-244"/>
+        </scene>
+    </scenes>
+</document>

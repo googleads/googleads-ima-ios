@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BasicExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMA SDK Sample App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bH-14-R52">
+                                <rect key="frame" x="78" y="70" width="165" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uHt-ZA-PWM">
+                                <rect key="frame" x="26" y="131" width="268" height="151"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkY-3B-bnC">
+                                        <rect key="frame" x="97" y="24" width="75" height="102"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="75"/>
+                                        <state key="normal" title="▶">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPlayButtonTouch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X9B-sD-RmZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uHt-ZA-PWM" secondAttribute="height" multiplier="16:9" id="54a-FE-gXZ"/>
+                                    <constraint firstItem="pkY-3B-bnC" firstAttribute="centerX" secondItem="uHt-ZA-PWM" secondAttribute="centerX" id="VQQ-Fa-Va8"/>
+                                    <constraint firstItem="pkY-3B-bnC" firstAttribute="centerY" secondItem="uHt-ZA-PWM" secondAttribute="centerY" id="WwQ-F2-UST"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uHt-ZA-PWM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Y4Z-hc-sXS"/>
+                            <constraint firstItem="9bH-14-R52" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="brc-fh-xCS"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uHt-ZA-PWM" secondAttribute="trailing" constant="10" id="d90-ex-aDV"/>
+                            <constraint firstItem="uHt-ZA-PWM" firstAttribute="top" secondItem="9bH-14-R52" secondAttribute="bottom" constant="40" id="pkS-Rd-UvJ"/>
+                            <constraint firstItem="9bH-14-R52" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wv3-fn-Cho"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playButton" destination="pkY-3B-bnC" id="hig-ca-r2s"/>
+                        <outlet property="videoView" destination="uHt-ZA-PWM" id="mQe-vz-CXs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,7 +1,0 @@
-source 'https://github.com/CocoaPods/Specs.git'
-
-platform :ios, '10'
-
-target 'BasicExample' do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.6'
-end
