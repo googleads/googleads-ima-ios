@@ -1,6 +1,5 @@
-import UIKit
-
 import GoogleInteractiveMediaAds
+import UIKit
 
 class MainViewController: UIViewController {
 
@@ -62,10 +61,10 @@ class MainViewController: UIViewController {
         title: "AdRules Pods",
         thumbnail: dfpThumbnail,
         video: kDFPContentPath,
-        tag:kAdRulesPodsTag),
+        tag: kAdRulesPodsTag),
       Video(
         title: "VMAP Pods",
-        thumbnail :androidThumbnail,
+        thumbnail: androidThumbnail,
         video: kAndroidContentPath,
         tag: kVMAPPodsTag),
       Video(
@@ -77,18 +76,18 @@ class MainViewController: UIViewController {
         title: "AdSense",
         thumbnail: bipThumbnail,
         video: kBipBopContentPath,
-        tag:kAdSenseTag),
+        tag: kAdSenseTag),
       Video(
         title: "Custom",
         thumbnail: androidThumbnail,
         video: kAndroidContentPath,
-        tag: "custom")
+        tag: "custom"),
     ]
   }
 
   // Initialize AdsLoader.
   func setUpAdsLoader() {
-    if (adsLoader != nil) {
+    if adsLoader != nil {
       adsLoader = nil
     }
     let settings = IMASettings()
@@ -99,20 +98,21 @@ class MainViewController: UIViewController {
 
   // Show the language pop-up.
   @IBAction func onLanguageClicked() {
-    let alertMessage = "NOTE: This will only change the ad UI language. The language elsewhere" +
-        " in the app will remain in English. Language must be formatted as a canonicalized IETF" +
-        " BCP 47 language identifier such as would be returned by [NSLocale preferredLanguages]," +
-        " e.g. \"en\", \"es\", etc."
+    let alertMessage =
+      "NOTE: This will only change the ad UI language. The language elsewhere"
+      + " in the app will remain in English. Language must be formatted as a canonicalized IETF"
+      + " BCP 47 language identifier such as would be returned by [NSLocale preferredLanguages],"
+      + " e.g. \"en\", \"es\", etc."
 
     let languagePrompt = UIAlertController(
-        title: "Language",
-        message: alertMessage,
-        preferredStyle: .alert)
+      title: "Language",
+      message: alertMessage,
+      preferredStyle: .alert)
     languagePrompt.addTextField(configurationHandler: addTextField)
     languagePrompt.addAction(
-        UIAlertAction(title: "Cancel", style: .default, handler: nil))
+      UIAlertAction(title: "Cancel", style: .default, handler: nil))
     languagePrompt.addAction(
-        UIAlertAction(title: "OK", style: .default, handler: languageEntered))
+      UIAlertAction(title: "OK", style: .default, handler: languageEntered))
     present(languagePrompt, animated: true, completion: nil)
 
   }
@@ -132,7 +132,7 @@ class MainViewController: UIViewController {
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if (segue.identifier == "showVideo") {
+    if segue.identifier == "showVideo" {
       let indexPath: IndexPath! = tableView.indexPathForSelectedRow
       if (indexPath != nil) {
         let video = videos[indexPath.row] as! Video
@@ -144,7 +144,7 @@ class MainViewController: UIViewController {
   }
 
   override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
-    if (tableView.indexPathForSelectedRow != nil) {
+    if tableView.indexPathForSelectedRow != nil {
       return true
     }
     return false
@@ -161,9 +161,11 @@ class MainViewController: UIViewController {
   }
 
   @objc func tableView(
-      _ tableView: UITableView,
-      cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(
+    _ tableView: UITableView,
+    cellForRowAtIndexPath indexPath: IndexPath
+  ) -> UITableViewCell {
+    let cell =
+      tableView.dequeueReusableCell(
         withIdentifier: "cell",
         for: indexPath) as! VideoTableViewCell
     let selectedVideo = videos[(indexPath as NSIndexPath).row] as! Video
@@ -172,4 +174,3 @@ class MainViewController: UIViewController {
   }
 
 }
-

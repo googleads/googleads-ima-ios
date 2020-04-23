@@ -4,7 +4,8 @@ import UIKit
 
 class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDelegate {
 
-  static let kTestAppContentUrl_MP4 = "https://storage.googleapis.com/gvabox/media/samples/stock.mp4"
+  static let kTestAppContentUrl_MP4 =
+    "https://storage.googleapis.com/gvabox/media/samples/stock.mp4"
 
   @IBOutlet weak var playButton: UIButton!
   @IBOutlet weak var videoView: UIView!
@@ -16,10 +17,10 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   var adsManager: IMAAdsManager!
 
   static let kTestAppAdTagUrl =
-      "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&" +
-      "iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&" +
-      "output=vast&unviewed_position_start=1&" +
-      "cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator=";
+    "https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&"
+    + "iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&"
+    + "output=vast&unviewed_position_start=1&"
+    + "cust_params=deployment%3Ddevsite%26sample_ct%3Dlinear&correlator="
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -61,7 +62,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
       self,
       selector: #selector(ViewController.contentDidFinishPlaying(_:)),
       name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-      object: contentPlayer?.currentItem);
+      object: contentPlayer?.currentItem)
   }
 
   @objc func contentDidFinishPlaying(_ notification: Notification) {
@@ -81,10 +82,10 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
     let adDisplayContainer = IMAAdDisplayContainer(adContainer: videoView, companionSlots: nil)
     // Create an ad request with our ad tag, display container, and optional user context.
     let request = IMAAdsRequest(
-        adTagUrl: ViewController.kTestAppAdTagUrl,
-        adDisplayContainer: adDisplayContainer,
-        contentPlayhead: contentPlayhead,
-        userContext: nil)
+      adTagUrl: ViewController.kTestAppAdTagUrl,
+      adDisplayContainer: adDisplayContainer,
+      contentPlayhead: contentPlayhead,
+      userContext: nil)
 
     adsLoader.requestAds(with: request)
   }
@@ -135,4 +136,3 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
     contentPlayer?.play()
   }
 }
-
