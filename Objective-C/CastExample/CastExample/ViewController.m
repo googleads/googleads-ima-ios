@@ -130,7 +130,9 @@ static NSString *const kCUSTOM_NAMESPACE = @"urn:x-cast:com.google.ads.ima.cast"
 - (void)requestAds {
   // Create an ad display container for ad rendering.
   IMAAdDisplayContainer *adDisplayContainer =
-      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
+      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                          viewController:self
+                                          companionSlots:nil];
   // Create an ad request with our ad tag, display container, and optional user
   // context.
   IMAAdsRequest *request = [[IMAAdsRequest alloc] initWithAdTagUrl:self.kAdTagUrl

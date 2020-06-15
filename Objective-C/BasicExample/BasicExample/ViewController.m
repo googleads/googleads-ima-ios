@@ -84,7 +84,9 @@ NSString *const kTestAppAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads
 - (void)requestAds {
   // Create an ad display container for ad rendering.
   IMAAdDisplayContainer *adDisplayContainer =
-      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
+      [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                          viewController:self
+                                          companionSlots:nil];
   // Create an ad request with our ad tag, display container, and optional user context.
   IMAAdsRequest *request = [[IMAAdsRequest alloc] initWithAdTagUrl:kTestAppAdTagUrl
                                                 adDisplayContainer:adDisplayContainer

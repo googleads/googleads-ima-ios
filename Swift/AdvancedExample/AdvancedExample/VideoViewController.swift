@@ -404,9 +404,11 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     // Create our AdDisplayContainer. Initialize it with our videoView as the container. This
     // will result in ads being displayed over our content video.
     if companionView != nil {
-      return IMAAdDisplayContainer(adContainer: videoView, companionSlots: [companionSlot!])
+      return IMAAdDisplayContainer(
+        adContainer: videoView, viewController: self, companionSlots: [companionSlot!])
     } else {
-      return IMAAdDisplayContainer(adContainer: videoView, companionSlots: nil)
+      return IMAAdDisplayContainer(
+        adContainer: videoView, viewController: self, companionSlots: nil)
     }
   }
 

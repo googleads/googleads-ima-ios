@@ -79,7 +79,8 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
 
   func requestAds() {
     // Create ad display container for ad rendering.
-    let adDisplayContainer = IMAAdDisplayContainer(adContainer: videoView, companionSlots: nil)
+    let adDisplayContainer = IMAAdDisplayContainer(
+      adContainer: videoView, viewController: self, companionSlots: nil)
     // Create an ad request with our ad tag, display container, and optional user context.
     let request = IMAAdsRequest(
       adTagUrl: ViewController.kTestAppAdTagUrl,

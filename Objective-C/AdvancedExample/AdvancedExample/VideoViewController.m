@@ -400,10 +400,13 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   if (self.companionView) {
     // MOE:strip_line [START ad_display_container_init]
     return [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                               viewController:self
                                                companionSlots:@[ self.companionSlot ]];
     // [END ad_display_container_init] MOE:strip_line
   } else {
-    return [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView companionSlots:nil];
+    return [[IMAAdDisplayContainer alloc] initWithAdContainer:self.videoView
+                                               viewController:self
+                                               companionSlots:nil];
   }
 }
 
