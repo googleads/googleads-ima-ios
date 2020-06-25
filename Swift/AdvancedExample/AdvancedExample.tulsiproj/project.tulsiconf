@@ -5,7 +5,7 @@
     }
   },
   "packages" : [
-    "googlemac/iPhone/InteractiveMediaAds/IMA/ios/samples/NewSampleApps/Swift/AdvancedExample"
+    "googlemac/iPhone/InteractiveMediaAds/IMA/ios/samples/clientSide/Swift/AdvancedExample"
   ],
   "projectName" : "AdvancedExample",
   "workspaceRoot" : "../../../../../../../../../.."
