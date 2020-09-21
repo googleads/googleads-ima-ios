@@ -1,0 +1,51 @@
+{
+  "additionalFilePaths" : [
+    "googlemac/iPhone/InteractiveMediaAds/IMA/ios/samples/clientSide/Swift/BasicExample/BUILD"
+  ],
+  "buildTargets" : [
+    "//googlemac/iPhone/InteractiveMediaAds/IMA/ios/samples/clientSide/Swift/BasicExample:BasicExample"
+  ],
+  "optionSet" : {
+    "BazelBuildOptionsDebug" : {
+      "p" : "$(inherited)"
+    },
+    "BazelBuildOptionsRelease" : {
+      "p" : "$(inherited)"
+    },
+    "BazelBuildStartupOptionsDebug" : {
+      "p" : "$(inherited)"
+    },
+    "BazelBuildStartupOptionsRelease" : {
+      "p" : "$(inherited)"
+    },
+    "BuildActionPostActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "BuildActionPreActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "CommandlineArguments" : {
+      "p" : "$(inherited)"
+    },
+    "EnvironmentVariables" : {
+      "p" : "$(inherited)"
+    },
+    "LaunchActionPostActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "LaunchActionPreActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "TestActionPostActionScript" : {
+      "p" : "$(inherited)"
+    },
+    "TestActionPreActionScript" : {
+      "p" : "$(inherited)"
+    }
+  },
+  "projectName" : "BasicExample",
+  "sourceFilters" : [
+    "googlemac/iPhone/InteractiveMediaAds/IMA/common/...",
+    "googlemac/iPhone/InteractiveMediaAds/IMA/ios/..."
+  ]
+}

@@ -107,7 +107,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   }
 
   func adsLoader(_ loader: IMAAdsLoader!, failedWith adErrorData: IMAAdLoadingErrorData!) {
-    print("Error loading ads: \(adErrorData.adError.message)")
+    print("Error loading ads: \(adErrorData.adError.message ?? "nil")")
     contentPlayer?.play()
   }
 
@@ -123,7 +123,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   func adsManager(_ adsManager: IMAAdsManager!, didReceive error: IMAAdError!) {
     // Something went wrong with the ads manager after ads were loaded. Log the error and play the
     // content.
-    print("AdsManager error: \(error.message)")
+    print("AdsManager error: \(error.message ?? "nil")")
     contentPlayer?.play()
   }
 
