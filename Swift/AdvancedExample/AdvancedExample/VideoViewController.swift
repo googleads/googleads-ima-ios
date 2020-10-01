@@ -126,7 +126,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     contentPlayer!.pause()
     // Don't reset if we're presenting a modal view (e.g. in-app clickthrough).
     if (navigationController!.viewControllers as NSArray).index(of: self) == NSNotFound {
-      if (adsManager != nil) {
+      if adsManager != nil {
         adsManager!.destroy()
         adsManager = nil
       }
@@ -204,7 +204,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   ) {
     if context == &contentRateContext && contentPlayer == object as? AVPlayer {
       updatePlayheadState(contentPlayer!.rate != 0)
-    } else if (context == &contentDurationContext && contentPlayer == object as? AVPlayer) {
+    } else if context == &contentDurationContext && contentPlayer == object as? AVPlayer {
       updatePlayheadDurationWithTime(getPlayerItemDuration(contentPlayer!.currentItem!))
     }
   }
@@ -214,13 +214,13 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   // Handle clicks on play/pause button.
   @IBAction func onPlayPauseClicked(_ sender: AnyObject) {
     if !isAdPlayback {
-      if (contentPlayer!.rate == 0) {
+      if contentPlayer!.rate == 0 {
         contentPlayer!.play()
       } else {
         contentPlayer!.pause()
       }
     } else {
-      if (playheadButton.tag == PlayButtonType.playButton.rawValue) {
+      if playheadButton.tag == PlayButtonType.playButton.rawValue {
         adsManager!.resume()
         setPlayButtonType(PlayButtonType.pauseButton)
       } else {
@@ -268,7 +268,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     if item.responds(to: #selector(getter:CAMediaTiming.duration)) {
       itemDuration = item.duration
     } else {
-      if (item.asset.responds(to: #selector(getter:CAMediaTiming.duration))) {
+      if item.asset.responds(to: #selector(getter:CAMediaTiming.duration)) {
         itemDuration = item.asset.duration
       }
     }
@@ -480,8 +480,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     logMessage("AdsManager event \(event.typeString!)")
     switch event.type {
     case IMAAdEventType.LOADED:
-      if (pictureInPictureController == nil
-        || !pictureInPictureController!.isPictureInPictureActive)
+      if pictureInPictureController == nil
+        || !pictureInPictureController!.isPictureInPictureActive
       {
         adsManager.start()
       }

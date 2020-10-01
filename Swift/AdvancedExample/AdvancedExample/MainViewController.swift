@@ -134,7 +134,7 @@ class MainViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "showVideo" {
       let indexPath: IndexPath! = tableView.indexPathForSelectedRow
-      if (indexPath != nil) {
+      if indexPath != nil {
         let video = videos[indexPath.row] as! Video
         let headedTo = segue.destination as! VideoViewController
         headedTo.video = video
