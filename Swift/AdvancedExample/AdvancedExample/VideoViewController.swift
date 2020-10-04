@@ -205,7 +205,11 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     if context == &contentRateContext && contentPlayer == object as? AVPlayer {
       updatePlayheadState(contentPlayer!.rate != 0)
     } else if context == &contentDurationContext && contentPlayer == object as? AVPlayer {
-      updatePlayheadDurationWithTime(getPlayerItemDuration(contentPlayer!.currentItem!))
+      var time = CMTime.zero
+      if let currentItem = contentPlayer?.currentItem {
+        time = getPlayerItemDuration(currentItem)
+      }
+      updatePlayheadDurationWithTime(time)
     }
   }
 
