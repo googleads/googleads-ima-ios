@@ -465,7 +465,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     adsManager!.delegate = self
     // Create ads rendering settings to tell the SDK to use the in-app browser.
     let adsRenderingSettings = IMAAdsRenderingSettings()
-    adsRenderingSettings.webOpenerPresentingController = self
+    adsRenderingSettings.linkOpenerPresentingController = self
     // Initialize the ads manager.
     adsManager!.initialize(with: adsRenderingSettings)
   }

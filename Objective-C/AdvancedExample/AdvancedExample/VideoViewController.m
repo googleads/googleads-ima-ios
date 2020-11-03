@@ -461,7 +461,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   self.adsManager.delegate = self;
   // Create ads rendering settings to tell the SDK to use the in-app browser.
   IMAAdsRenderingSettings *adsRenderingSettings = [[IMAAdsRenderingSettings alloc] init];
-  adsRenderingSettings.webOpenerPresentingController = self;
+  adsRenderingSettings.linkOpenerPresentingController = self;
   // Initialize the ads manager.
   [self.adsManager initializeWithAdsRenderingSettings:adsRenderingSettings];
 }
