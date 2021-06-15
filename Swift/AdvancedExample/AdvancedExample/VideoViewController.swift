@@ -36,6 +36,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   var portraitControlsViewFrame: CGRect?
   var portraitControlsFrame: CGRect?
   var isFullscreen = false
+  var didRequestAds = false
 
   // Gesture recognizer for tap on video.
   var videoTapRecognizer: UITapGestureRecognizer?
@@ -63,9 +64,9 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     case pauseButton = 1
   }
 
-  // MARK: Set-up methods
+  /// MARK: Set-up methods
 
-  // Set up the new view controller.
+  /// Set up the new view controller.
   override func viewDidLoad() {
     super.viewDidLoad()
     topLabel.text = video.title as String
@@ -95,6 +96,15 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     // get the ad tag from the pop-up dialog.
     setUpContentPlayer()
     setUpIMA()
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    guard !didRequestAds else {
+      return
+    }
+    didRequestAds = true
+
+    // Make the request only once the view has been instantiated.
     if video.tag == "custom" {
       let tagPrompt = UIAlertController(
         title: "Ad Tag",
@@ -321,7 +331,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
     case UIInterfaceOrientation.portrait, UIInterfaceOrientation.portraitUpsideDown:
       viewDidEnterLandscape()
       break
-    case UIInterfaceOrientation.unknown:
+    default:
       break
     }
   }

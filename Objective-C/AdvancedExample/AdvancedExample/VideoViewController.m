@@ -42,6 +42,9 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 /// Flag for tracking fullscreen.
 @property(nonatomic, assign) BOOL fullscreen;
 
+/// Flag for tracking load event
+@property(nonatomic, assign) BOOL didRequestAds;
+
 /// Gesture recognizer for tap on video.
 @property(nonatomic, strong) UITapGestureRecognizer *videoTapRecognizer;
 
@@ -71,6 +74,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   self.pauseBtnBG = [UIImage imageNamed:@"pause.png"];
   self.isAdPlayback = NO;
   self.fullscreen = NO;
+  self.didRequestAds = NO;
 
   // Fix iPhone issue of log text starting in the middle of the UITextView
   self.automaticallyAdjustsScrollViewInsets = NO;
@@ -100,6 +104,16 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
   // get the ad tag from the pop-up dialog.
   [self setUpContentPlayer];
   [self setUpIMA];
+}
+
+// Makes the request on first appearance only.
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  if (self.didRequestAds) {
+    return;
+  }
+  self.didRequestAds = YES;
+
   if ([self.video.tag isEqual:@"custom"]) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tag"
                                                     message:@"Enter your test tag below"
@@ -544,3 +558,4 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 }
 
 @end
+
