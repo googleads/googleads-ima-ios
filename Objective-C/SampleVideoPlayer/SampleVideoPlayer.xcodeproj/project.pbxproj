@@ -1,320 +1,320 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
+  archiveVersion = 1;
+  classes = {
+  };
+  objectVersion = 46;
+  objects = {
 
 /* Begin PBXBuildFile section */
-		151685FB19A515770063079C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685F919A515770063079C /* iPhone.storyboard */; };
-		151685FD19A515800063079C /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685FC19A515800063079C /* iPad.storyboard */; };
-		1589E15D199126CA00E5DF1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15C199126CA00E5DF1A /* main.m */; };
-		1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15F199126CA00E5DF1A /* AppDelegate.m */; };
-		1589E163199126CA00E5DF1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E162199126CA00E5DF1A /* ViewController.m */; };
-		1589E168199126CA00E5DF1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1589E167199126CA00E5DF1A /* Images.xcassets */; };
+    151685FB19A515770063079C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685F919A515770063079C /* iPhone.storyboard */; };
+    151685FD19A515800063079C /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685FC19A515800063079C /* iPad.storyboard */; };
+    1589E15D199126CA00E5DF1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15C199126CA00E5DF1A /* main.m */; };
+    1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15F199126CA00E5DF1A /* AppDelegate.m */; };
+    1589E163199126CA00E5DF1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E162199126CA00E5DF1A /* ViewController.m */; };
+    1589E168199126CA00E5DF1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1589E167199126CA00E5DF1A /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		151685FA19A515770063079C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhone.storyboard; sourceTree = "<group>"; };
-		151685FC19A515800063079C /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
-		1589E157199126CA00E5DF1A /* SampleVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1589E15B199126CA00E5DF1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1589E15C199126CA00E5DF1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		1589E15E199126CA00E5DF1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1589E15F199126CA00E5DF1A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1589E161199126CA00E5DF1A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1589E162199126CA00E5DF1A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1589E167199126CA00E5DF1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		673F52DA8F874FCA88467750 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+    151685FA19A515770063079C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhone.storyboard; sourceTree = "<group>"; };
+    151685FC19A515800063079C /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
+    1589E157199126CA00E5DF1A /* SampleVideoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleVideoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    1589E15B199126CA00E5DF1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+    1589E15C199126CA00E5DF1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+    1589E15E199126CA00E5DF1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+    1589E15F199126CA00E5DF1A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+    1589E161199126CA00E5DF1A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+    1589E162199126CA00E5DF1A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+    1589E167199126CA00E5DF1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+    673F52DA8F874FCA88467750 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1589E154199126CA00E5DF1A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+    1589E154199126CA00E5DF1A /* Frameworks */ = {
+      isa = PBXFrameworksBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02733AA8386749E688D4F7A2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				673F52DA8F874FCA88467750 /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		152D49DE19B10DA0003400E4 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		1589E14E199126CA00E5DF1A = {
-			isa = PBXGroup;
-			children = (
-				152D49DE19B10DA0003400E4 /* Resources */,
-				1589E159199126CA00E5DF1A /* SampleVideoPlayer */,
-				1589E158199126CA00E5DF1A /* Products */,
-				02733AA8386749E688D4F7A2 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		1589E158199126CA00E5DF1A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1589E157199126CA00E5DF1A /* SampleVideoPlayer.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		1589E159199126CA00E5DF1A /* SampleVideoPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				1589E15E199126CA00E5DF1A /* AppDelegate.h */,
-				1589E15F199126CA00E5DF1A /* AppDelegate.m */,
-				1589E161199126CA00E5DF1A /* ViewController.h */,
-				1589E162199126CA00E5DF1A /* ViewController.m */,
-				151685F919A515770063079C /* iPhone.storyboard */,
-				151685FC19A515800063079C /* iPad.storyboard */,
-				1589E167199126CA00E5DF1A /* Images.xcassets */,
-				1589E15A199126CA00E5DF1A /* Supporting Files */,
-			);
-			path = SampleVideoPlayer;
-			sourceTree = "<group>";
-		};
-		1589E15A199126CA00E5DF1A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				1589E15B199126CA00E5DF1A /* Info.plist */,
-				1589E15C199126CA00E5DF1A /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
+    02733AA8386749E688D4F7A2 /* Frameworks */ = {
+      isa = PBXGroup;
+      children = (
+        673F52DA8F874FCA88467750 /* libPods.a */,
+      );
+      name = Frameworks;
+      sourceTree = "<group>";
+    };
+    152D49DE19B10DA0003400E4 /* Resources */ = {
+      isa = PBXGroup;
+      children = (
+      );
+      name = Resources;
+      sourceTree = "<group>";
+    };
+    1589E14E199126CA00E5DF1A = {
+      isa = PBXGroup;
+      children = (
+        152D49DE19B10DA0003400E4 /* Resources */,
+        1589E159199126CA00E5DF1A /* SampleVideoPlayer */,
+        1589E158199126CA00E5DF1A /* Products */,
+        02733AA8386749E688D4F7A2 /* Frameworks */,
+      );
+      sourceTree = "<group>";
+    };
+    1589E158199126CA00E5DF1A /* Products */ = {
+      isa = PBXGroup;
+      children = (
+        1589E157199126CA00E5DF1A /* SampleVideoPlayer.app */,
+      );
+      name = Products;
+      sourceTree = "<group>";
+    };
+    1589E159199126CA00E5DF1A /* SampleVideoPlayer */ = {
+      isa = PBXGroup;
+      children = (
+        1589E15E199126CA00E5DF1A /* AppDelegate.h */,
+        1589E15F199126CA00E5DF1A /* AppDelegate.m */,
+        1589E161199126CA00E5DF1A /* ViewController.h */,
+        1589E162199126CA00E5DF1A /* ViewController.m */,
+        151685F919A515770063079C /* iPhone.storyboard */,
+        151685FC19A515800063079C /* iPad.storyboard */,
+        1589E167199126CA00E5DF1A /* Images.xcassets */,
+        1589E15A199126CA00E5DF1A /* Supporting Files */,
+      );
+      path = SampleVideoPlayer;
+      sourceTree = "<group>";
+    };
+    1589E15A199126CA00E5DF1A /* Supporting Files */ = {
+      isa = PBXGroup;
+      children = (
+        1589E15B199126CA00E5DF1A /* Info.plist */,
+        1589E15C199126CA00E5DF1A /* main.m */,
+      );
+      name = "Supporting Files";
+      sourceTree = "<group>";
+    };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1589E156199126CA00E5DF1A /* SampleVideoPlayer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "SampleVideoPlayer" */;
-			buildPhases = (
-				1589E153199126CA00E5DF1A /* Sources */,
-				1589E154199126CA00E5DF1A /* Frameworks */,
-				1589E155199126CA00E5DF1A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SampleVideoPlayer;
-			productName = SampleVideoPlayer;
-			productReference = 1589E157199126CA00E5DF1A /* SampleVideoPlayer.app */;
-			productType = "com.apple.product-type.application";
-		};
+    1589E156199126CA00E5DF1A /* SampleVideoPlayer */ = {
+      isa = PBXNativeTarget;
+      buildConfigurationList = 1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "SampleVideoPlayer" */;
+      buildPhases = (
+        1589E153199126CA00E5DF1A /* Sources */,
+        1589E154199126CA00E5DF1A /* Frameworks */,
+        1589E155199126CA00E5DF1A /* Resources */,
+      );
+      buildRules = (
+      );
+      dependencies = (
+      );
+      name = SampleVideoPlayer;
+      productName = SampleVideoPlayer;
+      productReference = 1589E157199126CA00E5DF1A /* SampleVideoPlayer.app */;
+      productType = "com.apple.product-type.application";
+    };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1589E14F199126CA00E5DF1A /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0600;
-				ORGANIZATIONNAME = "Google, Inc.";
-				TargetAttributes = {
-					1589E156199126CA00E5DF1A = {
-						CreatedOnToolsVersion = 6.0;
-					};
-				};
-			};
-			buildConfigurationList = 1589E152199126CA00E5DF1A /* Build configuration list for PBXProject "SampleVideoPlayer" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 1589E14E199126CA00E5DF1A;
-			productRefGroup = 1589E158199126CA00E5DF1A /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				1589E156199126CA00E5DF1A /* SampleVideoPlayer */,
-			);
-		};
+    1589E14F199126CA00E5DF1A /* Project object */ = {
+      isa = PBXProject;
+      attributes = {
+        LastUpgradeCheck = 0600;
+        ORGANIZATIONNAME = "Google, Inc.";
+        TargetAttributes = {
+          1589E156199126CA00E5DF1A = {
+            CreatedOnToolsVersion = 6.0;
+          };
+        };
+      };
+      buildConfigurationList = 1589E152199126CA00E5DF1A /* Build configuration list for PBXProject "SampleVideoPlayer" */;
+      compatibilityVersion = "Xcode 3.2";
+      developmentRegion = English;
+      hasScannedForEncodings = 0;
+      knownRegions = (
+        en,
+        Base,
+      );
+      mainGroup = 1589E14E199126CA00E5DF1A;
+      productRefGroup = 1589E158199126CA00E5DF1A /* Products */;
+      projectDirPath = "";
+      projectRoot = "";
+      targets = (
+        1589E156199126CA00E5DF1A /* SampleVideoPlayer */,
+      );
+    };
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1589E155199126CA00E5DF1A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1589E168199126CA00E5DF1A /* Images.xcassets in Resources */,
-				151685FD19A515800063079C /* iPad.storyboard in Resources */,
-				151685FB19A515770063079C /* iPhone.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+    1589E155199126CA00E5DF1A /* Resources */ = {
+      isa = PBXResourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        1589E168199126CA00E5DF1A /* Images.xcassets in Resources */,
+        151685FD19A515800063079C /* iPad.storyboard in Resources */,
+        151685FB19A515770063079C /* iPhone.storyboard in Resources */,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1589E153199126CA00E5DF1A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1589E163199126CA00E5DF1A /* ViewController.m in Sources */,
-				1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */,
-				1589E15D199126CA00E5DF1A /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+    1589E153199126CA00E5DF1A /* Sources */ = {
+      isa = PBXSourcesBuildPhase;
+      buildActionMask = 2147483647;
+      files = (
+        1589E163199126CA00E5DF1A /* ViewController.m in Sources */,
+        1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */,
+        1589E15D199126CA00E5DF1A /* main.m in Sources */,
+      );
+      runOnlyForDeploymentPostprocessing = 0;
+    };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		151685F919A515770063079C /* iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				151685FA19A515770063079C /* Base */,
-			);
-			name = iPhone.storyboard;
-			sourceTree = "<group>";
-		};
+    151685F919A515770063079C /* iPhone.storyboard */ = {
+      isa = PBXVariantGroup;
+      children = (
+        151685FA19A515770063079C /* Base */,
+      );
+      name = iPhone.storyboard;
+      sourceTree = "<group>";
+    };
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		1589E175199126CA00E5DF1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1589E176199126CA00E5DF1A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		1589E178199126CA00E5DF1A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = SampleVideoPlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		1589E179199126CA00E5DF1A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = SampleVideoPlayer/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
+    1589E175199126CA00E5DF1A /* Debug */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        ALWAYS_SEARCH_USER_PATHS = NO;
+        CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+        CLANG_CXX_LIBRARY = "libc++";
+        CLANG_ENABLE_MODULES = YES;
+        CLANG_ENABLE_OBJC_ARC = YES;
+        CLANG_WARN_BOOL_CONVERSION = YES;
+        CLANG_WARN_CONSTANT_CONVERSION = YES;
+        CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+        CLANG_WARN_EMPTY_BODY = YES;
+        CLANG_WARN_ENUM_CONVERSION = YES;
+        CLANG_WARN_INT_CONVERSION = YES;
+        CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+        CLANG_WARN_UNREACHABLE_CODE = YES;
+        CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+        "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+        COPY_PHASE_STRIP = NO;
+        ENABLE_STRICT_OBJC_MSGSEND = YES;
+        GCC_C_LANGUAGE_STANDARD = gnu99;
+        GCC_DYNAMIC_NO_PIC = NO;
+        GCC_OPTIMIZATION_LEVEL = 0;
+        GCC_PREPROCESSOR_DEFINITIONS = (
+          "DEBUG=1",
+          "$(inherited)",
+        );
+        GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+        GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+        GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+        GCC_WARN_UNDECLARED_SELECTOR = YES;
+        GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+        GCC_WARN_UNUSED_FUNCTION = YES;
+        GCC_WARN_UNUSED_VARIABLE = YES;
+        IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+        MTL_ENABLE_DEBUG_INFO = YES;
+        ONLY_ACTIVE_ARCH = YES;
+        SDKROOT = iphoneos;
+        TARGETED_DEVICE_FAMILY = "1,2";
+      };
+      name = Debug;
+    };
+    1589E176199126CA00E5DF1A /* Release */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        ALWAYS_SEARCH_USER_PATHS = NO;
+        CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+        CLANG_CXX_LIBRARY = "libc++";
+        CLANG_ENABLE_MODULES = YES;
+        CLANG_ENABLE_OBJC_ARC = YES;
+        CLANG_WARN_BOOL_CONVERSION = YES;
+        CLANG_WARN_CONSTANT_CONVERSION = YES;
+        CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+        CLANG_WARN_EMPTY_BODY = YES;
+        CLANG_WARN_ENUM_CONVERSION = YES;
+        CLANG_WARN_INT_CONVERSION = YES;
+        CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+        CLANG_WARN_UNREACHABLE_CODE = YES;
+        CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+        "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+        COPY_PHASE_STRIP = YES;
+        ENABLE_NS_ASSERTIONS = NO;
+        ENABLE_STRICT_OBJC_MSGSEND = YES;
+        GCC_C_LANGUAGE_STANDARD = gnu99;
+        GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+        GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+        GCC_WARN_UNDECLARED_SELECTOR = YES;
+        GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+        GCC_WARN_UNUSED_FUNCTION = YES;
+        GCC_WARN_UNUSED_VARIABLE = YES;
+        IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+        MTL_ENABLE_DEBUG_INFO = NO;
+        SDKROOT = iphoneos;
+        TARGETED_DEVICE_FAMILY = "1,2";
+        VALIDATE_PRODUCT = YES;
+      };
+      name = Release;
+    };
+    1589E178199126CA00E5DF1A /* Debug */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+        ENABLE_BITCODE = YES;
+        INFOPLIST_FILE = SampleVideoPlayer/Info.plist;
+        IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+        LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+        OTHER_LDFLAGS = "$(inherited)";
+        PRODUCT_NAME = "$(TARGET_NAME)";
+      };
+      name = Debug;
+    };
+    1589E179199126CA00E5DF1A /* Release */ = {
+      isa = XCBuildConfiguration;
+      buildSettings = {
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+        ENABLE_BITCODE = YES;
+        INFOPLIST_FILE = SampleVideoPlayer/Info.plist;
+        IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+        LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+        OTHER_LDFLAGS = "$(inherited)";
+        PRODUCT_NAME = "$(TARGET_NAME)";
+      };
+      name = Release;
+    };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1589E152199126CA00E5DF1A /* Build configuration list for PBXProject "SampleVideoPlayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1589E175199126CA00E5DF1A /* Debug */,
-				1589E176199126CA00E5DF1A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "SampleVideoPlayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1589E178199126CA00E5DF1A /* Debug */,
-				1589E179199126CA00E5DF1A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+    1589E152199126CA00E5DF1A /* Build configuration list for PBXProject "SampleVideoPlayer" */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        1589E175199126CA00E5DF1A /* Debug */,
+        1589E176199126CA00E5DF1A /* Release */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Release;
+    };
+    1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "SampleVideoPlayer" */ = {
+      isa = XCConfigurationList;
+      buildConfigurations = (
+        1589E178199126CA00E5DF1A /* Debug */,
+        1589E179199126CA00E5DF1A /* Release */,
+      );
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Release;
+    };
 /* End XCConfigurationList section */
-	};
-	rootObject = 1589E14F199126CA00E5DF1A /* Project object */;
+  };
+  rootObject = 1589E14F199126CA00E5DF1A /* Project object */;
 }
