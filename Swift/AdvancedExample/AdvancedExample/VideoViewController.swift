@@ -149,7 +149,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
     let contentUrl = URL(string: video.video)
-    contentPlayer = AVPlayer(url: contentUrl!)
+    self.contentPlayer = AVPlayer(url: contentUrl!)
+    guard let contentPlayer = self.contentPlayer else { return }
 
     // Playhead observers for progress bar.
     let controller: VideoViewController = self
@@ -162,12 +163,12 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
           controller.updatePlayheadWithTime(time, duration: duration)
         }
       })
-    contentPlayer!.addObserver(
+    contentPlayer.addObserver(
       self,
       forKeyPath: "rate",
       options: NSKeyValueObservingOptions.new,
       context: &contentRateContext)
-    contentPlayer!.addObserver(
+    contentPlayer.addObserver(
       self,
       forKeyPath: "currentItem.duration",
       options: NSKeyValueObservingOptions.new,
@@ -176,7 +177,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
       self,
       selector: #selector(VideoViewController.contentDidFinishPlaying(_:)),
       name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-      object: contentPlayer!.currentItem)
+      object: contentPlayer.currentItem)
 
     // Set up fullscreen tap listener to show controls
     videoTapRecognizer = UITapGestureRecognizer(
@@ -448,6 +449,8 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
 
   // Request ads for provided tag.
   func requestAdsWithTag(_ adTagUrl: String!) {
+    guard let contentPlayer = self.contentPlayer else { return }
+    guard let pictureInPictureProxy = self.pictureInPictureProxy else { return }
     logMessage("Requesting ads")
     // Create an ad request with our ad tag, display container, and optional user context.
     let request = IMAAdsRequest(
@@ -491,7 +494,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   // MARK: AdsManager Delegates
 
   func adsManager(_ adsManager: IMAAdsManager!, didReceive event: IMAAdEvent!) {
-    logMessage("AdsManager event \(event.typeString!)")
+    logMessage("AdsManager event \(event.typeString)")
     switch event.type {
     case IMAAdEventType.LOADED:
       if pictureInPictureController == nil

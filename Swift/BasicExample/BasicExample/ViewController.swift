@@ -47,7 +47,8 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
       print("ERROR: please use a valid URL for the content URL")
       return
     }
-    contentPlayer = AVPlayer(url: contentURL)
+    self.contentPlayer = AVPlayer(url: contentURL)
+    guard let contentPlayer = self.contentPlayer else { return }
 
     // Create a player layer for the player.
     playerLayer = AVPlayerLayer(player: contentPlayer)
@@ -62,7 +63,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
       self,
       selector: #selector(ViewController.contentDidFinishPlaying(_:)),
       name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-      object: contentPlayer?.currentItem)
+      object: contentPlayer.currentItem)
   }
 
   @objc func contentDidFinishPlaying(_ notification: Notification) {
