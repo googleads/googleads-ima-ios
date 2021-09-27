@@ -49,7 +49,6 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 @property(nonatomic, strong) UITapGestureRecognizer *videoTapRecognizer;
 
 // IMA objects.
-@property(nonatomic, strong) IMAAVPlayerContentPlayhead *contentPlayhead;
 @property(nonatomic, strong) IMAAdsManager *adsManager;
 @property(nonatomic, strong) IMACompanionAdSlot *companionSlot;
 
@@ -185,8 +184,6 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
                                            selector:@selector(contentDidFinishPlaying:)
                                                name:AVPlayerItemDidPlayToEndTimeNotification
                                              object:self.contentPlayer.currentItem];
-  // Create content playhead.
-  self.contentPlayhead = [[IMAAVPlayerContentPlayhead alloc] initWithAVPlayer:self.contentPlayer];
 
   // Set up fullscreen tap listener to show controls.
   self.videoTapRecognizer =
