@@ -1,9 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '11'
+platform :ios, '12'
 
 target "CastExample" do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.14.4'
+  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.15.1'
   pod 'google-cast-sdk-no-bluetooth', '~>4.4.3'
 end
 
