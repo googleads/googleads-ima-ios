@@ -102,7 +102,7 @@ class MainViewController: UIViewController {
       "NOTE: This will only change the ad UI language. The language elsewhere"
       + " in the app will remain in English. Language must be formatted as a canonicalized IETF"
       + " BCP 47 language identifier such as would be returned by [NSLocale preferredLanguages],"
-      + " e.g. \"en\", \"es\", etc."
+      + " for example, \"en\", \"es\", etc."
 
     let languagePrompt = UIAlertController(
       title: "Language",

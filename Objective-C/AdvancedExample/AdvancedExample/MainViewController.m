@@ -91,9 +91,11 @@
 
 // Show pop-up dialog for language input.
 - (IBAction)onLanguageClicked {
-  NSString *alertMessage = @"NOTE: This will only change the ad UI language. The language elsewhere"
+  NSString *alertMessage =
+      @"NOTE: This will only change the ad UI language. The language elsewhere"
       @" in the app will remain in English. Language must be formated as a canonicalized IETF BCP"
-      @" 47 language identifier such as would be returned by [NSLocale preferredLanguages], e.g."
+      @" 47 language identifier such as would be returned by [NSLocale preferredLanguages], for "
+      @"example,"
       @" \"en\", \"es\", etc.";
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Language"
                                                   message:alertMessage

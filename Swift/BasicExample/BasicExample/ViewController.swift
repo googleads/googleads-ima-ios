@@ -45,7 +45,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   private func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
     guard let contentURL = URL(string: ViewController.testAppContentURL) else {
-      print("ERROR: please use a valid URL for the content URL")
+      print("ERROR: use a valid URL for the content URL")
       return
     }
     self.contentPlayer = AVPlayer(url: contentURL)

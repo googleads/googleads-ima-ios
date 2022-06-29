@@ -18,9 +18,6 @@ jobs:
       fail-fast: false
       matrix:
         regex:
-        # copybara:strip_begin
-        # LINT.IfChange
-        # copybara:strip_end
         - "Objective-C/AdvancedExample"
         - "Swift/AdvancedExample"
         - "Objective-C/BasicExample"
@@ -28,9 +25,6 @@ jobs:
         - "Objective-C/SampleVideoPlayer"
         - "Swift/SampleVideoPlayer"
         - "Objective-C/CastExample"
-        # copybara:strip_begin
-        # LINT.ThenChange(//depot/google3/googlemac/iPhone/InteractiveMediaAds/IMA/ios/samples/clientSide/copy.bara.sky)
-        # copybara:strip_end
     steps:
       - name: Clone Repo
         uses: actions/checkout@v1
@@ -44,7 +38,7 @@ jobs:
       - name: Install xcpretty
         run: sudo gem install xcpretty
 
-      - name: Set commit range (push to the main branch, e.g. merge)
+      - name: Set commit range (push to the main branch, for example, merge)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: echo "COMMIT_RANGE="${{ github.event.before }}.."" >> $GITHUB_ENV
 

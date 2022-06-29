@@ -39,10 +39,10 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 /// Frame for controls in portrait mode.
 @property(nonatomic, assign) CGRect portraitControlsFrame;
 
-/// Flag for tracking fullscreen.
+/// Option for tracking fullscreen.
 @property(nonatomic, assign) BOOL fullscreen;
 
-/// Flag for tracking load event
+/// Option for tracking load event
 @property(nonatomic, assign) BOOL didRequestAds;
 
 /// Gesture recognizer for tap on video.
@@ -128,7 +128,7 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 
 - (void)viewWillDisappear:(BOOL)animated {
   [self.contentPlayer pause];
-  // Don't reset if we're presenting a modal view (e.g. in-app clickthrough).
+  // Don't reset if we're presenting a modal view (for example, in-app clickthrough).
   if ([self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
     if (self.adsManager) {
       [self.adsManager destroy];
@@ -555,4 +555,3 @@ typedef enum { PlayButton, PauseButton } PlayButtonType;
 }
 
 @end
-

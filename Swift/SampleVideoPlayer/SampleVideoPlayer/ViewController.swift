@@ -31,7 +31,7 @@ class ViewController: UIViewController {
   func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
     guard let contentURL = URL(string: ViewController.kTestAppContentUrl_MP4) else {
-      print("ERROR: please use a valid URL for the content URL")
+      print("ERROR: use a valid URL for the content URL")
       return
     }
     contentPlayer = AVPlayer(url: contentURL)

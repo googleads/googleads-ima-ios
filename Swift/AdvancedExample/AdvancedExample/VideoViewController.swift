@@ -134,7 +134,7 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
 
   override func viewWillDisappear(_ animated: Bool) {
     contentPlayer!.pause()
-    // Don't reset if we're presenting a modal view (e.g. in-app clickthrough).
+    // Don't reset if we're presenting a modal view (for example, in-app clickthrough).
     if (navigationController!.viewControllers as NSArray).index(of: self) == NSNotFound {
       if adsManager != nil {
         adsManager!.destroy()
