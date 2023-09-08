@@ -280,10 +280,10 @@ class VideoViewController: UIViewController, AVPictureInPictureControllerDelegat
   // Get the duration value from the player item.
   func getPlayerItemDuration(_ item: AVPlayerItem) -> CMTime {
     var itemDuration = CMTime.invalid
-    if item.responds(to: #selector(getter:CAMediaTiming.duration)) {
+    if item.responds(to: #selector(getter: CAMediaTiming.duration)) {
       itemDuration = item.duration
     } else {
-      if item.asset.responds(to: #selector(getter:CAMediaTiming.duration)) {
+      if item.asset.responds(to: #selector(getter: CAMediaTiming.duration)) {
         itemDuration = item.asset.duration
       }
     }
