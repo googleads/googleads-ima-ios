@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21506" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Is5-HX-cc6">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="6ge-26-UHD">
+            <objects>
+                <viewController id="Is5-HX-cc6" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="juz-22-CCA"/>
+                        <viewControllerLayoutGuide type="bottom" id="6or-C8-X2H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bhd-Z9-jHM">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-Z0-TkP">
+                                <rect key="frame" x="45" y="255" width="678" height="381.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-Vg-Dqv">
+                                        <rect key="frame" x="278.5" y="94.5" width="121" height="192"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="150"/>
+                                        <state key="normal" title="▶">
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPlayButtonTouch:" destination="Is5-HX-cc6" eventType="touchUpInside" id="cFx-zM-yIm"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRf-xZ-Qt0" userLabel="Privacy Settings">
+                                        <rect key="frame" x="8" y="302" width="147" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Privacy Settings"/>
+                                        <connections>
+                                            <action selector="privacySettingsTapped:" destination="Is5-HX-cc6" eventType="touchUpInside" id="YLQ-VA-fJJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerY" secondItem="QRR-Z0-TkP" secondAttribute="centerY" id="Taf-cC-XUv"/>
+                                    <constraint firstAttribute="width" secondItem="QRR-Z0-TkP" secondAttribute="height" multiplier="16:9" id="arB-vh-ajc"/>
+                                    <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerX" secondItem="QRR-Z0-TkP" secondAttribute="centerX" id="pVl-S5-bn5"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMA SDK + UMP Sample App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-AB-Rcf">
+                                <rect key="frame" x="154" y="120" width="460" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7z2-AB-Rcf" firstAttribute="top" secondItem="juz-22-CCA" secondAttribute="bottom" constant="100" id="1Br-QU-YVa"/>
+                            <constraint firstItem="7z2-AB-Rcf" firstAttribute="centerX" secondItem="Bhd-Z9-jHM" secondAttribute="centerX" id="3iq-bP-Wmn"/>
+                            <constraint firstItem="QRR-Z0-TkP" firstAttribute="top" secondItem="7z2-AB-Rcf" secondAttribute="bottom" constant="90" id="EUz-8d-YYU"/>
+                            <constraint firstItem="QRR-Z0-TkP" firstAttribute="leading" secondItem="Bhd-Z9-jHM" secondAttribute="leadingMargin" constant="25" id="fIE-qT-0Sd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QRR-Z0-TkP" secondAttribute="trailing" constant="25" id="s4a-S6-wdi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playButton" destination="eRN-Vg-Dqv" id="aVm-Iq-3yY"/>
+                        <outlet property="privacySettingsButton" destination="XRf-xZ-Qt0" id="hbJ-D7-czP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2FX-P4-3e8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53.90625" y="-142.96875"/>
+        </scene>
+    </scenes>
+</document>
