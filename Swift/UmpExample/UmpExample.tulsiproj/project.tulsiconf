@@ -1,0 +1,12 @@
+{
+  "configDefaults" : {
+    "optionSet" : {
+
+    }
+  },
+  "packages" : [
+    "googlemac/iPhone/InteractiveMediaAds/IMA/ios/samples/clientSide/Swift/UmpExample"
+  ],
+  "projectName" : "UmpExample",
+  "workspaceRoot" : "../../../../../../../../../.."
+}
