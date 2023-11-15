@@ -12,6 +12,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
     + "gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
 
   @IBOutlet private weak var playButton: UIButton!
+  @IBOutlet private weak var privacySettingsButton: UIButton!
   @IBOutlet private weak var videoView: UIView!
   private var contentPlayer: AVPlayer?
   private var playerLayer: AVPlayerLayer?
@@ -49,7 +50,7 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
         print("Error: \(consentError.localizedDescription)")
       }
 
-      self.privacySettingsButton.isEnabled = ConsentManager.shared.isFormAvailable
+      self.privacySettingsButton.isEnabled = ConsentManager.shared.isPrivacyOptionsRequired
     }
 
     setUpContentPlayer()
@@ -63,15 +64,27 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
   // MARK: Button Actions
   @IBAction func onPlayButtonTouch(_ sender: AnyObject) {
     if ConsentManager.shared.canRequestAds {
-      _ = requestAds
+      requestAds()
     } else {
       contentPlayer?.play()
     }
     playButton.isHidden = true
   }
 
-  // MARK: Content player methods
+  @IBAction func onPrivacySettingsTouch(_ sender: UIButton) {
+    ConsentManager.shared.presentPrivacyOptionsForm(from: self) {
+      [weak self] formError in
+      guard let self, let formError else { return }
 
+      let alertController = UIAlertController(
+        title: formError.localizedDescription, message: "Try again later.",
+        preferredStyle: .alert)
+      alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
+      self.present(alertController, animated: true)
+    }
+  }
+
+  // MARK: Content player methods
   private func setUpContentPlayer() {
     // Load AVPlayer with path to our content.
     guard let contentURL = URL(string: ViewController.testAppContentURL) else {

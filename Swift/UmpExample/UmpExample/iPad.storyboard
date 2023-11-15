@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Is5-HX-cc6">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22504" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="Is5-HX-cc6">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,38 +16,47 @@
                         <viewControllerLayoutGuide type="bottom" id="6or-C8-X2H"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Bhd-Z9-jHM">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMA SDK + UMP Sample App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-AB-Rcf">
-                                <rect key="frame" x="208" y="120" width="352" height="45"/>
+                                <rect key="frame" x="180" y="124" width="460" height="45"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRR-Z0-TkP">
-                                <rect key="frame" x="45" y="255" width="678" height="381"/>
+                                <rect key="frame" x="45" y="259" width="730" height="410.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-Vg-Dqv">
-                                        <rect key="frame" x="264" y="94" width="150" height="192"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRN-Vg-Dqv">
+                                        <rect key="frame" x="304.5" y="109.5" width="121" height="192"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="150"/>
                                         <state key="normal" title="▶">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="onPlayButtonTouch:" destination="Is5-HX-cc6" eventType="touchUpInside" id="cJj-Th-i3E"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerX" secondItem="QRR-Z0-TkP" secondAttribute="centerX" id="2eJ-sQ-2hd"/>
                                     <constraint firstItem="eRN-Vg-Dqv" firstAttribute="centerY" secondItem="QRR-Z0-TkP" secondAttribute="centerY" id="QXp-wE-7SS"/>
                                     <constraint firstAttribute="width" secondItem="QRR-Z0-TkP" secondAttribute="height" multiplier="16:9" id="d0d-Uq-v8Y"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sM-KW-bxy">
+                                <rect key="frame" x="45" y="699" width="145" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Privacy settings"/>
+                                <connections>
+                                    <action selector="onPrivacySettingsTouch:" destination="Is5-HX-cc6" eventType="touchUpInside" id="Pgv-s2-0Pb"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="7z2-AB-Rcf" firstAttribute="centerX" secondItem="Bhd-Z9-jHM" secondAttribute="centerX" id="6BC-3V-7Tb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QRR-Z0-TkP" secondAttribute="trailing" constant="25" id="D0p-a6-06a"/>
@@ -58,12 +67,13 @@
                     </view>
                     <connections>
                         <outlet property="playButton" destination="eRN-Vg-Dqv" id="KKy-Wc-PWa"/>
+                        <outlet property="privacySettingsButton" destination="5sM-KW-bxy" id="NYf-DQ-AKR"/>
                         <outlet property="videoView" destination="QRR-Z0-TkP" id="gat-85-sz3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2FX-P4-3e8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="69" y="-244"/>
+            <point key="canvasLocation" x="50.487804878048777" y="-124.06779661016949"/>
         </scene>
     </scenes>
 </document>

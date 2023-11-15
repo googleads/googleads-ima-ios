@@ -3,19 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		151685FB19A515770063079C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685F919A515770063079C /* iPhone.storyboard */; };
 		151685FD19A515800063079C /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685FC19A515800063079C /* iPad.storyboard */; };
+		154C9B75D5F7A3A920CE3B81 /* libPods-UmpExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47B877E07C68952F12D7200A /* libPods-UmpExample.a */; };
 		1589E15D199126CA00E5DF1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15C199126CA00E5DF1A /* main.m */; };
 		1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15F199126CA00E5DF1A /* AppDelegate.m */; };
 		1589E163199126CA00E5DF1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E162199126CA00E5DF1A /* ViewController.m */; };
 		1589E168199126CA00E5DF1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1589E167199126CA00E5DF1A /* Images.xcassets */; };
 		15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C30C4F1AE6D50500374786 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		175E5B082ABE80EE0000428B /* ConsentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 175E5B062ABE80EE0000428B /* ConsentManager.m */; };
-		17C763252ABDE301001293B2 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 17C763242ABDE301001293B2 /* GoogleUserMessagingPlatform */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +34,7 @@
 		175E5B062ABE80EE0000428B /* ConsentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsentManager.m; sourceTree = "<group>"; };
 		175E5B072ABE80EE0000428B /* ConsentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsentManager.h; sourceTree = "<group>"; };
 		467EA8D6E0DD23A8590E2961 /* Pods-UmpExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UmpExample.debug.xcconfig"; path = "Target Support Files/Pods-UmpExample/Pods-UmpExample.debug.xcconfig"; sourceTree = "<group>"; };
+		47B877E07C68952F12D7200A /* libPods-UmpExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UmpExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +43,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */,
-				17C763252ABDE301001293B2 /* GoogleUserMessagingPlatform in Frameworks */,
+				154C9B75D5F7A3A920CE3B81 /* libPods-UmpExample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				15C30C4F1AE6D50500374786 /* WebKit.framework */,
+				47B877E07C68952F12D7200A /* libPods-UmpExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,9 +138,6 @@
 			dependencies = (
 			);
 			name = UmpExample;
-			packageProductDependencies = (
-				17C763242ABDE301001293B2 /* GoogleUserMessagingPlatform */,
-			);
 			productName = UmpExample;
 			productReference = 1589E157199126CA00E5DF1A /* UmpExample.app */;
 			productType = "com.apple.product-type.application";
@@ -167,9 +166,6 @@
 				Base,
 			);
 			mainGroup = 1589E14E199126CA00E5DF1A;
-			packageReferences = (
-				17C763232ABDE301001293B2 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
-			);
 			productRefGroup = 1589E158199126CA00E5DF1A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -430,25 +426,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		17C763232ABDE301001293B2 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		17C763242ABDE301001293B2 /* GoogleUserMessagingPlatform */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 17C763232ABDE301001293B2 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
-			productName = GoogleUserMessagingPlatform;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1589E14F199126CA00E5DF1A /* Project object */;
 }
