@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="VYY-ZM-Jr6">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="VYY-ZM-Jr6">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -9,28 +12,32 @@
         <scene sceneID="g3j-H4-nwf">
             <objects>
                 <viewController id="Jci-8o-Jgh" customClass="MainViewController" customModule="AdvancedExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kIF-qt-coT"/>
+                        <viewControllerLayoutGuide type="bottom" id="4fy-ja-ifR"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ahs-fE-ovp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="HmR-f9-qDu">
-                                <frame key="frameInset" width="100.00%" height="100.00%"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HmR-f9-qDu">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="N81-m2-qJQ" customClass="VideoTableViewCell" customModule="AdvancedExample" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="86" width="375" height="60"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="N81-m2-qJQ" id="zo6-AH-dTB">
-                                            <frame key="frameInset" width="342" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gyi-Hj-DAr">
-                                                    <frame key="frameInset" minX="8" minY="8" width="50" height="50"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyi-Hj-DAr">
+                                                    <rect key="frame" x="8" y="8" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kmv-Vo-RsU">
-                                                    <frame key="frameInset" minX="66" minY="22" width="216" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmv-Vo-RsU">
+                                                    <rect key="frame" x="66" y="22" width="216" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -55,8 +62,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tags" id="vPQ-N2-JZ5">
                         <barButtonItem key="rightBarButtonItem" id="sgc-iv-29r">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bmT-lR-Jac">
-                                <rect key="frame" x="291" y="7" width="68" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="bmT-lR-Jac">
+                                <rect key="frame" x="309" y="7" width="68" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Language">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,100 +80,156 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfu-Ne-3x2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="659" y="261"/>
+            <point key="canvasLocation" x="1006.1068702290075" y="183.80281690140845"/>
         </scene>
         <!--Video View Controller-->
         <scene sceneID="XgB-MG-gRd">
             <objects>
                 <viewController id="JSc-RY-z2u" customClass="VideoViewController" customModule="AdvancedExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bNe-aq-AiY"/>
+                        <viewControllerLayoutGuide type="bottom" id="fkB-om-96E"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="IzG-5A-Nbw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="1vd-g8-umk">
-                                <frame key="frameInset" minY="63" height="35.60%"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kea-80-bAb">
-                                <frame key="frameInset" minY="46.23%" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <barButtonItem id="D2j-9f-WPk">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mcU-eb-JAJ" userLabel="playHeadButton">
-                                            <rect key="frame" x="16" y="11" width="24" height="22"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                            <state key="normal" image="play.png">
-                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <state key="highlighted">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="onPlayPauseClicked:" destination="JSc-RY-z2u" eventType="touchUpInside" id="Khd-pM-fZd"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem id="uRq-kF-hZr">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="Mx1-6b-6sk" userLabel="playHeadTimeText">
-                                            <rect key="frame" x="50" y="6.5" width="36" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" staticText="YES"/>
-                                                <bool key="isElement" value="NO"/>
-                                            </accessibility>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem id="VJf-aZ-KAw">
-                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="uId-dP-gGp" userLabel="progressBar">
-                                            <rect key="frame" x="96" y="7.5" width="175" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <connections>
-                                                <action selector="playheadValueChanged:" destination="JSc-RY-z2u" eventType="valueChanged" id="6GM-yI-avB"/>
-                                                <action selector="videoControlsTouchEnded:" destination="JSc-RY-z2u" eventType="touchUpOutside" id="UhM-br-XfY"/>
-                                                <action selector="videoControlsTouchEnded:" destination="JSc-RY-z2u" eventType="touchUpInside" id="YNn-WR-p8d"/>
-                                                <action selector="videoControlsTouchStarted:" destination="JSc-RY-z2u" eventType="touchDown" id="kW1-X6-YWW"/>
-                                            </connections>
-                                        </slider>
-                                    </barButtonItem>
-                                    <barButtonItem id="Kom-fc-Iru">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="KOT-dB-nyF" userLabel="durationTimeText">
-                                            <rect key="frame" x="281" y="6.5" width="36" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" staticText="YES"/>
-                                                <bool key="isElement" value="NO"/>
-                                            </accessibility>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="9yQ-1j-KX8">
-                                <frame key="frameInset" minX="40" minY="420" height="128" maxX="40"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yQ-1j-KX8">
+                                <rect key="frame" x="40" y="420" width="313" height="128"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PO8-kK-dPP">
-                                <frame key="frameInset" minX="40" minY="366" height="39" maxX="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PO8-kK-dPP">
+                                <rect key="frame" x="40" y="366" width="313" height="39"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q1F-vP-aXT">
+                                <rect key="frame" x="0.0" y="63" width="393" height="789"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="zav-bL-WJw">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1124"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1vd-g8-umk">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="280"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="280" id="XZa-6A-qDe"/>
+                                                </constraints>
+                                            </view>
+                                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kea-80-bAb">
+                                                <rect key="frame" x="0.0" y="280" width="393" height="44"/>
+                                                <items>
+                                                    <barButtonItem id="D2j-9f-WPk">
+                                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mcU-eb-JAJ" userLabel="playHeadButton">
+                                                            <rect key="frame" x="16" y="11" width="24" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                                            <state key="normal" image="play.png">
+                                                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <state key="highlighted">
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="onPlayPauseClicked:" destination="JSc-RY-z2u" eventType="touchUpInside" id="Khd-pM-fZd"/>
+                                                            </connections>
+                                                        </button>
+                                                    </barButtonItem>
+                                                    <barButtonItem id="uRq-kF-hZr">
+                                                        <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="Mx1-6b-6sk" userLabel="playHeadTimeText">
+                                                            <rect key="frame" x="40" y="6.6666666666666679" width="36" height="31.000000000000004"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" staticText="YES"/>
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </barButtonItem>
+                                                    <barButtonItem id="VJf-aZ-KAw">
+                                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="uId-dP-gGp" userLabel="progressBar">
+                                                            <rect key="frame" x="76" y="5" width="175" height="34"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                            <connections>
+                                                                <action selector="playheadValueChanged:" destination="JSc-RY-z2u" eventType="valueChanged" id="6GM-yI-avB"/>
+                                                                <action selector="videoControlsTouchEnded:" destination="JSc-RY-z2u" eventType="touchUpOutside" id="UhM-br-XfY"/>
+                                                                <action selector="videoControlsTouchEnded:" destination="JSc-RY-z2u" eventType="touchUpInside" id="YNn-WR-p8d"/>
+                                                                <action selector="videoControlsTouchStarted:" destination="JSc-RY-z2u" eventType="touchDown" id="kW1-X6-YWW"/>
+                                                            </connections>
+                                                        </slider>
+                                                    </barButtonItem>
+                                                    <barButtonItem id="Kom-fc-Iru">
+                                                        <textField key="customView" opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0:00" textAlignment="center" minimumFontSize="12" id="KOT-dB-nyF" userLabel="durationTimeText">
+                                                            <rect key="frame" x="341" y="6.6666666666666679" width="36" height="31.000000000000004"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <accessibilityTraits key="traits" staticText="YES"/>
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </barButtonItem>
+                                                </items>
+                                            </toolbar>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5A-WX-Klp">
+                                                <rect key="frame" x="0.0" y="324" width="393" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="nhm-dq-ifc"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFx-FZ-DM4">
+                                                <rect key="frame" x="0.0" y="524" width="393" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="3SE-NY-5bY"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xeb-wQ-DB6">
+                                                <rect key="frame" x="0.0" y="724" width="393" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="WHj-Ow-Vix"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRJ-Wq-obj">
+                                                <rect key="frame" x="0.0" y="924" width="393" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="DQv-8M-tVQ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="zav-bL-WJw" secondAttribute="trailing" id="2Zr-3E-hGe"/>
+                                    <constraint firstAttribute="bottom" secondItem="zav-bL-WJw" secondAttribute="bottom" id="82z-3t-eF3"/>
+                                    <constraint firstItem="zav-bL-WJw" firstAttribute="width" secondItem="q1F-vP-aXT" secondAttribute="width" id="ACf-md-81d"/>
+                                    <constraint firstItem="zav-bL-WJw" firstAttribute="leading" secondItem="q1F-vP-aXT" secondAttribute="leading" id="Ugq-IS-Lxs"/>
+                                    <constraint firstItem="zav-bL-WJw" firstAttribute="top" secondItem="q1F-vP-aXT" secondAttribute="top" id="fS0-8T-Jwb"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="q1F-vP-aXT" secondAttribute="bottom" id="0MR-9A-lOQ"/>
+                            <constraint firstAttribute="trailing" secondItem="q1F-vP-aXT" secondAttribute="trailing" id="BsX-El-Xst"/>
+                            <constraint firstItem="q1F-vP-aXT" firstAttribute="top" secondItem="IzG-5A-Nbw" secondAttribute="top" constant="63" id="NfA-bg-55h"/>
+                            <constraint firstItem="q1F-vP-aXT" firstAttribute="leading" secondItem="IzG-5A-Nbw" secondAttribute="leading" id="j0X-lF-2yi"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ltV-26-mQ1"/>
                     <connections>
@@ -182,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ql1-yb-p6i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1082" y="261"/>
+            <point key="canvasLocation" x="1651.1450381679388" y="183.80281690140845"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jJI-eN-UY9">
@@ -190,7 +253,7 @@
                 <navigationController storyboardIdentifier="MainViewController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VYY-ZM-Jr6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bnf-dy-V9x">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -200,15 +263,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zMo-Sk-hI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="226.66666666666666" y="261.27999999999997"/>
+            <point key="canvasLocation" x="346.05597964376585" y="184"/>
         </scene>
     </scenes>
     <resources>
         <image name="play.png" width="23" height="21"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
 </document>
