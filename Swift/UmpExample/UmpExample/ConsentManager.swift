@@ -30,9 +30,11 @@ class ConsentManager: NSObject {
     return UMPConsentInformation.sharedInstance.canRequestAds
   }
 
+  // [START is_privacy_options_required]
   var isPrivacyOptionsRequired: Bool {
     return UMPConsentInformation.sharedInstance.privacyOptionsRequirementStatus == .required
   }
+  // [END is_privacy_options_required]
 
   /// Helper method to call the UMP SDK methods to request consent information and load/present a
   /// consent form if necessary.
@@ -47,6 +49,7 @@ class ConsentManager: NSObject {
     // debugSettings.geography = UMPDebugGeography.EEA
     parameters.debugSettings = debugSettings
 
+    // [START gather_consent]
     // Requesting an update to consent information should be called on every app launch.
     UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) {
       requestConsentError in
@@ -61,13 +64,16 @@ class ConsentManager: NSObject {
         consentGatheringComplete(loadAndPresentError)
       }
     }
+    // [END gather_consent]
   }
 
   /// Helper method to call the UMP SDK method to present the privacy options form.
   func presentPrivacyOptionsForm(
     from viewController: UIViewController, completionHandler: @escaping (Error?) -> Void
   ) {
+    // [START present_privacy_options_form]
     UMPConsentForm.presentPrivacyOptionsForm(
       from: viewController, completionHandler: completionHandler)
+    // [END present_privacy_options_form]
   }
 }
