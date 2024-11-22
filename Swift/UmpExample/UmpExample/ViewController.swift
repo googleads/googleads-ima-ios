@@ -41,7 +41,6 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
 
     playButton.layer.zPosition = CGFloat.greatestFiniteMagnitude
 
-    // [START can_request_ads]
     ConsentManager.shared.gatherConsent(from: self) { [weak self] consentError in
       guard let self else { return }
 
@@ -50,14 +49,9 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
         // consent obtained in the previous session.
         print("Error: \(consentError.localizedDescription)")
       }
-      // [START_EXCLUDE]
 
-      // [START add_privacy_options]
       self.privacySettingsButton.isEnabled = ConsentManager.shared.isPrivacyOptionsRequired
-      // [END add_privacy_options]
-      // [END_EXCLUDE]
     }
-    // [END can_request_ads]
 
     setUpContentPlayer()
     adsLoader.delegate = self
@@ -126,7 +120,6 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
 
   // MARK: IMA integration methods
 
-  // [START request_ads]
   private func requestAds() {
     // Create ad display container for ad rendering.
     let adDisplayContainer = IMAAdDisplayContainer(
@@ -140,7 +133,6 @@ class ViewController: UIViewController, IMAAdsLoaderDelegate, IMAAdsManagerDeleg
 
     adsLoader.requestAds(with: request)
   }
-  // [END request_ads]
 
   // MARK: - IMAAdsLoaderDelegate
 

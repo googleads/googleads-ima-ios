@@ -87,7 +87,6 @@ NSString *const kTestAppAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads
   self.playButton.layer.zPosition = MAXFLOAT;
 
   __weak __typeof__(self) weakSelf = self;
-  // [START can_request_ads]
   [ConsentManager.sharedInstance
       gatherConsentFromConsentPresentationViewController:self
                                 consentGatheringComplete:^(NSError *_Nullable consentError) {
@@ -101,15 +100,11 @@ NSString *const kTestAppAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads
                                     return;
                                   }
 
-                                  // [START_EXCLUDE]
-                                  // [START add_privacy_options]
                                   // Set up the privacy options button to show the UMP privacy form.
                                   // Check ConsentInformation.getPrivacyOptionsRequirementStatus
                                   // to see the button should be shown or hidden.
                                   strongSelf.privacySettingsButton.hidden =
                                       !ConsentManager.sharedInstance.areGDPRConsentMessagesRequired;
-                                  // [END add_privacy_options]
-                                  // [END_EXCLUDE]
 
                                   if (ConsentManager.sharedInstance.canRequestAds) {
                                     [strongSelf setupAdsLoader];
@@ -120,7 +115,6 @@ NSString *const kTestAppAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads
   if (ConsentManager.sharedInstance.canRequestAds) {
     [self setupAdsLoader];
   }
-  // [START can_request_ads]
 
   [self setUpContentPlayer];
 }
@@ -154,12 +148,10 @@ NSString *const kTestAppAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads
 
 #pragma mark SDK Setup
 
-// [START request_ads]
 - (void)setupAdsLoader {
   self.adsLoader = [[IMAAdsLoader alloc] initWithSettings:nil];
   self.adsLoader.delegate = self;
 }
-// [END request_ads]
 
 - (void)requestAds {
   // Create an ad display container for ad rendering.

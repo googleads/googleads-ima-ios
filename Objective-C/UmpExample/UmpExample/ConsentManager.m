@@ -38,7 +38,7 @@
   return UMPConsentInformation.sharedInstance.privacyOptionsRequirementStatus ==
          UMPPrivacyOptionsRequirementStatusRequired;
 }
-// [END is_privacy_options_required]
+// [START is_privacy_options_required]
 
 - (void)gatherConsentFromConsentPresentationViewController:(UIViewController *)viewController
                                   consentGatheringComplete:
@@ -53,26 +53,35 @@
   // debugSettings.geography = UMPDebugGeographyEEA;
   parameters.debugSettings = debugSettings;
 
-  // [START gather_consent]
+  // [START request_consent_info_update]
   // Requesting an update to consent information should be called on every app launch.
   [UMPConsentInformation.sharedInstance
       requestConsentInfoUpdateWithParameters:parameters
                            completionHandler:^(NSError *_Nullable requestConsentError) {
+                             // [START_EXCLUDE]
                              if (requestConsentError) {
                                consentGatheringComplete(requestConsentError);
                              } else {
-                               [UMPConsentForm
-                                   loadAndPresentIfRequiredFromViewController:viewController
-                                                            completionHandler:^(
-                                                                NSError
-                                                                    *_Nullable loadAndPresentError) {
-                                                              // Consent has been gathered.
-                                                              consentGatheringComplete(
-                                                                  loadAndPresentError);
-                                                            }];
+                               [self loadAndPresentIfRequiredFromViewController:viewController
+                                                  completionHandler:consentGatheringComplete];
                              }
+                             // [END_EXCLUDE]
                            }];
-  // [END gather_consent]
+  // [END request_consent_info_update]
+}
+
+- (void)loadAndPresentIfRequiredFromViewController:(UIViewController *)viewController
+                           completionHandler:(void (^)(NSError *_Nullable))completionHandler {
+  // [START load_and_present_consent_form]
+  [UMPConsentForm
+      loadAndPresentIfRequiredFromViewController:viewController
+                               completionHandler:^(NSError *_Nullable loadAndPresentError) {
+                                   // Consent gathering process is complete.
+                                   // [START_EXCLUDE silent]
+                                   completionHandler(loadAndPresentError);
+                                   // [END_EXCLUDE]
+                                  }];
+  // [END load_and_present_consent_form]
 }
 
 - (void)presentPrivacyOptionsFormFromViewController:(UIViewController *)viewController

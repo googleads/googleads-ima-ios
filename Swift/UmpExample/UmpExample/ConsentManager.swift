@@ -39,7 +39,7 @@ class ConsentManager: NSObject {
   /// Helper method to call the UMP SDK methods to request consent information and load/present a
   /// consent form if necessary.
   func gatherConsent(
-    from consentFormPresentationviewController: UIViewController,
+    from viewController: UIViewController,
     consentGatheringComplete: @escaping (Error?) -> Void
   ) {
     let parameters = UMPRequestParameters()
@@ -49,22 +49,29 @@ class ConsentManager: NSObject {
     // debugSettings.geography = UMPDebugGeography.EEA
     parameters.debugSettings = debugSettings
 
-    // [START gather_consent]
+    // [START request_consent_info_update]
     // Requesting an update to consent information should be called on every app launch.
     UMPConsentInformation.sharedInstance.requestConsentInfoUpdate(with: parameters) {
       requestConsentError in
+      // [START_EXCLUDE]
       guard requestConsentError == nil else {
         return consentGatheringComplete(requestConsentError)
       }
 
-      UMPConsentForm.loadAndPresentIfRequired(from: consentFormPresentationviewController) {
-        loadAndPresentError in
-
-        // Consent has been gathered.
-        consentGatheringComplete(loadAndPresentError)
+      Task { @MainActor in
+        do {
+          // [START load_and_present_consent_form]
+          try await UMPConsentForm.loadAndPresentIfRequired(from: viewController)
+          // [END load_and_present_consent_form]
+          // Consent has been gathered.
+          consentGatheringComplete(nil)
+        } catch {
+          consentGatheringComplete(error)
+        }
       }
+      // [END_EXCLUDE]
     }
-    // [END gather_consent]
+    // [END request_consent_info_update]
   }
 
   /// Helper method to call the UMP SDK method to present the privacy options form.
