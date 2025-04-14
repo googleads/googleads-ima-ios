@@ -24,7 +24,6 @@ jobs:
         - "Swift/BasicExample"
         - "Objective-C/SampleVideoPlayer"
         - "Swift/SampleVideoPlayer"
-        - "Objective-C/CastExample"
         - "Objective-C/UmpExample"
         - "Swift/UmpExample"
     steps:
