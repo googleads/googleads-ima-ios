@@ -1,6 +1,6 @@
 ## Google Ads iOS IMA SDK
 
-![Build status](https://github.com/googleads/googleads-ima-ios/workflows/Build%20Status/badge.svg?branch=main)
+![Build status](https://github.com/googleads/googleads-ima-ios/actions/workflows/build.yml/badge.svg)
 
 This project hosts samples for the [iOS IMA SDK](https://developers.google.com/interactive-media-ads/docs/sdks/ios/v3/).
 
