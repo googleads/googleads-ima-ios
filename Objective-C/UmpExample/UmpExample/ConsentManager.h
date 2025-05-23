@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(class, atomic, readonly, strong, nonnull) ConsentManager *sharedInstance;
 @property(nonatomic, readonly) BOOL canRequestAds;
-@property(nonatomic, readonly) BOOL areGDPRConsentMessagesRequired;
+@property(nonatomic, readonly) BOOL isPrivacyOptionsRequired;
 
 /// Helper method to call the UMP SDK methods to request consent information and load/present a
 /// consent form if necessary.

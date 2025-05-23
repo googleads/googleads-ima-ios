@@ -34,7 +34,7 @@
 }
 
 // [START is_privacy_options_required]
-- (BOOL)areGDPRConsentMessagesRequired {
+- (BOOL)isPrivacyOptionsRequired {
   return UMPConsentInformation.sharedInstance.privacyOptionsRequirementStatus ==
          UMPPrivacyOptionsRequirementStatusRequired;
 }

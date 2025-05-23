@@ -104,7 +104,7 @@ NSString *const kTestAppAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads
                                   // Check ConsentInformation.getPrivacyOptionsRequirementStatus
                                   // to see the button should be shown or hidden.
                                   strongSelf.privacySettingsButton.hidden =
-                                      !ConsentManager.sharedInstance.areGDPRConsentMessagesRequired;
+                                      !ConsentManager.sharedInstance.isPrivacyOptionsRequired;
 
                                   if (ConsentManager.sharedInstance.canRequestAds) {
                                     [strongSelf setupAdsLoader];
@@ -149,6 +149,10 @@ NSString *const kTestAppAdTagUrl = @"https://pubads.g.doubleclick.net/gampad/ads
 #pragma mark SDK Setup
 
 - (void)setupAdsLoader {
+  if (self.adsLoader) {
+    // If the AdsLoader is already initialized, do nothing.
+    return;
+  }
   self.adsLoader = [[IMAAdsLoader alloc] initWithSettings:nil];
   self.adsLoader.delegate = self;
 }
