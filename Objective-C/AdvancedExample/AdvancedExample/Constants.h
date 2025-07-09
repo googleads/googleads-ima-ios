@@ -21,46 +21,46 @@ static NSString *const kBipBopContentPath =
 static NSString *const kPrerollTag = @"https://pubads.g.doubleclick.net/gampad/"
     @"ads?iu=/21775744923/external/single_ad_samples&sz=640x480&"
     @"cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&gdfp_req=1&"
-    @"output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
+    @"output=vast&unviewed_position_start=1&env=vp&correlator=";
 
 // Skippable
 static NSString *const kSkippableTag = @"https://pubads.g.doubleclick.net/"
     @"gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&"
     @"ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&"
-    @"unviewed_position_start=1&env=vp&impl=s&correlator=";
+    @"unviewed_position_start=1&env=vp&correlator=";
 
 // Post-roll
 static NSString *const kPostrollTag = @"https://pubads.g.doubleclick.net/"
     @"gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&"
     @"cust_params=sample_ar%3Dpostonly&ciu_szs=300x250&gdfp_req=1&ad_rule=1&"
-    @"output=vmap&unviewed_position_start=1&env=vp&impl=s&correlator=";
+    @"output=vmap&unviewed_position_start=1&env=vp&correlator=";
 
 // Ad rues
 static NSString *const kAdRulesTag = @"https://pubads.g.doubleclick.net/gampad/"
     @"ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&"
     @"cust_params=sample_ar%3Dpremidpost&ciu_szs=300x250&gdfp_req=1&ad_rule=1&"
-    @"output=vmap&unviewed_position_start=1&env=vp&impl=s&cmsid=496&"
+    @"output=vmap&unviewed_position_start=1&env=vp&cmsid=496&"
     @"vid=short_onecue&correlator=";
 
 // Ad rules pods
 static NSString *const kAdRulesPodsTag = @"https://pubads.g.doubleclick.net/"
     @"gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&"
     @"cust_params=sample_ar%3Dpremidpostpod&ciu_szs=300x250&gdfp_req=1&"
-    @"ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&cmsid=496&"
+    @"ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&"
     @"vid=short_onecue&correlator=";
 
 // VMAP pods
 static NSString *const kVMAPPodsTag = @"https://pubads.g.doubleclick.net/"
     @"gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&"
     @"cust_params=sample_ar%3Dpremidpostpod&ciu_szs=300x250&gdfp_req=1&"
-    @"ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&cmsid=496&"
+    @"ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&"
     @"vid=short_onecue&correlator=";
 
 // Wrapper
 static NSString *const kWrapperTag = @"https://pubads.g.doubleclick.net/"
     @"gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&"
     @"cust_params=sample_ct%3Dredirectlinear&ciu_szs=300x250%2C728x90&"
-    @"gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&"
+    @"gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&"
     @"correlator=";
 
 // AdSense

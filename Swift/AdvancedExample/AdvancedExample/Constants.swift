@@ -18,39 +18,39 @@ let kBipBopContentPath = "http://devimages.apple.com/iphone/samples/bipbop/bipbo
 let kPrerollTag =
   "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
   + "single_ad_samples&sz=640x480&cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&"
-  + "gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
+  + "gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&correlator="
 
 // Skippable
 let kSkippableTag =
   "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
   + "single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&"
-  + "output=vast&unviewed_position_start=1&env=vp&impl=s&correlator="
+  + "output=vast&unviewed_position_start=1&env=vp&correlator="
 
 // Post-roll
 let kPostrollTag =
   "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
   + "vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpostonly&ciu_szs=300x250&"
-  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&correlator="
+  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&correlator="
 
 // Ad rules
 let kAdRulesTag =
   "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
   + "vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpost&ciu_szs=300x250&"
-  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&cmsid=496&"
+  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&"
   + "vid=short_onecue&correlator="
 
 // Ad rules pods
 let kAdRulesPodsTag =
   "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
   + "vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpostpod&ciu_szs=300x250&"
-  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&cmsid=496&"
+  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&"
   + "vid=short_onecue&correlator="
 
 // VMAP pods
 let kVMAPPodsTag =
   "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
   + "vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpostpod&ciu_szs=300x250&"
-  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&impl=s&cmsid=496&"
+  + "gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&"
   + "vid=short_onecue&correlator="
 
 // Wrapper
@@ -58,7 +58,7 @@ let kWrapperTag =
   "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
   + "single_ad_samples&sz=640x480&cust_params=sample_ct%3Dredirectlinear&"
   + "ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&"
-  + "env=vp&impl=s&correlator="
+  + "env=vp&correlator="
 
 // AdSense
 let kAdSenseTag =
