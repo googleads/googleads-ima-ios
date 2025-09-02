@@ -3,6 +3,6 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '12'
 
 target "UmpExample" do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.26.1'
+  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.27.4'
   pod 'GoogleUserMessagingPlatform'
 end
