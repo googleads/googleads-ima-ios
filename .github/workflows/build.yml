@@ -26,6 +26,7 @@ jobs:
         - "Swift/SampleVideoPlayer"
         - "Objective-C/UmpExample"
         - "Swift/UmpExample"
+        - "Swift/Snippets"
     steps:
       - name: Clone Repository
         uses: actions/checkout@v1
