@@ -2,5 +2,5 @@ platform :ios, '17'
 project 'Snippets.xcodeproj'
 
 target 'Snippets' do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.30.0'
+  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.30.1'
 end
