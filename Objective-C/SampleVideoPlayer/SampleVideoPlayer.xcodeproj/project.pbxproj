@@ -11,6 +11,7 @@
     151685FD19A515800063079C /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685FC19A515800063079C /* iPad.storyboard */; };
     1589E15D199126CA00E5DF1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15C199126CA00E5DF1A /* main.m */; };
     1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15F199126CA00E5DF1A /* AppDelegate.m */; };
+    1589E166199126CA00E5DF1A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E165199126CA00E5DF1A /* SceneDelegate.m */; };
     1589E163199126CA00E5DF1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E162199126CA00E5DF1A /* ViewController.m */; };
     1589E168199126CA00E5DF1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1589E167199126CA00E5DF1A /* Images.xcassets */; };
 /* End PBXBuildFile section */
@@ -23,6 +24,8 @@
     1589E15C199126CA00E5DF1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
     1589E15E199126CA00E5DF1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
     1589E15F199126CA00E5DF1A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+    1589E164199126CA00E5DF1A /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+    1589E165199126CA00E5DF1A /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
     1589E161199126CA00E5DF1A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
     1589E162199126CA00E5DF1A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
     1589E167199126CA00E5DF1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -78,6 +81,8 @@
       children = (
         1589E15E199126CA00E5DF1A /* AppDelegate.h */,
         1589E15F199126CA00E5DF1A /* AppDelegate.m */,
+        1589E164199126CA00E5DF1A /* SceneDelegate.h */,
+        1589E165199126CA00E5DF1A /* SceneDelegate.m */,
         1589E161199126CA00E5DF1A /* ViewController.h */,
         1589E162199126CA00E5DF1A /* ViewController.m */,
         151685F919A515770063079C /* iPhone.storyboard */,
@@ -169,6 +174,7 @@
       files = (
         1589E163199126CA00E5DF1A /* ViewController.m in Sources */,
         1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */,
+        1589E166199126CA00E5DF1A /* SceneDelegate.m in Sources */,
         1589E15D199126CA00E5DF1A /* main.m in Sources */,
       );
       runOnlyForDeploymentPostprocessing = 0;
