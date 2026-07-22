@@ -14,7 +14,7 @@
 		1589E163199126CA00E5DF1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E162199126CA00E5DF1A /* ViewController.m */; };
 		1589E168199126CA00E5DF1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1589E167199126CA00E5DF1A /* Images.xcassets */; };
 		15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C30C4F1AE6D50500374786 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		994868C5D494095076F85971 /* libPods-BasicExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F8FE34AB4E4A98408965D12 /* libPods-BasicExample.a */; };
+		1589CF102F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1589CF102F40000000000002 /* GoogleInteractiveMediaAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,9 +29,6 @@
 		1589E162199126CA00E5DF1A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1589E167199126CA00E5DF1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15C30C4F1AE6D50500374786 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		42B604A46234D5C635EAC76A /* Pods-BasicExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicExample.release.xcconfig"; path = "Target Support Files/Pods-BasicExample/Pods-BasicExample.release.xcconfig"; sourceTree = "<group>"; };
-		73BF3CA6E472E590988D2284 /* Pods-BasicExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicExample.debug.xcconfig"; path = "Target Support Files/Pods-BasicExample/Pods-BasicExample.debug.xcconfig"; sourceTree = "<group>"; };
-		8F8FE34AB4E4A98408965D12 /* libPods-BasicExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BasicExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +37,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */,
-				994868C5D494095076F85971 /* libPods-BasicExample.a in Frameworks */,
+				1589CF102F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,20 +48,11 @@
 			isa = PBXGroup;
 			children = (
 				15C30C4F1AE6D50500374786 /* WebKit.framework */,
-				8F8FE34AB4E4A98408965D12 /* libPods-BasicExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		13CA94B7E73912174A089653 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				73BF3CA6E472E590988D2284 /* Pods-BasicExample.debug.xcconfig */,
-				42B604A46234D5C635EAC76A /* Pods-BasicExample.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
+
 		152D49DE19B10DA0003400E4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -79,7 +67,6 @@
 				1589E159199126CA00E5DF1A /* BasicExample */,
 				1589E158199126CA00E5DF1A /* Products */,
 				02733AA8386749E688D4F7A2 /* Frameworks */,
-				13CA94B7E73912174A089653 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,17 +109,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "BasicExample" */;
 			buildPhases = (
-				03F56816C6BF5640B4391BAF /* [CP] Check Pods Manifest.lock */,
 				1589E153199126CA00E5DF1A /* Sources */,
 				1589E154199126CA00E5DF1A /* Frameworks */,
 				1589E155199126CA00E5DF1A /* Resources */,
-				6E8A0F4E07F10D5E828E176F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = BasicExample;
+			packageProductDependencies = (
+				1589CF102F40000000000002 /* GoogleInteractiveMediaAds */,
+			);
 			productName = BasicExample;
 			productReference = 1589E157199126CA00E5DF1A /* BasicExample.app */;
 			productType = "com.apple.product-type.application";
@@ -161,6 +149,9 @@
 				Base,
 			);
 			mainGroup = 1589E14E199126CA00E5DF1A;
+			packageReferences = (
+				1589CF102F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */,
+			);
 			productRefGroup = 1589E158199126CA00E5DF1A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -183,48 +174,7 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		03F56816C6BF5640B4391BAF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BasicExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6E8A0F4E07F10D5E828E176F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BasicExample/Pods-BasicExample-frameworks.sh",
-				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleInteractiveMediaAds.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasicExample/Pods-BasicExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
+
 
 /* Begin PBXSourcesBuildPhase section */
 		1589E153199126CA00E5DF1A /* Sources */ = {
@@ -360,7 +310,6 @@
 		};
 		1589E178199126CA00E5DF1A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73BF3CA6E472E590988D2284 /* Pods-BasicExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
@@ -380,7 +329,6 @@
 		};
 		1589E179199126CA00E5DF1A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42B604A46234D5C635EAC76A /* Pods-BasicExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
@@ -420,6 +368,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1589CF102F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.32.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1589CF102F40000000000002 /* GoogleInteractiveMediaAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1589CF102F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */;
+			productName = GoogleInteractiveMediaAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1589E14F199126CA00E5DF1A /* Project object */;
 }

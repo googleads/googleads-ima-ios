@@ -34,8 +34,6 @@ jobs:
       - name: Xcode version
         run: /usr/bin/xcodebuild -version
 
-      - name: Pod repo update
-        run: pod repo update
 
       - name: Install xcpretty
         run: sudo gem install xcpretty

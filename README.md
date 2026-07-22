@@ -6,9 +6,9 @@ This project hosts samples for the [iOS IMA SDK](https://developers.google.com/i
 
 ### Requirements
 
-*   XCode 6 or newer
-*   iOS 10.0+
-*   CocoaPods (optional but recommended)
+*   Xcode 14 or newer
+*   iOS 15.0+
+*   Swift Package Manager (SPM)
 
 ### Installation Instructions
 The Sample Video Player is intended to be used with the [iOS Quickstart guide](https://developers.google.com/interactive-media-ads/docs/sdks/ios/v3/quickstart).<br />

@@ -1,6 +1,0 @@
-platform :ios, '15'
-
-target "UmpExample" do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.32.0'
-  pod 'GoogleUserMessagingPlatform'
-end

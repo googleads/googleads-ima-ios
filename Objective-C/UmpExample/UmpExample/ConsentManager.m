@@ -15,7 +15,8 @@
 //
 
 #import "ConsentManager.h"
-#import <UserMessagingPlatform/UserMessagingPlatform.h>
+
+@import UserMessagingPlatform;
 
 
 @implementation ConsentManager

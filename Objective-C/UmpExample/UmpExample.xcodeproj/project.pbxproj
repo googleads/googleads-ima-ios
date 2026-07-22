@@ -8,18 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		151685FB19A515770063079C /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685F919A515770063079C /* iPhone.storyboard */; };
-		151685FD19A515800063079C /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 151685FC19A515800063079C /* iPad.storyboard */; };
-		154C9B75D5F7A3A920CE3B81 /* libPods-UmpExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 47B877E07C68952F12D7200A /* libPods-UmpExample.a */; };
-		1589E15D199126CA00E5DF1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15C199126CA00E5DF1A /* main.m */; };
-		1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E15F199126CA00E5DF1A /* AppDelegate.m */; };
-		1589E163199126CA00E5DF1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E162199126CA00E5DF1A /* ViewController.m */; };
-		1589E168199126CA00E5DF1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1589E167199126CA00E5DF1A /* Images.xcassets */; };
 		15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15C30C4F1AE6D50500374786 /* WebKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		175E5B082ABE80EE0000428B /* ConsentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 175E5B062ABE80EE0000428B /* ConsentManager.m */; };
+		175E5B092ABE80EE0000428B /* SwiftStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E5B0A2ABE80EE0000428B /* SwiftStub.swift */; };
+		1589D0102F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1589D0102F40000000000002 /* GoogleInteractiveMediaAds */; };
+		1589D0102F40000000000011 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 1589D0102F40000000000012 /* GoogleUserMessagingPlatform */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0C82581FE9EC12D4AEE5EEDA /* Pods-UmpExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UmpExample.release.xcconfig"; path = "Target Support Files/Pods-UmpExample/Pods-UmpExample.release.xcconfig"; sourceTree = "<group>"; };
 		151685FA19A515770063079C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		151685FC19A515800063079C /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		1589E157199126CA00E5DF1A /* UmpExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UmpExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,9 +28,8 @@
 		1589E167199126CA00E5DF1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15C30C4F1AE6D50500374786 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		175E5B062ABE80EE0000428B /* ConsentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsentManager.m; sourceTree = "<group>"; };
+		175E5B0A2ABE80EE0000428B /* SwiftStub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftStub.swift; sourceTree = "<group>"; };
 		175E5B072ABE80EE0000428B /* ConsentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsentManager.h; sourceTree = "<group>"; };
-		467EA8D6E0DD23A8590E2961 /* Pods-UmpExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UmpExample.debug.xcconfig"; path = "Target Support Files/Pods-UmpExample/Pods-UmpExample.debug.xcconfig"; sourceTree = "<group>"; };
-		47B877E07C68952F12D7200A /* libPods-UmpExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UmpExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +38,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				15C30C501AE6D50500374786 /* WebKit.framework in Frameworks */,
-				154C9B75D5F7A3A920CE3B81 /* libPods-UmpExample.a in Frameworks */,
+				1589D0102F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */,
+				1589D0102F40000000000011 /* GoogleUserMessagingPlatform in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +50,6 @@
 			isa = PBXGroup;
 			children = (
 				15C30C4F1AE6D50500374786 /* WebKit.framework */,
-				47B877E07C68952F12D7200A /* libPods-UmpExample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -73,7 +68,6 @@
 				1589E159199126CA00E5DF1A /* UmpExample */,
 				1589E158199126CA00E5DF1A /* Products */,
 				02733AA8386749E688D4F7A2 /* Frameworks */,
-				D2C8090F2CE164E78E9B4464 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,6 +86,7 @@
 				1589E15F199126CA00E5DF1A /* AppDelegate.m */,
 				175E5B072ABE80EE0000428B /* ConsentManager.h */,
 				175E5B062ABE80EE0000428B /* ConsentManager.m */,
+				175E5B0A2ABE80EE0000428B /* SwiftStub.swift */,
 				1589E161199126CA00E5DF1A /* ViewController.h */,
 				1589E162199126CA00E5DF1A /* ViewController.m */,
 				151685F919A515770063079C /* iPhone.storyboard */,
@@ -111,15 +106,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D2C8090F2CE164E78E9B4464 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				467EA8D6E0DD23A8590E2961 /* Pods-UmpExample.debug.xcconfig */,
-				0C82581FE9EC12D4AEE5EEDA /* Pods-UmpExample.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,17 +113,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1589E177199126CA00E5DF1A /* Build configuration list for PBXNativeTarget "UmpExample" */;
 			buildPhases = (
-				875B02084353D18B2C6D517D /* [CP] Check Pods Manifest.lock */,
 				1589E153199126CA00E5DF1A /* Sources */,
 				1589E154199126CA00E5DF1A /* Frameworks */,
 				1589E155199126CA00E5DF1A /* Resources */,
-				08EF42E396F0F50F3E42C979 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = UmpExample;
+			packageProductDependencies = (
+				1589D0102F40000000000002 /* GoogleInteractiveMediaAds */,
+				1589D0102F40000000000012 /* GoogleUserMessagingPlatform */,
+			);
 			productName = UmpExample;
 			productReference = 1589E157199126CA00E5DF1A /* UmpExample.app */;
 			productType = "com.apple.product-type.application";
@@ -166,6 +154,10 @@
 				Base,
 			);
 			mainGroup = 1589E14E199126CA00E5DF1A;
+			packageReferences = (
+				1589D0102F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */,
+				1589D0102F40000000000013 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */,
+			);
 			productRefGroup = 1589E158199126CA00E5DF1A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,48 +180,7 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		08EF42E396F0F50F3E42C979 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-UmpExample/Pods-UmpExample-frameworks.sh",
-				"${PODS_ROOT}/GoogleAds-IMA-iOS-SDK/GoogleInteractiveMediaAds.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleInteractiveMediaAds.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UmpExample/Pods-UmpExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		875B02084353D18B2C6D517D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UmpExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
+
 
 /* Begin PBXSourcesBuildPhase section */
 		1589E153199126CA00E5DF1A /* Sources */ = {
@@ -237,9 +188,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				175E5B082ABE80EE0000428B /* ConsentManager.m in Sources */,
+				175E5B092ABE80EE0000428B /* SwiftStub.swift in Sources */,
 				1589E163199126CA00E5DF1A /* ViewController.m in Sources */,
 				1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */,
-				1589E15D199126CA00E5DF1A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,8 +315,8 @@
 		};
 		1589E178199126CA00E5DF1A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 467EA8D6E0DD23A8590E2961 /* Pods-UmpExample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				ENABLE_BITCODE = YES;
@@ -377,16 +328,38 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"/usr/lib/swift",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lsqlite3",
+					"-lz",
+					"-lc++",
+					"-framework",
+					"UserMessagingPlatform",
+					"-framework",
+					"AdSupport",
+					"-framework",
+					"WebKit",
+					"-framework",
+					"JavaScriptCore",
+					"-framework",
+					"SafariServices",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.ima.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		1589E179199126CA00E5DF1A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C82581FE9EC12D4AEE5EEDA /* Pods-UmpExample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				ENABLE_BITCODE = YES;
@@ -398,9 +371,31 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+					"/usr/lib/swift",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lsqlite3",
+					"-lz",
+					"-lc++",
+					"-framework",
+					"UserMessagingPlatform",
+					"-framework",
+					"AdSupport",
+					"-framework",
+					"WebKit",
+					"-framework",
+					"JavaScriptCore",
+					"-framework",
+					"SafariServices",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.google.ima.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -426,6 +421,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1589D0102F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.32.0;
+			};
+		};
+		1589D0102F40000000000013 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-user-messaging-platform.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1589D0102F40000000000002 /* GoogleInteractiveMediaAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1589D0102F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */;
+			productName = GoogleInteractiveMediaAds;
+		};
+		1589D0102F40000000000012 /* GoogleUserMessagingPlatform */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1589D0102F40000000000013 /* XCRemoteSwiftPackageReference "swift-package-manager-google-user-messaging-platform" */;
+			productName = GoogleUserMessagingPlatform;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1589E14F199126CA00E5DF1A /* Project object */;
 }

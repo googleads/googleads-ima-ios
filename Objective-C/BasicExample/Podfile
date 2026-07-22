@@ -1,5 +1,0 @@
-platform :ios, '15'
-
-target "BasicExample" do
-  pod 'GoogleAds-IMA-iOS-SDK', '~> 3.32.0'
-end

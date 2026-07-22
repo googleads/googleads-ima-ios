@@ -16,10 +16,10 @@
 
 #import "ConsentManager.h"
 #import "ViewController.h"
-#include <UserMessagingPlatform/UserMessagingPlatform.h>
 
 @import AVFoundation;
 @import GoogleInteractiveMediaAds;
+@import UserMessagingPlatform;
 
 @interface ViewController () <IMAAdsLoaderDelegate, IMAAdsManagerDelegate>
 

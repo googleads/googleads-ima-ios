@@ -23,6 +23,7 @@
     15D00CC719F5937D00532960 /* Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D00CC619F5937D00532960 /* Video.m */; };
     15D00CCA19F593BF00532960 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D00CC919F593BF00532960 /* iPad.storyboard */; };
     15D00CCC19F5A02F00532960 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15D00CCB19F5A02F00532960 /* iPhone.storyboard */; };
+    15D00CF12F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 15D00CF22F40000000000002 /* GoogleInteractiveMediaAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
       buildActionMask = 2147483647;
       files = (
         15C30C561AE6D69700374786 /* WebKit.framework in Frameworks */,
+        15D00CF12F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
@@ -150,6 +152,9 @@
       dependencies = (
       );
       name = AdvancedExample;
+      packageProductDependencies = (
+        15D00CF22F40000000000002 /* GoogleInteractiveMediaAds */,
+      );
       productName = AdvancedExample;
       productReference = 15D00C9919F5926000532960 /* AdvancedExample.app */;
       productType = "com.apple.product-type.application";
@@ -182,6 +187,9 @@
         Base,
       );
       mainGroup = 15D00C9019F5926000532960;
+      packageReferences = (
+        15D00CF32F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */,
+      );
       productRefGroup = 15D00C9A19F5926000532960 /* Products */;
       projectDirPath = "";
       projectRoot = "";
@@ -361,6 +369,25 @@
       defaultConfigurationName = Release;
     };
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+    15D00CF32F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */ = {
+      isa = XCRemoteSwiftPackageReference;
+      repositoryURL = "https://github.com/googleads/swift-package-manager-google-interactive-media-ads-ios.git";
+      requirement = {
+        kind = upToNextMajorVersion;
+        minimumVersion = 3.32.0;
+      };
+    };
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+    15D00CF22F40000000000002 /* GoogleInteractiveMediaAds */ = {
+      isa = XCSwiftPackageProductDependency;
+      package = 15D00CF32F40000000000003 /* XCRemoteSwiftPackageReference "swift-package-manager-google-interactive-media-ads-ios" */;
+      productName = GoogleInteractiveMediaAds;
+    };
+/* End XCSwiftPackageProductDependency section */
   };
   rootObject = 15D00C9119F5926000532960 /* Project object */;
 }
