@@ -13,6 +13,7 @@
 		175E5B092ABE80EE0000428B /* SwiftStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E5B0A2ABE80EE0000428B /* SwiftStub.swift */; };
 		1589D0102F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 1589D0102F40000000000002 /* GoogleInteractiveMediaAds */; };
 		1589D0102F40000000000011 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 1589D0102F40000000000012 /* GoogleUserMessagingPlatform */; };
+		1589E166199126CA00E5DF1A /* IMASceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1589E165199126CA00E5DF1A /* IMASceneDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,8 @@
 		1589E15C199126CA00E5DF1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1589E15E199126CA00E5DF1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1589E15F199126CA00E5DF1A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1589E164199126CA00E5DF1A /* IMASceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IMASceneDelegate.h; sourceTree = "<group>"; };
+		1589E165199126CA00E5DF1A /* IMASceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMASceneDelegate.m; sourceTree = "<group>"; };
 		1589E161199126CA00E5DF1A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1589E162199126CA00E5DF1A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1589E167199126CA00E5DF1A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -84,6 +87,8 @@
 			children = (
 				1589E15E199126CA00E5DF1A /* AppDelegate.h */,
 				1589E15F199126CA00E5DF1A /* AppDelegate.m */,
+				1589E164199126CA00E5DF1A /* IMASceneDelegate.h */,
+				1589E165199126CA00E5DF1A /* IMASceneDelegate.m */,
 				175E5B072ABE80EE0000428B /* ConsentManager.h */,
 				175E5B062ABE80EE0000428B /* ConsentManager.m */,
 				175E5B0A2ABE80EE0000428B /* SwiftStub.swift */,
@@ -191,6 +196,7 @@
 				175E5B092ABE80EE0000428B /* SwiftStub.swift in Sources */,
 				1589E163199126CA00E5DF1A /* ViewController.m in Sources */,
 				1589E160199126CA00E5DF1A /* AppDelegate.m in Sources */,
+				1589E166199126CA00E5DF1A /* IMASceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
