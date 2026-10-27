@@ -10,6 +10,7 @@
 		D20D1DC82C1652260021D157 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20D1DC62C1652260021D157 /* iPhone.storyboard */; };
 		D20D1DC92C1652260021D157 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20D1DC72C1652260021D157 /* iPad.storyboard */; };
 		D21627942C165053004B08EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21627932C165053004B08EF /* AppDelegate.swift */; };
+		D21627962C165053004B08EF /* IMASceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21627952C165053004B08EF /* IMASceneDelegate.swift */; };
 		D21627A02C165055004B08EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D216279F2C165055004B08EF /* Assets.xcassets */; };
 		D216CF102F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = D216CF102F40000000000002 /* GoogleInteractiveMediaAds */; };
 /* End PBXBuildFile section */
@@ -19,6 +20,7 @@
 		D20D1DC72C1652260021D157 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		D21627902C165053004B08EF /* Snippets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snippets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D21627932C165053004B08EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D21627952C165053004B08EF /* IMASceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMASceneDelegate.swift; sourceTree = "<group>"; };
 		D216279F2C165055004B08EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D21627A42C165055004B08EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				D21627932C165053004B08EF /* AppDelegate.swift */,
+				D21627952C165053004B08EF /* IMASceneDelegate.swift */,
 				D216279F2C165055004B08EF /* Assets.xcassets */,
 				D20D1DC72C1652260021D157 /* iPad.storyboard */,
 				D20D1DC62C1652260021D157 /* iPhone.storyboard */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D21627942C165053004B08EF /* AppDelegate.swift in Sources */,
+				D21627962C165053004B08EF /* IMASceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
