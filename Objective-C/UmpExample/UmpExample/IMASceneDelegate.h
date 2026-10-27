@@ -3,7 +3,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- * Scene delegate for BasicExample.
+ * Scene delegate for UMP Example.
  *
  * Manages the application's UIWindow and root view controller lifecycle.
  */
