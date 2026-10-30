@@ -10,6 +10,7 @@
     1592E0351AFBCBC30044003E /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1592E0341AFBCBC30044003E /* iPad.storyboard */; };
     15FB66D61AFA5B6A002870FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB66D51AFA5B6A002870FE /* AppDelegate.swift */; };
     15FB66D81AFA5B6A002870FE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB66D71AFA5B6A002870FE /* MainViewController.swift */; };
+    15FB66DA1AFA5B6A002870FE /* IMASceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB66D91AFA5B6A002870FE /* IMASceneDelegate.swift */; };
     15FB66DD1AFA5B6A002870FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15FB66DC1AFA5B6A002870FE /* Images.xcassets */; };
     15FB66F81AFA5BA0002870FE /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FB66F61AFA5BA0002870FE /* iPhone.storyboard */; };
     15FB66FA1AFA5CEB002870FE /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FB66F91AFA5CEB002870FE /* VideoViewController.swift */; };
@@ -32,6 +33,7 @@
     15FB66D41AFA5B6A002870FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
     15FB66D51AFA5B6A002870FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
     15FB66D71AFA5B6A002870FE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+    15FB66D91AFA5B6A002870FE /* IMASceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMASceneDelegate.swift; sourceTree = "<group>"; };
     15FB66DC1AFA5B6A002870FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
     15FB66F61AFA5BA0002870FE /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
     15FB66F91AFA5CEB002870FE /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
       isa = PBXGroup;
       children = (
         15FB66D51AFA5B6A002870FE /* AppDelegate.swift */,
+        15FB66D91AFA5B6A002870FE /* IMASceneDelegate.swift */,
         15FB66D71AFA5B6A002870FE /* MainViewController.swift */,
         15FB66F91AFA5CEB002870FE /* VideoViewController.swift */,
         15FB66FB1AFA5CF8002870FE /* Video.swift */,
@@ -219,6 +222,7 @@
         15FB66FC1AFA5CF8002870FE /* Video.swift in Sources */,
         15FB66D81AFA5B6A002870FE /* MainViewController.swift in Sources */,
         15FB66D61AFA5B6A002870FE /* AppDelegate.swift in Sources */,
+        15FB66DA1AFA5B6A002870FE /* IMASceneDelegate.swift in Sources */,
         15FB66FE1AFA5D09002870FE /* VideoTableViewCell.swift in Sources */,
         15FB67001AFA5D1B002870FE /* Constants.swift in Sources */,
       );
