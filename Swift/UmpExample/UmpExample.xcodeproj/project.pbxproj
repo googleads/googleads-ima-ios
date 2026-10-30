@@ -16,11 +16,13 @@
 		1F88FBB42B03F34F00FD0197 /* ConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F88FBB32B03F34F00FD0197 /* ConsentManager.swift */; };
 		158CD0102F40000000000001 /* GoogleInteractiveMediaAds in Frameworks */ = {isa = PBXBuildFile; productRef = 158CD0102F40000000000002 /* GoogleInteractiveMediaAds */; };
 		158CD0102F40000000000011 /* GoogleUserMessagingPlatform in Frameworks */ = {isa = PBXBuildFile; productRef = 158CD0102F40000000000012 /* GoogleUserMessagingPlatform */; };
+		158CD8081AF7BDD000EFC0B0 /* IMASceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CD8071AF7BDD000EFC0B0 /* IMASceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 		158CD7FE1AF7BDCF00EFC0B0 /* UmpExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UmpExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158CD8021AF7BDD000EFC0B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		158CD8031AF7BDD000EFC0B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		158CD8071AF7BDD000EFC0B0 /* IMASceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMASceneDelegate.swift; sourceTree = "<group>"; };
 		158CD8051AF7BDD000EFC0B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		158CD80A1AF7BDD000EFC0B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		158CD8231AF7BE5200EFC0B0 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				158CD8231AF7BE5200EFC0B0 /* iPad.storyboard */,
 				158CD8241AF7BE5200EFC0B0 /* iPhone.storyboard */,
 				158CD8031AF7BDD000EFC0B0 /* AppDelegate.swift */,
+				158CD8071AF7BDD000EFC0B0 /* IMASceneDelegate.swift */,
 				158CD8051AF7BDD000EFC0B0 /* ViewController.swift */,
 				158CD80A1AF7BDD000EFC0B0 /* Images.xcassets */,
 				158CD8011AF7BDCF00EFC0B0 /* Supporting Files */,
@@ -177,6 +180,7 @@
 				158CD8061AF7BDD000EFC0B0 /* ViewController.swift in Sources */,
 				158CD8041AF7BDD000EFC0B0 /* AppDelegate.swift in Sources */,
 				1F88FBB42B03F34F00FD0197 /* ConsentManager.swift in Sources */,
+				158CD8081AF7BDD000EFC0B0 /* IMASceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
