@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
     158CD8041AF7BDD000EFC0B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CD8031AF7BDD000EFC0B0 /* AppDelegate.swift */; };
     158CD8061AF7BDD000EFC0B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CD8051AF7BDD000EFC0B0 /* ViewController.swift */; };
+    158CD8081AF7BDD000EFC0B0 /* SVPSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158CD8071AF7BDD000EFC0B0 /* SVPSceneDelegate.swift */; };
     158CD80B1AF7BDD000EFC0B0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158CD80A1AF7BDD000EFC0B0 /* Images.xcassets */; };
     158CD8251AF7BE5200EFC0B0 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158CD8231AF7BE5200EFC0B0 /* iPad.storyboard */; };
     158CD8261AF7BE5200EFC0B0 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158CD8241AF7BE5200EFC0B0 /* iPhone.storyboard */; };
@@ -19,6 +20,7 @@
     158CD8021AF7BDD000EFC0B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
     158CD8031AF7BDD000EFC0B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
     158CD8051AF7BDD000EFC0B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+    158CD8071AF7BDD000EFC0B0 /* SVPSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVPSceneDelegate.swift; sourceTree = "<group>"; };
     158CD80A1AF7BDD000EFC0B0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
     158CD8231AF7BE5200EFC0B0 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
     158CD8241AF7BE5200EFC0B0 /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
         158CD8241AF7BE5200EFC0B0 /* iPhone.storyboard */,
         158CD8031AF7BDD000EFC0B0 /* AppDelegate.swift */,
         158CD8051AF7BDD000EFC0B0 /* ViewController.swift */,
+        158CD8071AF7BDD000EFC0B0 /* SVPSceneDelegate.swift */,
         158CD80A1AF7BDD000EFC0B0 /* Images.xcassets */,
         158CD8011AF7BDCF00EFC0B0 /* Supporting Files */,
       );
@@ -146,6 +149,7 @@
       files = (
         158CD8061AF7BDD000EFC0B0 /* ViewController.swift in Sources */,
         158CD8041AF7BDD000EFC0B0 /* AppDelegate.swift in Sources */,
+        158CD8081AF7BDD000EFC0B0 /* SVPSceneDelegate.swift in Sources */,
       );
       runOnlyForDeploymentPostprocessing = 0;
     };
